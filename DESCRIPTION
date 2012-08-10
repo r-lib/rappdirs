@@ -1,0 +1,20 @@
+Package: appdirs
+Type: Package
+Title: Application directories: determine where to save data, caches and logs.
+Version: 0.1
+Authors@R: c(
+    person("Hadley", "Wickham", email = "h.wickham@gmail.com",
+    role = c("trl", "cre"),
+    person("Sridhar", "Ratnakumar", role = "aut"),
+    person("Trent", "Mick", role = "aut")
+    )
+Description: An easy way to determine which directories on the users computer
+    you should use to save data, caches and logs. A port of Python's Appdirs
+    (\url{https://github.com/ActiveState/appdirs}) to R.
+License: MIT
+Collate:
+    'appdir.r'
+    'cache.r'
+    'data.r'
+    'log.r'
+    'utils.r'
