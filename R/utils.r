@@ -20,6 +20,7 @@ CSIDL_APPDATA <- 26L
 CSIDL_COMMON_APPDATA <- 35L
 CSIDL_LOCAL_APPDATA <- 28L
 
+#' @useDynLib rappdirs
 win_path <- function(csidl = CSIDL_COMMON_APPDATA) {
   stopifnot(is.integer(csidl), length(csidl) == 1)
   .Call("win_path", csidl, PACKAGE = "rappdirs")
