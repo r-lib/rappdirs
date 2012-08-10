@@ -29,11 +29,11 @@
 \details{
   \itemize{ \item Mac OS X: \file{~/Library/Logs/<AppName>}
   \item Unix: \file{~/.cache/<appname>/log}, or under
-  \env{$XDG_CACHE_HOME} if defined \item Win XP:
-  \file{C:\Documents and Settings\<username>\Local
-  Settings\Application Data\<AppAuthor>\<AppName>\Logs}
+  \\env{$XDG_CACHE_HOME} if defined \item Win XP:
+  \file{C:\\Documents and Settings\\<username>\\Local
+  Settings\\Application Data\\<AppAuthor>\\<AppName>\\Logs}
   \item Vista:
-  \file{C:\Users\<username>\AppData\Local\<AppAuthor>\<AppName>\Logs}
+  \file{C:\\Users\\<username>\\AppData\\Local\\<AppAuthor>\\<AppName>\\Logs}
   }
 
   On Windows the only suggestion in the MSDN docs is that

@@ -6,13 +6,14 @@
 #'   \item Mac OS X:  \file{~/Library/Application Support/<AppName>}
 #'   \item Unix: \file{~/.config/<appname>}, in \env{$XDG_CONFIG_HOME} if
 #'      defined
-#'   \item Win XP (not roaming):  \file{C:\Documents and Settings\<username>\Application Data\<AppAuthor>\<AppName>}
-#'   \item Win XP (roaming): \file{C:\Documents and Settings\<username>\Local Settings\Application Data\<AppAuthor>\<AppName>}
+#'   \item Win XP (not roaming):  \file{C:\\Documents and Settings\\<username>\\Data\\<AppAuthor>\\<AppName>}
+#'   \item Win XP (roaming): \file{C:\\Documents and Settings\\<username>\\Local Settings\\Data\\<AppAuthor>\\<AppName>}
 #'   \item Win 7  (not roaming): 
-#'     \file{C:\Users\<username>\AppData\Local\<AppAuthor>\<AppName>}
+#'     \file{C:\\Users\\<username>\\AppData\\Local\\<AppAuthor>\\<AppName>}
 #'   \item Win 7 (roaming):      
-#'     \file{C:\Users\<username>\AppData\Roaming\<AppAuthor>\<AppName>}
-#' 
+#'     \file{C:\\Users\\<username>\\AppData\\Roaming\\<AppAuthor>\\<AppName>}
+#' }
+#'
 #' For Unix, we follow the XDG spec and support \env{$XDG_CONFIG_HOME}. We
 #' don't use \env{$XDG_DATA_HOME} as that data dir is mostly used at the time
 #' of installation, instead of the application adding data during runtime.
@@ -53,10 +54,10 @@ user_data_dir <- function(appname, appauthor, version = NULL, roaming = FALSE) {
 #' \itemize{
 #' \item Mac OS X:   \file{/Library/Application Support/<AppName>}
 #' \item Unix:       \file{/etc/xdg/<appname>}
-#' \item Win XP:     \file{C:\Documents and Settings\All Users\Application Data\<AppAuthor>\<AppName>}
-#' \item Vista:      (Fail! file{C:\ProgramData} is a hidden \emph{system}
+#' \item Win XP:     \file{C:\\Documents and Settings\\All Users\\Application Data\\<AppAuthor>\\<AppName>}
+#' \item Vista:      (Fail! \file{C:\\ProgramData} is a hidden \emph{system}
 #'    directory on Vista.)
-#' \item Win 7:      \file{C:\ProgramData\<AppAuthor>\<AppName>}.  
+#' \item Win 7:      \file{C:\\ProgramData\\<AppAuthor>\\<AppName>}.  
 #'    Hidden, but writeable on Win 7.
 #' }
 #' 

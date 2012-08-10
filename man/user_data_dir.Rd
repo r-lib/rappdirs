@@ -33,15 +33,16 @@
   \itemize{ \item Mac OS X: \file{~/Library/Application
   Support/<AppName>} \item Unix:
   \file{~/.config/<appname>}, in \env{$XDG_CONFIG_HOME} if
-  defined \item Win XP (not roaming): \file{C:\Documents
-  and Settings\<username>\Application
-  Data\<AppAuthor>\<AppName>} \item Win XP (roaming):
-  \file{C:\Documents and Settings\<username>\Local
-  Settings\Application Data\<AppAuthor>\<AppName>} \item
-  Win 7 (not roaming):
-  \file{C:\Users\<username>\AppData\Local\<AppAuthor>\<AppName>}
+  defined \item Win XP (not roaming): \file{C:\\Documents
+  and Settings\\<username>\\Data\\<AppAuthor>\\<AppName>}
+  \item Win XP (roaming): \file{C:\\Documents and
+  Settings\\<username>\\Local
+  Settings\\Data\\<AppAuthor>\\<AppName>} \item Win 7 (not
+  roaming):
+  \file{C:\\Users\\<username>\\AppData\\Local\\<AppAuthor>\\<AppName>}
   \item Win 7 (roaming):
-  \file{C:\Users\<username>\AppData\Roaming\<AppAuthor>\<AppName>}
+  \file{C:\\Users\\<username>\\AppData\\Roaming\\<AppAuthor>\\<AppName>}
+  }
 
   For Unix, we follow the XDG spec and support
   \env{$XDG_CONFIG_HOME}. We don't use \env{$XDG_DATA_HOME}

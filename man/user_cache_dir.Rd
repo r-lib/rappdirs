@@ -29,10 +29,10 @@
   \itemize{ \item Mac OS X:
   \file{~/Library/Caches/<AppName>} \item Unix:
   \file{~/.cache/<appname>} (XDG default) \item Win XP:
-  \file{C:\Documents and Settings\<username>\Local
-  Settings\Application Data\<AppAuthor>\<AppName>\Cache}
-  \item Vista:
-  \file{C:\Users\<username>\AppData\Local\<AppAuthor>\<AppName>\Cache}
+  \file{C:\\Documents and Settings\\<username>\\Local
+  Settings\\Application
+  Data\\<AppAuthor>\\<AppName>\\Cache} \item Vista:
+  \file{C:\\Users\\<username>\\AppData\\Local\\<AppAuthor>\\<AppName>\\Cache}
   }
 
   On Windows the only suggestion in the MSDN docs is that
@@ -41,8 +41,8 @@
   default returned by `user_data_dir` above). Apps
   typically put cache data somewhere *under* the given dir
   here. Some examples:
-  \file{...\Mozilla\Firefox\Profiles\<ProfileName>\Cache},
-  \file{...\Acme\SuperApp\Cache\1.0}
+  \file{...\\Mozilla\\Firefox\\Profiles\\<ProfileName>\\Cache},
+  \file{...\\Acme\\SuperApp\\Cache\\1.0}
 }
 \section{Opinion}{
   This function appends \file{Cache} to the
