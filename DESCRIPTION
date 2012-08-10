@@ -1,4 +1,4 @@
-Package: appdirs
+Package: rappdirs
 Type: Package
 Title: Application directories: determine where to save data, caches and logs.
 Version: 0.1
