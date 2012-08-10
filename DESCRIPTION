@@ -9,7 +9,8 @@ Authors@R: c(
     person("Trent", "Mick", role = "aut")
     )
 Depends:
-    R (>= 2.14)
+    R (>= 2.14),
+    methods
 Description: An easy way to determine which directories on the users computer
     you should use to save data, caches and logs. A port of Python's Appdirs
     (\url{https://github.com/ActiveState/appdirs}) to R.

@@ -22,5 +22,5 @@ CSIDL_LOCAL_APPDATA <- 28L
 
 win_path <- function(csidl = CSIDL_COMMON_APPDATA) {
   stopifnot(is.integer(csidl), length(csidl) == 1)
-  .Call("win_path", csidl)
+  .Call("win_path", csidl, PACKAGE = "rappdirs")
 }
