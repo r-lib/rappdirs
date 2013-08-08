@@ -34,15 +34,40 @@
 #'     sync'd on login. See
 #'     \url{http://technet.microsoft.com/en-us/library/cc766489(WS.10).aspx}
 #'     for a discussion of issues.
+#' @param os Operating system which we should create directory for, 
+#'     if NULL (the default) will compute the operating system using R's built in variables/functions.  
+#'     Values are "win", "mac", "unix".
+#' @param expand If TRUE (the default) will expand the \code{R_LIBS} specifiers with their equivalents.  
+#'      See \code{\link{R_LIBS}} for list of all possibly specifiers.
+#' 
 #' @export
-user_data_dir <- function(appname, appauthor, version = NULL, roaming = FALSE) {
+user_data_dir <- function(appname = NULL, appauthor = NULL, version = NULL, 
+                          roaming = FALSE, expand = TRUE, os = NULL) {
+  if(is.null(os)) { os <- get_os() }
+  if(!is.null(version) && expand) { version <- expand_r_libs_specifiers(version) }
   csidl <- if (roaming) CSIDL_APPDATA else CSIDL_LOCAL_APPDATA
-  
-  switch(os(), 
+  if(is.null(appauthor)) { appauthor <- appname }
+  switch(os, 
     win = file_path(win_path(csidl), appauthor, appname, version),
     mac = file_path("~/Library/Application Support", appname, version),
-    lin = file_path(Sys.getenv("XDG_CONFIG_HOME", "~/.config"), 
-      tolower(appname), version)
+    unix = file_path(Sys.getenv("XDG_DATA_HOME", "~/.local/share"), 
+      appname, version)
+  )
+}
+
+#' @rdname user_data_dir
+#' @export
+user_config_dir <- function(appname = NULL, appauthor = NULL, version = NULL, 
+                            roaming = TRUE, expand = TRUE, os = NULL) {
+  if(is.null(os)) { os <- get_os() }
+  if(!is.null(version) && expand) { version <- expand_r_libs_specifiers(version) }
+  csidl <- if (roaming) CSIDL_APPDATA else CSIDL_LOCAL_APPDATA
+  if(is.null(appauthor)) { appauthor <- appname }
+  switch(os, 
+    win = file_path(win_path(csidl), appauthor, appname, version),
+    mac = file_path("~/Library/Application Support", appname, version),
+    unix = file_path(Sys.getenv("XDG_CONFIG_HOME", "~/.config"), 
+      appname, version)
   )
 }
 
@@ -64,13 +89,40 @@ user_data_dir <- function(appname, appauthor, version = NULL, roaming = FALSE) {
 #' For Unix, this is using the \env{$XDG_CONFIG_DIRS[0]} default.
 #' 
 #' @inheritParams user_data_dir
+#' @param multipath is an optional parameter only applicable to *nix
+#'       which indicates that the entire list of data dirs should be returned
+#'       By default, the first directory is returned
 #' @section Warning:
 #' Do not use this on Windows. See the note above for why.
 #' @export
-site_data_dir <- function(appname, appauthor, version = NULL) {
-  switch(os(),
+site_data_dir <- function(appname = NULL, appauthor = NULL, version = NULL, multipath = FALSE, expand = TRUE, os = NULL) {
+  if(is.null(os)) { os <- get_os() }
+  if(!is.null(version) && expand) { version <- expand_r_libs_specifiers(version) }
+  if(is.null(appauthor)) { appauthor <- appname }
+  switch(os,
     win = file_path(win_path(), appauthor, appname, version),
     mac = file_path("/Library/Application Support", appname, version),
-    lin = file_path("/etc/xdg", tolower(appname), version)    
+    unix = if(multipath) {
+             file_path_vec(get_dirs(Sys.getenv("XDG_DATA_DIRS", "/usr/local/share:/usr/share")), appname, version)
+           } else {   
+             file_path(get_dirs(Sys.getenv("XDG_DATA_DIRS", "/usr/local/share:/usr/share"))[1], appname, version)
+           }
+    )
+}
+
+#' @rdname site_data_dir
+#' @export
+site_config_dir <- function(appname = NULL, appauthor = NULL, version = NULL, multipath = FALSE, expand = TRUE, os = NULL) {
+  if(is.null(os)) { os <- get_os() }
+  if(!is.null(version) && expand) { version <- expand_r_libs_specifiers(version) }
+  if(is.null(appauthor)) { appauthor <- appname }
+  switch(os,
+    win = file_path(win_path(), appauthor, appname, version),
+    mac = file_path("/Library/Application Support", appname, version),
+    unix = if(multipath) {
+            file_path_vec(get_dirs(Sys.getenv("XDG_CONFIG_DIRS", "/etc/xdg")), appname, version)
+           } else {
+            file_path(get_dirs(Sys.getenv("XDG_CONFIG_DIRS", "/etc/xdg"))[1], appname, version)
+           }
   )
 }

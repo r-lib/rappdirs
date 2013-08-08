@@ -1,9 +1,15 @@
 \name{user_data_dir}
+\alias{user_config_dir}
 \alias{user_data_dir}
 \title{Return full path to the user-specific data dir for this application.}
 \usage{
-  user_data_dir(appname, appauthor, version = NULL,
-    roaming = FALSE)
+  user_data_dir(appname = NULL, appauthor = NULL,
+    version = NULL, roaming = FALSE, expand = TRUE,
+    os = NULL)
+
+  user_config_dir(appname = NULL, appauthor = NULL,
+    version = NULL, roaming = TRUE, expand = TRUE,
+    os = NULL)
 }
 \arguments{
   \item{appname}{is the name of application.}
@@ -25,6 +31,16 @@
   See
   \url{http://technet.microsoft.com/en-us/library/cc766489(WS.10).aspx}
   for a discussion of issues.}
+
+  \item{os}{Operating system which we should create
+  directory for, if NULL (the default) will compute the
+  operating system using R's built in variables/functions.
+  Values are "win", "mac", "unix".}
+
+  \item{expand}{If TRUE (the default) will expand the
+  \code{R_LIBS} specifiers with their equivalents.  See
+  \code{\link{R_LIBS}} for list of all possibly
+  specifiers.}
 }
 \description{
   Typical user data directories are:

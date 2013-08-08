@@ -24,12 +24,14 @@
 #' @param opinion (logical) can be \code{FALSE} to disable the appending of
 #'   \file{Cache} to the base app data dir for Windows. See discussion below.
 #' @export
-user_cache_dir <- function(appname, appauthor, version = NULL, opinion = TRUE) {
-  switch(os(), 
+user_cache_dir <- function(appname = NULL, appauthor = NULL, version = NULL, opinion = TRUE, expand = TRUE, os = NULL) {
+  if(is.null(os)) { os <- get_os() }
+  if(!is.null(version) && expand) { version <- expand_r_libs_specifiers(version) }
+  if(is.null(appauthor)) { appauthor <- appname }
+  switch(os, 
     win = file_path(win_path(), appauthor, appname, version, 
       if (opinion) "Cache"),
     mac = file_path("~/Library/Caches", appname, version),
-    lin = file_path(Sys.getenv("XDG_CACHE_HOME", "~/.cache"),
-      tolower(appname), version)
+    unix = file_path(Sys.getenv("XDG_CACHE_HOME", "~/.cache"), appname, version)
   )
 }

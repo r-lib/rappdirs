@@ -2,8 +2,9 @@
 \alias{user_cache_dir}
 \title{Return full path to the user-specific cache dir for this application.}
 \usage{
-  user_cache_dir(appname, appauthor, version = NULL,
-    opinion = TRUE)
+  user_cache_dir(appname = NULL, appauthor = NULL,
+    version = NULL, opinion = TRUE, expand = TRUE,
+    os = NULL)
 }
 \arguments{
   \item{opinion}{(logical) can be \code{FALSE} to disable
@@ -21,6 +22,16 @@
   want multiple versions of your app to be able to run
   independently. If used, this would typically be
   "<major>.<minor>".}
+
+  \item{expand}{If TRUE (the default) will expand the
+  \code{R_LIBS} specifiers with their equivalents.  See
+  \code{\link{R_LIBS}} for list of all possibly
+  specifiers.}
+
+  \item{os}{Operating system which we should create
+  directory for, if NULL (the default) will compute the
+  operating system using R's built in variables/functions.
+  Values are "win", "mac", "unix".}
 }
 \description{
   Typical user cache directories are:

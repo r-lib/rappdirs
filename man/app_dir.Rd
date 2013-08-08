@@ -2,7 +2,8 @@
 \alias{app_dir}
 \title{Convenience wrapper for getting app dirs.}
 \usage{
-  app_dir(appname, appauthor, version = NULL)
+  app_dir(appname = NULL, appauthor = NULL, version = NULL,
+    expand = FALSE, os = NULL)
 }
 \arguments{
   \item{appname}{is the name of application.}
@@ -16,6 +17,16 @@
   want multiple versions of your app to be able to run
   independently. If used, this would typically be
   "<major>.<minor>".}
+
+  \item{expand}{If TRUE (the default) will expand the
+  \code{R_LIBS} specifiers with their equivalents.  See
+  \code{\link{R_LIBS}} for list of all possibly
+  specifiers.}
+
+  \item{os}{Operating system which we should create
+  directory for, if NULL (the default) will compute the
+  operating system using R's built in variables/functions.
+  Values are "win", "mac", "unix".}
 }
 \description{
   Has methods:
@@ -29,6 +40,7 @@ ggplot2_app <- app_dir("ggplot2", "hadley")
 ggplot2_app$cache()
 ggplot2_app$log()
 ggplot2_app$data()
+ggplot2_app$site_config()
 ggplot2_app$site_data()
 }
 

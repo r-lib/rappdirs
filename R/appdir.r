@@ -16,19 +16,24 @@
 #' ggplot2_app$cache()
 #' ggplot2_app$log()
 #' ggplot2_app$data()
+#' ggplot2_app$site_config()
 #' ggplot2_app$site_data()
-app_dir <- function(appname, appauthor, version = NULL) {
+app_dir <- function(appname = NULL, appauthor = NULL, version = NULL, expand = FALSE, os = NULL) {
   appdirs$new(appname = appname, appauthor = appauthor, version = version)
 }
 
 appdirs <- setRefClass("AppDirs", 
   fields = c("appname", "appauthor", "version"), 
   methods = list(
-    cache = function() user_cache_dir(appname, appauthor, version), 
-    log = function() user_log_dir(appname, appauthor, version), 
-    data = function(roaming = FALSE) {
-      user_data_dir(appname, appauthor, version, roaming = roaming)
+    cache = function(expand = FALSE, os = NULL) user_cache_dir(appname, appauthor, version, expand, os), 
+    log = function(opinion = TRUE, expand = FALSE, os = NULL) user_log_dir(appname, appauthor, version, opinion, expand, os), 
+    data = function(roaming = FALSE, expand = FALSE, os = NULL) {
+      user_data_dir(appname, appauthor, version, roaming = roaming, expand, os)
     },
-    site_data = function() site_data_dir(appname, appauthor, version)
+    config = function(roaming = FALSE, expand = FALSE, os = NULL) {
+      user_data_dir(appname, appauthor, version, roaming = roaming, expand, os)
+    },
+    site_data = function(multipath = FALSE, expand = FALSE, os = NULL) site_data_dir(appname, appauthor, version, multipath, expand, os),
+    site_config = function(multipath = FALSE, expand = FALSE, os = NULL) site_config_dir(appname, appauthor, version, multipath, expand, os)
   )
 )  

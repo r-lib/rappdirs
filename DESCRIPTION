@@ -1,19 +1,25 @@
 Package: rappdirs
 Type: Package
 Title: Application directories: determine where to save data, caches and logs.
-Version: 0.1
+Version: 0.2
 Authors@R: c(
     person("Hadley", "Wickham", email = "h.wickham@gmail.com",
     role = c("trl", "cre")),
     person("Sridhar", "Ratnakumar", role = "aut"),
-    person("Trent", "Mick", role = "aut")
+    person("Trent", "Mick", role = "aut"),
+    person("Eddy", "Petrisor", role = "ctb"),
+    person("Trevor", "Davis", role = c("trl", "ctb"))
     )
 Depends:
     R (>= 2.14),
     methods
+Suggests:
+    testthat,
+    roxygen2
 Description: An easy way to determine which directories on the users computer
     you should use to save data, caches and logs. A port of Python's Appdirs
     (\url{https://github.com/ActiveState/appdirs}) to R.
+BugReports: https://github.com/hadley/rappdirs/issues
 License: MIT
 Collate:
     'appdir.r'
