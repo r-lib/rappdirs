@@ -39,9 +39,9 @@
 \details{
   \itemize{ \item Mac OS X:
   \file{~/Library/Caches/<AppName>} \item Unix:
-  \file{~/.cache/<appname>} (XDG default) \item Win XP:
-  \file{C:\\Documents and Settings\\<username>\\Local
-  Settings\\Application
+  \file{~/.cache/<appname>}, \env{$XDG_CACHE_HOME} if
+  defined \item Win XP: \file{C:\\Documents and
+  Settings\\<username>\\Local Settings\\Application
   Data\\<AppAuthor>\\<AppName>\\Cache} \item Vista:
   \file{C:\\Users\\<username>\\AppData\\Local\\<AppAuthor>\\<AppName>\\Cache}
   }
@@ -59,5 +59,9 @@
   This function appends \file{Cache} to the
   `CSIDL_LOCAL_APPDATA` value. This can be disabled with
   \code{opinion = FALSE} option.
+}
+\seealso{
+  \code{\link{tempdir}} for a non-persistent temporary
+  directory.
 }
 

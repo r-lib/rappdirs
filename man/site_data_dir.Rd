@@ -40,20 +40,32 @@
   Values are "win", "mac", "unix".}
 }
 \description{
-  Typical user data directories are:
+  \code{site_data_dir} returns full path to the user-shared
+  data dir for this application. \code{site_config_dir}
+  returns full path to the user-specific configuration
+  directory for this application which returns the same
+  path as site data directory in Windows and Mac but a
+  different one for Unix. Typical user-shared data
+  directories are:
 }
 \details{
   \itemize{ \item Mac OS X: \file{/Library/Application
-  Support/<AppName>} \item Unix: \file{/etc/xdg/<appname>}
-  \item Win XP: \file{C:\\Documents and Settings\\All
-  Users\\Application Data\\<AppAuthor>\\<AppName>} \item
-  Vista: (Fail! \file{C:\\ProgramData} is a hidden
-  \emph{system} directory on Vista.) \item Win 7:
+  Support/<AppName>} \item Unix:
+  \file{/usr/local/share:/usr/share/} \item Win XP:
+  \file{C:\\Documents and Settings\\All Users\\Application
+  Data\\<AppAuthor>\\<AppName>} \item Vista: (Fail!
+  \file{C:\\ProgramData} is a hidden \emph{system}
+  directory on Vista.) \item Win 7:
   \file{C:\\ProgramData\\<AppAuthor>\\<AppName>}.  Hidden,
-  but writeable on Win 7. }
+  but writeable on Win 7. } Unix also specifies a separate
+  location for user-shared configuration data in
+  \env{$XDG_CONFIG_DIRS}. \itemize{ \item Unix:
+  \file{/etc/xdg/<appname>}, in \env{$XDG_CONFIG_HOME} if
+  defined }
 
-  For Unix, this is using the \env{$XDG_CONFIG_DIRS[0]}
-  default.
+  For Unix, this returns the first default.  Set the
+  \code{multipath=TRUE} to guarantee returning all
+  directories.
 }
 \section{Warning}{
   Do not use this on Windows. See the note above for why.

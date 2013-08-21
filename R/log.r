@@ -30,7 +30,7 @@ user_log_dir <- function(appname = NULL, appauthor = NULL, version = NULL, opini
   if(!is.null(version) && expand) { version <- expand_r_libs_specifiers(version) }
   if(is.null(appauthor)) { appauthor <- appname }
   switch(os, 
-    win = file_path(win_path(), appauthor, appname, version, 
+    win = file_path(win_path("local"), appauthor, appname, version, 
       if (opinion) "Logs"),
     mac = file_path("~/Library/Logs", appname, version),
     unix = file_path(Sys.getenv("XDG_CACHE_HOME", "~/.cache"),

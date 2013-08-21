@@ -1,11 +1,14 @@
-#' Return full path to the user-specific data dir for this application.
+#' Return path to user data directories.
+#' 
+#' \code{user_data_dir} returns full path to the user-specific data dir for this application.
+#' \code{user_config_dir} returns full path to the user-specific configuration directory for this application 
+#' which returns the same path as user data directory in Windows and Mac but a different one for Unix.
 #' 
 #' Typical user data directories are:
 #'
 #' \itemize{
 #'   \item Mac OS X:  \file{~/Library/Application Support/<AppName>}
-#'   \item Unix: \file{~/.config/<appname>}, in \env{$XDG_CONFIG_HOME} if
-#'      defined
+#'   \item Unix: \file{~/.local/share/<appname>}, in \env{$XDG_DATA_HOME} if defined
 #'   \item Win XP (not roaming):  \file{C:\\Documents and Settings\\<username>\\Data\\<AppAuthor>\\<AppName>}
 #'   \item Win XP (roaming): \file{C:\\Documents and Settings\\<username>\\Local Settings\\Data\\<AppAuthor>\\<AppName>}
 #'   \item Win 7  (not roaming): 
@@ -13,12 +16,20 @@
 #'   \item Win 7 (roaming):      
 #'     \file{C:\\Users\\<username>\\AppData\\Roaming\\<AppAuthor>\\<AppName>}
 #' }
+#' Unix also specifies a separate location for user configuration data in
+#' \itemize{ 
+#'   \item Unix: \file{~/.config/<appname>}, in \env{$XDG_CONFIG_HOME} if defined
+#'  }
+#' See for example \url{http://ploum.net/184-cleaning-user-preferences-keeping-user-data/} 
+#' or \url{http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html} for more information.
+#' Arguably plugins such as R packages should go into the user configuration directory and deleting
+#' this directory should return the application to a default settings.
 #'
-#' For Unix, we follow the XDG spec and support \env{$XDG_CONFIG_HOME}. We
-#' don't use \env{$XDG_DATA_HOME} as that data dir is mostly used at the time
-#' of installation, instead of the application adding data during runtime.
-#' Also, in practice, Linux apps tend to store their data in
-#' \file{~/.config/<appname>} instead of \file{~/.local/share/<appname>}.
+##  For Unix, we follow the XDG spec and support \env{$XDG_DATA_HOME}. We
+##  don't use \env{$XDG_DATA_HOME} as that data dir is mostly used at the time
+##  of installation, instead of the application adding data during runtime.
+##  Also, in practice, Linux apps tend to store their data in
+##  \file{~/.config/<appname>} instead of \file{~/.local/share/<appname>}.
 #'
 #' @param appname is the name of application.
 #' @param appauthor (only required and used on Windows) is the name of the
@@ -45,10 +56,9 @@ user_data_dir <- function(appname = NULL, appauthor = NULL, version = NULL,
                           roaming = FALSE, expand = TRUE, os = NULL) {
   if(is.null(os)) { os <- get_os() }
   if(!is.null(version) && expand) { version <- expand_r_libs_specifiers(version) }
-  csidl <- if (roaming) CSIDL_APPDATA else CSIDL_LOCAL_APPDATA
   if(is.null(appauthor)) { appauthor <- appname }
   switch(os, 
-    win = file_path(win_path(csidl), appauthor, appname, version),
+    win = file_path(win_path(ifelse(roaming, "roaming", "local")), appauthor, appname, version),
     mac = file_path("~/Library/Application Support", appname, version),
     unix = file_path(Sys.getenv("XDG_DATA_HOME", "~/.local/share"), 
       appname, version)
@@ -64,7 +74,7 @@ user_config_dir <- function(appname = NULL, appauthor = NULL, version = NULL,
   csidl <- if (roaming) CSIDL_APPDATA else CSIDL_LOCAL_APPDATA
   if(is.null(appauthor)) { appauthor <- appname }
   switch(os, 
-    win = file_path(win_path(csidl), appauthor, appname, version),
+    win = file_path(win_path(ifelse(roaming, "roaming", "local")), appauthor, appname, version),
     mac = file_path("~/Library/Application Support", appname, version),
     unix = file_path(Sys.getenv("XDG_CONFIG_HOME", "~/.config"), 
       appname, version)
@@ -74,19 +84,26 @@ user_config_dir <- function(appname = NULL, appauthor = NULL, version = NULL,
 
 #' Return full path to the user-shared data dir for this application.
 #' 
-#' Typical user data directories are:
+#' \code{site_data_dir} returns full path to the user-shared data dir for this application.
+#' \code{site_config_dir} returns full path to the user-specific configuration directory for this application 
+#' which returns the same path as site data directory in Windows and Mac but a different one for Unix.
+#' Typical user-shared data directories are:
 #' 
 #' \itemize{
 #' \item Mac OS X:   \file{/Library/Application Support/<AppName>}
-#' \item Unix:       \file{/etc/xdg/<appname>}
+#' \item Unix:       \file{/usr/local/share:/usr/share/}
 #' \item Win XP:     \file{C:\\Documents and Settings\\All Users\\Application Data\\<AppAuthor>\\<AppName>}
 #' \item Vista:      (Fail! \file{C:\\ProgramData} is a hidden \emph{system}
 #'    directory on Vista.)
 #' \item Win 7:      \file{C:\\ProgramData\\<AppAuthor>\\<AppName>}.  
 #'    Hidden, but writeable on Win 7.
 #' }
+#' Unix also specifies a separate location for user-shared configuration data in \env{$XDG_CONFIG_DIRS}.
+#' \itemize{ 
+#'   \item Unix: \file{/etc/xdg/<appname>}, in \env{$XDG_CONFIG_HOME} if defined
+#'  }
 #' 
-#' For Unix, this is using the \env{$XDG_CONFIG_DIRS[0]} default.
+#' For Unix, this returns the first default.  Set the \code{multipath=TRUE} to guarantee returning all directories.
 #' 
 #' @inheritParams user_data_dir
 #' @param multipath is an optional parameter only applicable to *nix
@@ -100,7 +117,7 @@ site_data_dir <- function(appname = NULL, appauthor = NULL, version = NULL, mult
   if(!is.null(version) && expand) { version <- expand_r_libs_specifiers(version) }
   if(is.null(appauthor)) { appauthor <- appname }
   switch(os,
-    win = file_path(win_path(), appauthor, appname, version),
+    win = file_path(win_path("common"), appauthor, appname, version),
     mac = file_path("/Library/Application Support", appname, version),
     unix = if(multipath) {
              file_path_vec(get_dirs(Sys.getenv("XDG_DATA_DIRS", "/usr/local/share:/usr/share")), appname, version)
@@ -117,7 +134,7 @@ site_config_dir <- function(appname = NULL, appauthor = NULL, version = NULL, mu
   if(!is.null(version) && expand) { version <- expand_r_libs_specifiers(version) }
   if(is.null(appauthor)) { appauthor <- appname }
   switch(os,
-    win = file_path(win_path(), appauthor, appname, version),
+    win = file_path(win_path("common"), appauthor, appname, version),
     mac = file_path("/Library/Application Support", appname, version),
     unix = if(multipath) {
             file_path_vec(get_dirs(Sys.getenv("XDG_CONFIG_DIRS", "/etc/xdg")), appname, version)

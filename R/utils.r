@@ -38,8 +38,29 @@ CSIDL_APPDATA <- 26L
 CSIDL_COMMON_APPDATA <- 35L
 CSIDL_LOCAL_APPDATA <- 28L
 
+# type_appdata in "roaming", "local", "common"
+win_path <- function(type_appdata = "common", os = NULL) {
+    if(is.null(os)) { os <- get_os() }
+    if(os == "win") {
+        switch(type_appdata,
+               roaming = tryCatch(win_path_csidl(CSIDL_APPDATA),
+                            error = function(e) win_path_env("roaming")),
+               local = tryCatch(win_path_csidl(CSIDL_LOCAL_APPDATA),
+                            error = function(e) win_path_env("local")),
+               common = tryCatch(win_path_csidl(),
+                            error = function(e) win_path_env("common"))
+               )
+    } else {
+        switch(type_appdata,
+               roaming = "C:/Users/<username>/AppData",
+               local = "C:/Users/<username>/Local",
+               common = "C:/ProgramData"
+               )
+    }
+}
+
 #' @useDynLib rappdirs
-win_path <- function(csidl = CSIDL_COMMON_APPDATA) {
+win_path_csidl <- function(csidl = CSIDL_COMMON_APPDATA) {
   stopifnot(is.integer(csidl), length(csidl) == 1)
   path <- .Call("win_path", csidl, PACKAGE = "rappdirs")
   if(is.null(path)) { 
@@ -49,24 +70,32 @@ win_path <- function(csidl = CSIDL_COMMON_APPDATA) {
 }
 
 # How to get reasonable window paths via environmental variables
-#   # user data
-#   if(roaming) {
-#       path <- Sys.getenv("APPDATA", unset=NA)
-#       if(is.na(path)) { stop("APPDATA environmental variable does not exist") }
-#   } else {
-#       path <- Sys.getenv("LOCALAPPDATA", unset=NA)
-#       if(is.na(path)) { # environmental variable not defined in XP
-#           user_profile <- Sys.getenv("USERPROFILE", unset=NA)
-#           if(is.na(user_profile)) { stop("USERPROFILE environmental variable does not exist") }
-#           path <- file.path(user_profile, "Local Settings", "Application Data")
-#       }
-#   }
-#   # site data
-#   path <- Sys.getenv("PROGRAMDATA", unset=NA)
-#   if(is.na(path)) { 
-#       path <- Sys.getenv("ALLUSERPROFILE", unset=NA)    
-#       if(is.na(path)) {
-#           stop("PROGRAMDATA nor ALLUSERPROFILE environmental variable does not exist") 
-#       }
-#       path <- file.path(path, "Application Data")
-#   }
+win_path_env <- function(type_appdata) {
+    switch(type_appdata, 
+    roaming =  {
+        path <- Sys.getenv("APPDATA", unset=NA)
+        if(is.na(path)) { stop("APPDATA environmental variable does not exist") }
+        path
+    },
+    local = {
+        path <- Sys.getenv("LOCALAPPDATA", unset=NA)
+        if(is.na(path)) { # environmental variable not defined in XP
+            user_profile <- Sys.getenv("USERPROFILE", unset=NA)
+            if(is.na(user_profile)) { stop("USERPROFILE environmental variable does not exist") }
+            path <- file.path(user_profile, "Local Settings", "Application Data")
+        }
+        path
+    },
+    common = {
+        path <- Sys.getenv("PROGRAMDATA", unset=NA)
+        if(is.na(path)) { 
+            path <- Sys.getenv("ALLUSERPROFILE", unset=NA)    
+            if(is.na(path)) {
+                stop("PROGRAMDATA nor ALLUSERPROFILE environmental variable does not exist") 
+            }
+            path <- file.path(path, "Application Data")
+        }
+        path
+    }
+    )
+}
