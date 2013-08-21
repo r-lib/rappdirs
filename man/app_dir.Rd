@@ -33,13 +33,15 @@
 }
 \details{
   \itemize{ \item \code{cache} \item \code{log} \item
-  \code{data} \item \code{site_data} }
+  \code{data} \item \code{config} \item \code{site_data}
+  \item \code{site_config} }
 }
 \examples{
 ggplot2_app <- app_dir("ggplot2", "hadley")
 ggplot2_app$cache()
 ggplot2_app$log()
 ggplot2_app$data()
+ggplot2_app$config()
 ggplot2_app$site_config()
 ggplot2_app$site_data()
 }

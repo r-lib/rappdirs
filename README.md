@@ -19,9 +19,13 @@ or possibly:
 for [roaming profiles][] but that is another story.
 
 On Linux (and other Unices) the dir, according to the [XDG spec][] (and
-subject to some interpretation), is:
+subject to some interpretation), is either:
 
-    ~/.config/<appname>     # note AppName was lowercased
+    ~/.config/<AppName>     
+
+or possibly:
+
+    ~/.local/share/<AppName>
 
 `rappdirs` to the rescue
 =======================
@@ -30,6 +34,7 @@ This kind of thing is what the `appdirs` module is for. `appdirs` will
 help you choose an appropriate:
 
 -   user data dir (`user_data_dir`)
+-   user config dir (`user_config_dir`)
 -   user cache dir (`user_cache_dir`)
 -   site data dir (`site_data_dir`)
 -   user log dir (`user_log_dir`)
@@ -48,6 +53,8 @@ On Mac OS X:
     library(appdirs)
     appname <- "SuperApp"
     appauthor <- "Acme"
+    user_config_dir(appname, appauthor)
+    # "/Users/trentm/Library/Application Support/SuperApp"
     user_data_dir(appname, appauthor)
     # "/Users/trentm/Library/Application Support/SuperApp"
     site_data_dir(appname, appauthor)
@@ -62,6 +69,8 @@ On Windows 7:
     library(appdirs)
     appname <- "SuperApp"
     appauthor <- "Acme"
+    user_config_dir(appname, appauthor)
+    # "C:\\Users\\trentm\\AppData\\Local\\Acme\\SuperApp"
     user_data_dir(appname, appauthor)
     # "C:\\Users\\trentm\\AppData\\Local\\Acme\\SuperApp"
     user_data_dir(appname, appauthor, roaming=True)
@@ -76,20 +85,24 @@ On Linux:
     library(appdirs)
     appname <- "SuperApp"
     appauthor <- "Acme"
+    user_config_dir(appname, appauthor)
+    # "/home/trentm/.config/SuperApp
     user_data_dir(appname, appauthor)
-    # "/home/trentm/.config/superapp
-    site_data_dir(appname, appauthor)
-    # "/etc/xdg/superapp"
+    # "/home/trentm/.local/share/SuperApp
+    site_config_dir(appname, appauthor)
+    # "/etc/xdg/SuperApp"
     user_cache_dir(appname, appauthor)
-    # "/home/trentm/.cache/superapp"
+    # "/home/trentm/.cache/SuperApp"
     user_log_dir(appname, appauthor)
-    # "/home/trentm/.cache/superapp/log"
+    # "/home/trentm/.cache/SuperApp/log"
 
 `app_dirs` for convenience
 =========================
 
     library(appdirs)
     dirs <- app_dirs("SuperApp", "Acme")
+    dirs$config()
+    # "/Users/trentm/Library/Application Support/SuperApp"
     dirs$data()
     # "/Users/trentm/Library/Application Support/SuperApp"
     dirs$site_data()
@@ -116,6 +129,11 @@ dirs:
     # "/Users/trentm/Library/Caches/SuperApp/1.0"
     dirs$log()
     # "/Users/trentm/Library/Logs/SuperApp/1.0"
+
+If you set the argument expand = TRUE (the default) you can have directories that correspond to R versions:
+
+   user_config_dir("R", version="%p-platform/%v")
+   # "/home/trevorld/.config/R/x86_64-pc-linux-gnu-platform/3.0"
 
   [roaming profiles]: http://bit.ly/9yl3b6
   [XDG spec]: http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html

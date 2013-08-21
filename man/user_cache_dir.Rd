@@ -60,6 +60,25 @@
   `CSIDL_LOCAL_APPDATA` value. This can be disabled with
   \code{opinion = FALSE} option.
 }
+\examples{
+user_cache_dir("rappdirs")
+\dontrun{
+# Throw this in your R profile to store a R history file in standard cache location
+history_file <- file.path(rappdirs::user_cache_dir("R"), "Rhistory")
+.First <- function() {
+   if(!any(commandArgs()=='--no-readline') && interactive()) {
+     require("utils")
+     loadhistory(history_file)
+     }
+ }
+.Last <- function() {
+   if(!any(commandArgs()=='--no-readline') && interactive()) {
+     require("utils")
+     try(savehistory(history_file))
+   }
+ }
+}
+}
 \seealso{
   \code{\link{tempdir}} for a non-persistent temporary
   directory.

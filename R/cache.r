@@ -24,6 +24,25 @@
 #' @param opinion (logical) can be \code{FALSE} to disable the appending of
 #'   \file{Cache} to the base app data dir for Windows. See discussion below.
 #' @seealso \code{\link{tempdir}} for a non-persistent temporary directory.
+#' @examples
+#' user_cache_dir("rappdirs")
+#' \dontrun{
+#' # Throw this in your R profile to store a R history file in standard cache location
+#' history_file <- file.path(rappdirs::user_cache_dir("R"), "Rhistory")
+#' .First <- function() {
+#'    if(!any(commandArgs()=='--no-readline') && interactive()) {
+#'      require("utils")
+#'      loadhistory(history_file)
+#'      }
+#'  }
+#' .Last <- function() {
+#'    if(!any(commandArgs()=='--no-readline') && interactive()) {
+#'      require("utils")
+#'      try(savehistory(history_file))
+#'    }
+#'  }
+
+#' }
 #' @export
 user_cache_dir <- function(appname = NULL, appauthor = NULL, version = NULL, opinion = TRUE, expand = TRUE, os = NULL) {
   if(is.null(os)) { os <- get_os() }

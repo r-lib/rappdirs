@@ -79,4 +79,20 @@
   deleting this directory should return the application to
   a default settings.
 }
+\examples{
+user_data_dir("rappdirs")
+user_config_dir("rappdirs", version="\%p-platform/\%v")
+user_config_dir("rappdirs", roaming=TRUE, os="windows")
+user_config_dir("rappdirs", roaming=FALSE, os="windows")
+user_config_dir("rappdirs", os="unix")
+user_config_dir("rappdirs", os="osx")
+\dontrun{
+# you could try to use functions to store R libraries in a standard user directory
+# by using the following in your .Rprofile file
+# but unfortunately if rappsdir package was stored in standard user directory then
+# it won't be on R's search path any longer, so would need to be installed system-wide...
+require("utils")
+.libPaths(new=rappdirs::user_config_dir("R", version="\%p-platform/\%v"))
+}
+}
 

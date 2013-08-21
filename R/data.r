@@ -51,6 +51,22 @@
 #' @param expand If TRUE (the default) will expand the \code{R_LIBS} specifiers with their equivalents.  
 #'      See \code{\link{R_LIBS}} for list of all possibly specifiers.
 #' 
+#' @examples
+#' user_data_dir("rappdirs")
+#' user_config_dir("rappdirs", version="%p-platform/%v")
+#' user_config_dir("rappdirs", roaming=TRUE, os="windows")
+#' user_config_dir("rappdirs", roaming=FALSE, os="windows")
+#' user_config_dir("rappdirs", os="unix")
+#' user_config_dir("rappdirs", os="osx")
+#' \dontrun{
+#' # you could try to use functions to store R libraries in a standard user directory
+#' # by using the following in your .Rprofile file
+#' # but unfortunately if rappsdir package was stored in standard user directory then
+#' # it won't be on R's search path any longer, so would need to be installed system-wide...
+#' require("utils")
+#' .libPaths(new=rappdirs::user_config_dir("R", version="%p-platform/%v"))
+#' }
+
 #' @export
 user_data_dir <- function(appname = NULL, appauthor = NULL, version = NULL, 
                           roaming = FALSE, expand = TRUE, os = NULL) {

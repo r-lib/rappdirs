@@ -24,6 +24,8 @@
 #' @param opinion (logical) can be \code{FALSE} to disable the appending of
 #'   \file{Logs} to the base app data dir for Windows, and \file{log} to the
 #'   base cache dir for Unix. See discussion below.
+#' @examples
+#'   user_log_dir()
 #' @export
 user_log_dir <- function(appname = NULL, appauthor = NULL, version = NULL, opinion = TRUE, expand = TRUE, os = NULL) {
   if(is.null(os)) { os <- get_os() }

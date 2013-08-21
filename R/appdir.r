@@ -6,7 +6,9 @@
 #'   \item \code{cache}
 #'   \item \code{log}
 #'   \item \code{data}
+#'   \item \code{config}
 #'   \item \code{site_data}
+#'   \item \code{site_config}
 #' }
 #'
 #' @inheritParams user_data_dir
@@ -16,6 +18,7 @@
 #' ggplot2_app$cache()
 #' ggplot2_app$log()
 #' ggplot2_app$data()
+#' ggplot2_app$config()
 #' ggplot2_app$site_config()
 #' ggplot2_app$site_data()
 app_dir <- function(appname = NULL, appauthor = NULL, version = NULL, expand = FALSE, os = NULL) {
