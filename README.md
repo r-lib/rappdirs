@@ -132,8 +132,8 @@ dirs:
 
 If you set the argument expand = TRUE (the default) you can have directories that correspond to R versions:
 
-   user_config_dir("R", version="%p-platform/%v")
-   # "/home/trevorld/.config/R/x86_64-pc-linux-gnu-platform/3.0"
+    user_config_dir("R", version="%p-platform/%v")
+    # "/home/trevorld/.config/R/x86_64-pc-linux-gnu-platform/3.0"
 
   [roaming profiles]: http://bit.ly/9yl3b6
   [XDG spec]: http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html
