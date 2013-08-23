@@ -41,7 +41,7 @@ test_that("user_cache_dir works as expected", {
 })
 context("site_data_dir")
 test_that("site_data_dir works as expected", {
-    if(all(c("/usr/local/share", "/usr/share") %in% get_dirs(Sys.getenv("XDG_DATA_DIRS", "/usr/local/share:/usr/share")))) {
+    if(all(c("/usr/local/share", "/usr/share") %in% parse_path_string(Sys.getenv("XDG_DATA_DIRS", "/usr/local/share:/usr/share")))) {
         expect_equal(all(c("/usr/local/share/R", "/usr/share/R") %in% site_data_dir("R", os="unix", multipath=TRUE)),
                      TRUE)
         expect_equal(all(c("/usr/local/share/R", "/usr/share/R") %in% site_data_dir("R", os="unix")),
@@ -55,7 +55,7 @@ test_that("site_data_dir works as expected", {
 })
 context("site_config_dir")
 test_that("site_config_dir works as expected", {
-    if(all("/etc/xdg" %in% get_dirs(Sys.getenv("XDG_CONFIG_DIRS", "/etc/xdg")))) {
+    if(all("/etc/xdg" %in% parse_path_string(Sys.getenv("XDG_CONFIG_DIRS", "/etc/xdg")))) {
         expect_equal(all("/etc/xdg/R" %in% site_config_dir("R", os="unix", multipath=TRUE)), TRUE)
     }
     expect_equal(site_config_dir("R", os="mac"), site_data_dir("R", os="mac"))
@@ -66,9 +66,9 @@ test_that("expand_r_libs_specifiers works as expected", {
     expect_equal(expand_r_libs_specifiers("%%V"), "%V")
     expect_output(expand_r_libs_specifiers("%p-platform/%v"), "/")
 })
-context("get_dirs")
-test_that("get_dirs works as expected", {
-    expect_equal(get_dirs("/home/foo/bin:/bin:/usr/share/bin:/bin"),
+context("parse_path_string")
+test_that("parse_path_string works as expected", {
+    expect_equal(parse_path_string("/home/foo/bin:/bin:/usr/share/bin:/bin"),
                  c("/home/foo/bin", "/bin", "/usr/share/bin"))
 })
 

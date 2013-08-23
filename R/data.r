@@ -124,9 +124,9 @@ site_data_dir <- function(appname = NULL, appauthor = appname, version = NULL, m
     win = file_path(win_path("common"), appauthor, appname, version),
     mac = file_path("/Library/Application Support", appname, version),
     unix = if(multipath) {
-             file_path_vec(get_dirs(Sys.getenv("XDG_DATA_DIRS", "/usr/local/share:/usr/share")), appname, version)
+             file_path_vec(parse_path_string(Sys.getenv("XDG_DATA_DIRS", "/usr/local/share:/usr/share")), appname, version)
            } else {   
-             file_path(get_dirs(Sys.getenv("XDG_DATA_DIRS", "/usr/local/share:/usr/share"))[1], appname, version)
+             file_path(parse_path_string(Sys.getenv("XDG_DATA_DIRS", "/usr/local/share:/usr/share"))[1], appname, version)
            }
     )
 }
@@ -139,9 +139,9 @@ site_config_dir <- function(appname = NULL, appauthor = appname, version = NULL,
     win = file_path(win_path("common"), appauthor, appname, version),
     mac = file_path("/Library/Application Support", appname, version),
     unix = if(multipath) {
-            file_path_vec(get_dirs(Sys.getenv("XDG_CONFIG_DIRS", "/etc/xdg")), appname, version)
+            file_path_vec(parse_path_string(Sys.getenv("XDG_CONFIG_DIRS", "/etc/xdg")), appname, version)
            } else {
-            file_path(get_dirs(Sys.getenv("XDG_CONFIG_DIRS", "/etc/xdg"))[1], appname, version)
+            file_path(parse_path_string(Sys.getenv("XDG_CONFIG_DIRS", "/etc/xdg"))[1], appname, version)
            }
   )
 }

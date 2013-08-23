@@ -25,7 +25,7 @@ expand_r_libs_specifiers <- function(version_path) {
     version_path
 }
 
-get_dirs <- function(path, sep=":") {
+parse_path_string <- function(path, sep=":") {
     normalizePath(unique(strsplit(path, sep)[[1]]), mustWork=FALSE)
 }
 
