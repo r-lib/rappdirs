@@ -10,13 +10,17 @@ get_os <- function() {
   }
 }
 
+gsub_special <- function(pattern, replacement, x) {
+    gsub(paste0("([^%]|^)", pattern), paste0("\\1", replacement), x)
+}
+
 expand_r_libs_specifiers <- function(version_path) {
     rversion <- getRversion()
-    version_path <- gsub("([^%]|^)%V", paste("\\1", rversion, sep=""), version_path)
-    version_path <- gsub("([^%]|^)%v", paste("\\1", paste(rversion$major, rversion$minor, sep="."), sep=""), version_path)
-    version_path <- gsub("([^%]|^)%p", paste("\\1", R.version$platform, sep=""), version_path)
-    version_path <- gsub("([^%]|^)%o", paste("\\1", R.version$os, sep=""), version_path)
-    version_path <- gsub("([^%]|^)%a", paste("\\1", R.version$arch, sep=""), version_path)
+    version_path <- gsub_special("%V", rversion, version_path)
+    version_path <- gsub_special("%v", paste(rversion$major, rversion$minor, sep="."), version_path)
+    version_path <- gsub_special("%p", R.version$platform, version_path)
+    version_path <- gsub_special("%o", R.version$os, version_path)
+    version_path <- gsub_special("%a", R.version$arch, version_path)
     version_path <- gsub("%%", "%", version_path)
     version_path
 }
