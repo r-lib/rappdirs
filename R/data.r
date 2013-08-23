@@ -117,30 +117,36 @@ user_config_dir <- function(appname = NULL, appauthor = appname, version = NULL,
 #' @section Warning:
 #' Do not use this on Windows. See the note above for why.
 #' @export
-site_data_dir <- function(appname = NULL, appauthor = appname, version = NULL, multipath = FALSE, expand = TRUE, os = get_os()) {
+site_data_dir <- function(appname = NULL, appauthor = appname, version = NULL, 
+                          multipath = FALSE, expand = TRUE, os = get_os()) {
   if (expand) version <- expand_r_libs_specifiers(version)
   switch(os,
     win = file_path(win_path("common"), appauthor, appname, version),
     mac = file_path("/Library/Application Support", appname, version),
-    unix = if(multipath) {
-             file_path_vec(parse_path_string(Sys.getenv("XDG_DATA_DIRS", "/usr/local/share:/usr/share")), appname, version)
-           } else {   
-             file_path(parse_path_string(Sys.getenv("XDG_DATA_DIRS", "/usr/local/share:/usr/share"))[1], appname, version)
-           }
+    unix = file_path_site_unix(Sys.getenv("XDG_DATA_DIRS", "/usr/local/share:/usr/share"), 
+                               appname, version, multipath)
     )
 }
 
 #' @rdname site_data_dir
 #' @export
-site_config_dir <- function(appname = NULL, appauthor = appname, version = NULL, multipath = FALSE, expand = TRUE, os = get_os()) {
+site_config_dir <- function(appname = NULL, appauthor = appname, version = NULL,
+                            multipath = FALSE, expand = TRUE, os = get_os()) {
   if (expand) version <- expand_r_libs_specifiers(version)
   switch(os,
     win = file_path(win_path("common"), appauthor, appname, version),
     mac = file_path("/Library/Application Support", appname, version),
-    unix = if(multipath) {
-            file_path_vec(parse_path_string(Sys.getenv("XDG_CONFIG_DIRS", "/etc/xdg")), appname, version)
-           } else {
-            file_path(parse_path_string(Sys.getenv("XDG_CONFIG_DIRS", "/etc/xdg"))[1], appname, version)
-           }
+    unix = file_path_site_unix(Sys.getenv("XDG_CONFIG_DIRS", "/etc/xdg"), 
+                               appname, version, multipath)
   )
+}
+
+# wrapper with `multipath` and use `parse_path_string` for cleaner switch statement
+file_path_site_unix <- function(sys_getenv, appname, version, multipath = FALSE) {
+  paths <- parse_path_string(sys_getenv)
+  if(multipath) {
+    file_path_vec(paths, appname, version)
+  } else {
+    file_path(paths[1], appname, version)
+  }
 }

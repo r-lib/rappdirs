@@ -36,26 +36,26 @@ file_path <- function(...) {
 
 # For site_*_dir with multipath = TRUE
 file_path_vec <- function(paths, ...) {
-  vapply(paths, file_path, "string", ...)
+  vapply(paths, file_path, "string", ..., USE.NAMES = FALSE)
 }
 
 "%||%" <- function(a, b) if (is.null(a)) b else a
 
 # type_appdata in "roaming", "local", "common"
 win_path <- function(type_appdata = "common", os = get_os()) {
-    if(os == "win") {
-        switch(type_appdata,
-               roaming = win_path_csidl(CSIDL_APPDATA) %||% win_path_env("roaming"),
-               local = win_path_csidl(CSIDL_LOCAL_APPDATA) %||% win_path_env("local"),
-               common = win_path_csidl(CSIDL_COMMON_APPDATA) %||% win_path_env("common")
-               )
-    } else {
-        switch(type_appdata,
-               roaming = "C:/Users/<username>/AppData",
-               local = "C:/Users/<username>/Local",
-               common = "C:/ProgramData"
-               )
-    }
+  if(os == "win") {
+    switch(type_appdata,
+      roaming = win_path_csidl(CSIDL_APPDATA) %||% win_path_env("roaming"),
+      local = win_path_csidl(CSIDL_LOCAL_APPDATA) %||% win_path_env("local"),
+      common = win_path_csidl(CSIDL_COMMON_APPDATA) %||% win_path_env("common")
+    )
+  } else {
+    switch(type_appdata,
+      roaming = "C:/Users/<username>/AppData",
+      local = "C:/Users/<username>/Local",
+      common = "C:/ProgramData"
+    )
+  }
 }
 
 CSIDL_APPDATA <- 26L
@@ -76,9 +76,7 @@ Sys.getenv_force <- function(env) {
 # How to get reasonable window paths via environmental variables
 win_path_env <- function(type_appdata) {
   switch(type_appdata, 
-  roaming =  {
-    Sys.getenv_force("APPDATA")
-  },
+    roaming =  Sys.getenv_force("APPDATA"),
   local = {
     path <- Sys.getenv("LOCALAPPDATA", unset=NA)
     if(is.na(path)) { # environmental variable not defined in XP
