@@ -24,13 +24,17 @@
 #' @param opinion (logical) can be \code{FALSE} to disable the appending of
 #'   \file{Logs} to the base app data dir for Windows, and \file{log} to the
 #'   base cache dir for Unix. See discussion below.
+#' @examples
+#'   user_log_dir()
 #' @export
-user_log_dir <- function(appname, appauthor, version = NULL, opinion = TRUE) {
-  switch(os(), 
-    win = file_path(win_path(), appauthor, appname, version, 
+user_log_dir <- function(appname = NULL, appauthor = appname, version = NULL, 
+                         opinion = TRUE, expand = TRUE, os = get_os()) {
+  if (expand) version <- expand_r_libs_specifiers(version)
+  switch(os, 
+    win = file_path(win_path("local"), appauthor, appname, version, 
       if (opinion) "Logs"),
     mac = file_path("~/Library/Logs", appname, version),
-    lin = file_path(Sys.getenv("XDG_CACHE_HOME", "~/.cache"),
-      tolower(appname), version, if (opinion) "log")
+    unix = file_path(Sys.getenv("XDG_CACHE_HOME", "~/.cache"),
+      appname, version, if (opinion) "log")
   )
 }

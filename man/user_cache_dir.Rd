@@ -2,8 +2,9 @@
 \alias{user_cache_dir}
 \title{Return full path to the user-specific cache dir for this application.}
 \usage{
-  user_cache_dir(appname, appauthor, version = NULL,
-    opinion = TRUE)
+  user_cache_dir(appname = NULL, appauthor = appname,
+    version = NULL, opinion = TRUE, expand = TRUE,
+    os = get_os())
 }
 \arguments{
   \item{opinion}{(logical) can be \code{FALSE} to disable
@@ -21,6 +22,16 @@
   want multiple versions of your app to be able to run
   independently. If used, this would typically be
   "<major>.<minor>".}
+
+  \item{expand}{If TRUE (the default) will expand the
+  \code{R_LIBS} specifiers with their equivalents.  See
+  \code{\link{R_LIBS}} for list of all possibly
+  specifiers.}
+
+  \item{os}{Operating system which we should create
+  directory for, if NULL (the default) will compute the
+  operating system using R's built in variables/functions.
+  Values are "win", "mac", "unix".}
 }
 \description{
   Typical user cache directories are:
@@ -28,9 +39,9 @@
 \details{
   \itemize{ \item Mac OS X:
   \file{~/Library/Caches/<AppName>} \item Unix:
-  \file{~/.cache/<appname>} (XDG default) \item Win XP:
-  \file{C:\\Documents and Settings\\<username>\\Local
-  Settings\\Application
+  \file{~/.cache/<appname>}, \env{$XDG_CACHE_HOME} if
+  defined \item Win XP: \file{C:\\Documents and
+  Settings\\<username>\\Local Settings\\Application
   Data\\<AppAuthor>\\<AppName>\\Cache} \item Vista:
   \file{C:\\Users\\<username>\\AppData\\Local\\<AppAuthor>\\<AppName>\\Cache}
   }
@@ -48,5 +59,24 @@
   This function appends \file{Cache} to the
   `CSIDL_LOCAL_APPDATA` value. This can be disabled with
   \code{opinion = FALSE} option.
+}
+\examples{
+user_cache_dir("rappdirs")
+\dontrun{
+# Throw this in your R profile to store a R history file in standard cache location
+if(capabilities("cledit")) {
+  cache_dir <- rappdirs::user_cache_dir("R")
+  history_file <- file.path(cache_dir, "Rhistory")
+  .First <- function() utils::loadhistory(history_file)
+  .Last <- function() {
+    if (!file.exists(cache_dir)) dir.create(cache_dir, recursive = TRUE)
+    try(savehistory(history_file))
+  }
+}
+}
+}
+\seealso{
+  \code{\link{tempdir}} for a non-persistent temporary
+  directory.
 }
 
