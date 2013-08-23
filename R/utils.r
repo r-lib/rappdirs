@@ -31,7 +31,7 @@ file_path <- function(...) {
 
 # For site_*_dir with multipath = TRUE
 file_path_vec <- function(paths, ...) {
-  sapply(paths, file_path, ...)
+  vapply(paths, file_path, "string", ...)
 }
 
 CSIDL_APPDATA <- 26L
