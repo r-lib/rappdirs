@@ -36,7 +36,7 @@ file_path <- function(...) {
 
 # For site_*_dir with multipath = TRUE
 file_path_vec <- function(paths, ...) {
-  vapply(paths, file_path, FUN.VALUE = "path_string", ..., USE.NAMES = FALSE)
+  vapply(paths, file_path, FUN.VALUE = character(1), ..., USE.NAMES = FALSE)
 }
 
 "%||%" <- function(a, b) if (is.null(a)) b else a
