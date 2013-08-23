@@ -68,11 +68,9 @@
 #' }
 
 #' @export
-user_data_dir <- function(appname = NULL, appauthor = NULL, version = NULL, 
-                          roaming = FALSE, expand = TRUE, os = NULL) {
-  if(is.null(os)) { os <- get_os() }
+user_data_dir <- function(appname = NULL, appauthor = appname, version = NULL, 
+                          roaming = FALSE, expand = TRUE, os = get_os()) {
   if(!is.null(version) && expand) { version <- expand_r_libs_specifiers(version) }
-  if(is.null(appauthor)) { appauthor <- appname }
   switch(os, 
     win = file_path(win_path(ifelse(roaming, "roaming", "local")), appauthor, appname, version),
     mac = file_path("~/Library/Application Support", appname, version),
@@ -83,12 +81,10 @@ user_data_dir <- function(appname = NULL, appauthor = NULL, version = NULL,
 
 #' @rdname user_data_dir
 #' @export
-user_config_dir <- function(appname = NULL, appauthor = NULL, version = NULL, 
-                            roaming = TRUE, expand = TRUE, os = NULL) {
-  if(is.null(os)) { os <- get_os() }
+user_config_dir <- function(appname = NULL, appauthor = appname, version = NULL, 
+                            roaming = TRUE, expand = TRUE, os = get_os()) {
   if(!is.null(version) && expand) { version <- expand_r_libs_specifiers(version) }
   csidl <- if (roaming) CSIDL_APPDATA else CSIDL_LOCAL_APPDATA
-  if(is.null(appauthor)) { appauthor <- appname }
   switch(os, 
     win = file_path(win_path(ifelse(roaming, "roaming", "local")), appauthor, appname, version),
     mac = file_path("~/Library/Application Support", appname, version),
@@ -128,10 +124,8 @@ user_config_dir <- function(appname = NULL, appauthor = NULL, version = NULL,
 #' @section Warning:
 #' Do not use this on Windows. See the note above for why.
 #' @export
-site_data_dir <- function(appname = NULL, appauthor = NULL, version = NULL, multipath = FALSE, expand = TRUE, os = NULL) {
-  if(is.null(os)) { os <- get_os() }
+site_data_dir <- function(appname = NULL, appauthor = appname, version = NULL, multipath = FALSE, expand = TRUE, os = get_os()) {
   if(!is.null(version) && expand) { version <- expand_r_libs_specifiers(version) }
-  if(is.null(appauthor)) { appauthor <- appname }
   switch(os,
     win = file_path(win_path("common"), appauthor, appname, version),
     mac = file_path("/Library/Application Support", appname, version),
@@ -145,10 +139,8 @@ site_data_dir <- function(appname = NULL, appauthor = NULL, version = NULL, mult
 
 #' @rdname site_data_dir
 #' @export
-site_config_dir <- function(appname = NULL, appauthor = NULL, version = NULL, multipath = FALSE, expand = TRUE, os = NULL) {
-  if(is.null(os)) { os <- get_os() }
+site_config_dir <- function(appname = NULL, appauthor = appname, version = NULL, multipath = FALSE, expand = TRUE, os = get_os()) {
   if(!is.null(version) && expand) { version <- expand_r_libs_specifiers(version) }
-  if(is.null(appauthor)) { appauthor <- appname }
   switch(os,
     win = file_path(win_path("common"), appauthor, appname, version),
     mac = file_path("/Library/Application Support", appname, version),

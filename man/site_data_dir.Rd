@@ -3,13 +3,13 @@
 \alias{site_data_dir}
 \title{Return full path to the user-shared data dir for this application.}
 \usage{
-  site_data_dir(appname = NULL, appauthor = NULL,
+  site_data_dir(appname = NULL, appauthor = appname,
     version = NULL, multipath = FALSE, expand = TRUE,
-    os = NULL)
+    os = get_os())
 
-  site_config_dir(appname = NULL, appauthor = NULL,
+  site_config_dir(appname = NULL, appauthor = appname,
     version = NULL, multipath = FALSE, expand = TRUE,
-    os = NULL)
+    os = get_os())
 }
 \arguments{
   \item{multipath}{is an optional parameter only applicable

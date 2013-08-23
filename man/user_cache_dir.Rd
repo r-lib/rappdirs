@@ -2,9 +2,9 @@
 \alias{user_cache_dir}
 \title{Return full path to the user-specific cache dir for this application.}
 \usage{
-  user_cache_dir(appname = NULL, appauthor = NULL,
+  user_cache_dir(appname = NULL, appauthor = appname,
     version = NULL, opinion = TRUE, expand = TRUE,
-    os = NULL)
+    os = get_os())
 }
 \arguments{
   \item{opinion}{(logical) can be \code{FALSE} to disable

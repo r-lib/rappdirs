@@ -2,8 +2,8 @@
 \alias{app_dir}
 \title{Convenience wrapper for getting app dirs.}
 \usage{
-  app_dir(appname = NULL, appauthor = NULL, version = NULL,
-    expand = FALSE, os = NULL)
+  app_dir(appname = NULL, appauthor = appname,
+    version = NULL, expand = TRUE, os = get_os())
 }
 \arguments{
   \item{appname}{is the name of application.}

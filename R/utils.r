@@ -39,8 +39,7 @@ CSIDL_COMMON_APPDATA <- 35L
 CSIDL_LOCAL_APPDATA <- 28L
 
 # type_appdata in "roaming", "local", "common"
-win_path <- function(type_appdata = "common", os = NULL) {
-    if(is.null(os)) { os <- get_os() }
+win_path <- function(type_appdata = "common", os = get_os()) {
     if(os == "win") {
         switch(type_appdata,
                roaming = tryCatch(win_path_csidl(CSIDL_APPDATA),

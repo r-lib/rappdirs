@@ -2,9 +2,9 @@
 \alias{user_log_dir}
 \title{Return full path to the user-specific log dir for this application.}
 \usage{
-  user_log_dir(appname = NULL, appauthor = NULL,
+  user_log_dir(appname = NULL, appauthor = appname,
     version = NULL, opinion = TRUE, expand = TRUE,
-    os = NULL)
+    os = get_os())
 }
 \arguments{
   \item{opinion}{(logical) can be \code{FALSE} to disable

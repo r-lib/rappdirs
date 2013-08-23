@@ -3,13 +3,13 @@
 \alias{user_data_dir}
 \title{Return path to user data directories.}
 \usage{
-  user_data_dir(appname = NULL, appauthor = NULL,
+  user_data_dir(appname = NULL, appauthor = appname,
     version = NULL, roaming = FALSE, expand = TRUE,
-    os = NULL)
+    os = get_os())
 
-  user_config_dir(appname = NULL, appauthor = NULL,
+  user_config_dir(appname = NULL, appauthor = appname,
     version = NULL, roaming = TRUE, expand = TRUE,
-    os = NULL)
+    os = get_os())
 }
 \arguments{
   \item{appname}{is the name of application.}

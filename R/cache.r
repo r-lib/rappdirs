@@ -44,10 +44,8 @@
 
 #' }
 #' @export
-user_cache_dir <- function(appname = NULL, appauthor = NULL, version = NULL, opinion = TRUE, expand = TRUE, os = NULL) {
-  if(is.null(os)) { os <- get_os() }
+user_cache_dir <- function(appname = NULL, appauthor = appname, version = NULL, opinion = TRUE, expand = TRUE, os = get_os()) {
   if(!is.null(version) && expand) { version <- expand_r_libs_specifiers(version) }
-  if(is.null(appauthor)) { appauthor <- appname }
   switch(os, 
     win = file_path(win_path("local"), appauthor, appname, version, 
       if (opinion) "Cache"),
