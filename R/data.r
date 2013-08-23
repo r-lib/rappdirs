@@ -78,7 +78,6 @@ user_data_dir <- function(appname = NULL, appauthor = appname, version = NULL,
 user_config_dir <- function(appname = NULL, appauthor = appname, version = NULL, 
                             roaming = TRUE, expand = TRUE, os = get_os()) {
   if(!is.null(version) && expand) { version <- expand_r_libs_specifiers(version) }
-  csidl <- if (roaming) CSIDL_APPDATA else CSIDL_LOCAL_APPDATA
   switch(os, 
     win = file_path(win_path(ifelse(roaming, "roaming", "local")), appauthor, appname, version),
     mac = file_path("~/Library/Application Support", appname, version),
