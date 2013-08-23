@@ -25,12 +25,6 @@
 #' Arguably plugins such as R packages should go into the user configuration directory and deleting
 #' this directory should return the application to a default settings.
 #'
-##  For Unix, we follow the XDG spec and support \env{$XDG_DATA_HOME}. We
-##  don't use \env{$XDG_DATA_HOME} as that data dir is mostly used at the time
-##  of installation, instead of the application adding data during runtime.
-##  Also, in practice, Linux apps tend to store their data in
-##  \file{~/.config/<appname>} instead of \file{~/.local/share/<appname>}.
-#'
 #' @param appname is the name of application.
 #' @param appauthor (only required and used on Windows) is the name of the
 #'     appauthor or distributing body for this application. Typically
