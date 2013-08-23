@@ -15,18 +15,19 @@ gsub_special <- function(pattern, replacement, x) {
 }
 
 expand_r_libs_specifiers <- function(version_path) {
-    rversion <- getRversion()
-    version_path <- gsub_special("%V", rversion, version_path)
-    version_path <- gsub_special("%v", paste(rversion$major, rversion$minor, sep="."), version_path)
-    version_path <- gsub_special("%p", R.version$platform, version_path)
-    version_path <- gsub_special("%o", R.version$os, version_path)
-    version_path <- gsub_special("%a", R.version$arch, version_path)
-    version_path <- gsub("%%", "%", version_path)
-    version_path
+  if (is.null(version_path)) return (NULL)
+  rversion <- getRversion()
+  version_path <- gsub_special("%V", rversion, version_path)
+  version_path <- gsub_special("%v", paste(rversion$major, rversion$minor, sep="."), version_path)
+  version_path <- gsub_special("%p", R.version$platform, version_path)
+  version_path <- gsub_special("%o", R.version$os, version_path)
+  version_path <- gsub_special("%a", R.version$arch, version_path)
+  version_path <- gsub("%%", "%", version_path)
+  version_path
 }
 
 parse_path_string <- function(path, sep=":") {
-    normalizePath(unique(strsplit(path, sep)[[1]]), mustWork=FALSE)
+  normalizePath(unique(strsplit(path, sep)[[1]]), mustWork=FALSE)
 }
 
 file_path <- function(...) {
