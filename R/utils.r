@@ -75,23 +75,23 @@ Sys.getenv_force <- function(env) {
 }
 # How to get reasonable window paths via environmental variables
 win_path_env <- function(type_appdata) {
-  switch(type_appdata, 
-    roaming =  Sys.getenv_force("APPDATA"),
-  local = {
+  if (type_appdata == "roaming") { 
+    Sys.getenv_force("APPDATA")
+  } else if (type_appdata == "local") {
     path <- Sys.getenv("LOCALAPPDATA", unset=NA)
     if(is.na(path)) { # environmental variable not defined in XP
       path <- file.path(Sys.getenv_force("USERPROFILE"),
                         "Local Settings", "Application Data")
      }
     path
-  },
-  common = {
+  } else if (type_appdata == "common") {
     path <- Sys.getenv("PROGRAMDATA", unset=NA)
     if(is.na(path)) { 
       path <- file.path(Sys.getenv_force("ALLUSERPROFILE"),
                               "Application Data")
     }
     path
+  } else {
+    stop("invalid `type_appdata` argument")
   }
-  )
 }
