@@ -38,20 +38,15 @@ file_path_vec <- function(paths, ...) {
   vapply(paths, file_path, "string", ...)
 }
 
-CSIDL_APPDATA <- 26L
-CSIDL_COMMON_APPDATA <- 35L
-CSIDL_LOCAL_APPDATA <- 28L
+"%||%" <- function(a, b) if (is.null(a)) b else a
 
 # type_appdata in "roaming", "local", "common"
 win_path <- function(type_appdata = "common", os = get_os()) {
     if(os == "win") {
         switch(type_appdata,
-               roaming = tryCatch(win_path_csidl(CSIDL_APPDATA),
-                            error = function(e) win_path_env("roaming")),
-               local = tryCatch(win_path_csidl(CSIDL_LOCAL_APPDATA),
-                            error = function(e) win_path_env("local")),
-               common = tryCatch(win_path_csidl(),
-                            error = function(e) win_path_env("common"))
+               roaming = win_path_csidl(CSIDL_APPDATA) %||% win_path_env("roaming"),
+               local = win_path_csidl(CSIDL_LOCAL_APPDATA) %||% win_path_env("local"),
+               common = win_path_csidl(CSIDL_COMMON_APPDATA) %||% win_path_env("common")
                )
     } else {
         switch(type_appdata,
@@ -62,13 +57,13 @@ win_path <- function(type_appdata = "common", os = get_os()) {
     }
 }
 
+CSIDL_APPDATA <- 26L
+CSIDL_COMMON_APPDATA <- 35L
+CSIDL_LOCAL_APPDATA <- 28L
 #' @useDynLib rappdirs
 win_path_csidl <- function(csidl = CSIDL_COMMON_APPDATA) {
   stopifnot(is.integer(csidl), length(csidl) == 1)
   path <- .Call("win_path", csidl, PACKAGE = "rappdirs")
-  if(is.null(path)) { 
-      stop("win_path not found")
-  } 
   path
 }
 
