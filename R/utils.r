@@ -68,31 +68,31 @@ win_path_csidl <- function(csidl = CSIDL_COMMON_APPDATA) {
 }
 
 Sys.getenv_force <- function(env) {
-    val <- Sys.getenv(env, unset = NA)
-    if(!is.na(val)) return(val)
-    stop("Could not find Windows environmental variables") 
+  val <- Sys.getenv(env, unset = NA)
+  if(!is.na(val)) return(val)
+  stop("Could not find Windows environmental variables") 
 }
 # How to get reasonable window paths via environmental variables
 win_path_env <- function(type_appdata) {
-    switch(type_appdata, 
-    roaming =  {
-        Sys.getenv_force("APPDATA")
-    },
-    local = {
-        path <- Sys.getenv("LOCALAPPDATA", unset=NA)
-        if(is.na(path)) { # environmental variable not defined in XP
-            path <- file.path(Sys.getenv_force("USERPROFILE"),
-                              "Local Settings", "Application Data")
-        }
-        path
-    },
-    common = {
-        path <- Sys.getenv("PROGRAMDATA", unset=NA)
-        if(is.na(path)) { 
-            path <- file.path(Sys.getenv_force("ALLUSERPROFILE"),
+  switch(type_appdata, 
+  roaming =  {
+    Sys.getenv_force("APPDATA")
+  },
+  local = {
+    path <- Sys.getenv("LOCALAPPDATA", unset=NA)
+    if(is.na(path)) { # environmental variable not defined in XP
+      path <- file.path(Sys.getenv_force("USERPROFILE"),
+                        "Local Settings", "Application Data")
+     }
+    path
+  },
+  common = {
+    path <- Sys.getenv("PROGRAMDATA", unset=NA)
+    if(is.na(path)) { 
+      path <- file.path(Sys.getenv_force("ALLUSERPROFILE"),
                               "Application Data")
-        }
-        path
     }
-    )
+    path
+  }
+  )
 }
