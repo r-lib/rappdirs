@@ -1,9 +1,15 @@
 \name{user_data_dir}
+\alias{user_config_dir}
 \alias{user_data_dir}
-\title{Return full path to the user-specific data dir for this application.}
+\title{Return path to user data directories.}
 \usage{
-  user_data_dir(appname, appauthor, version = NULL,
-    roaming = FALSE)
+  user_data_dir(appname = NULL, appauthor = appname,
+    version = NULL, roaming = FALSE, expand = TRUE,
+    os = get_os())
+
+  user_config_dir(appname = NULL, appauthor = appname,
+    version = NULL, roaming = TRUE, expand = TRUE,
+    os = get_os())
 }
 \arguments{
   \item{appname}{is the name of application.}
@@ -25,31 +31,68 @@
   See
   \url{http://technet.microsoft.com/en-us/library/cc766489(WS.10).aspx}
   for a discussion of issues.}
+
+  \item{os}{Operating system which we should create
+  directory for, if NULL (the default) will compute the
+  operating system using R's built in variables/functions.
+  Values are "win", "mac", "unix".}
+
+  \item{expand}{If TRUE (the default) will expand the
+  \code{R_LIBS} specifiers with their equivalents.  See
+  \code{\link{R_LIBS}} for list of all possibly
+  specifiers.}
 }
 \description{
-  Typical user data directories are:
+  \code{user_data_dir} returns full path to the
+  user-specific data dir for this application.
+  \code{user_config_dir} returns full path to the
+  user-specific configuration directory for this
+  application which returns the same path as user data
+  directory in Windows and Mac but a different one for
+  Unix.
 }
 \details{
+  Typical user data directories are:
+
   \itemize{ \item Mac OS X: \file{~/Library/Application
   Support/<AppName>} \item Unix:
-  \file{~/.config/<appname>}, in \env{$XDG_CONFIG_HOME} if
-  defined \item Win XP (not roaming): \file{C:\\Documents
-  and Settings\\<username>\\Data\\<AppAuthor>\\<AppName>}
-  \item Win XP (roaming): \file{C:\\Documents and
+  \file{~/.local/share/<appname>}, in \env{$XDG_DATA_HOME}
+  if defined \item Win XP (not roaming):
+  \file{C:\\Documents and
+  Settings\\<username>\\Data\\<AppAuthor>\\<AppName>} \item
+  Win XP (roaming): \file{C:\\Documents and
   Settings\\<username>\\Local
   Settings\\Data\\<AppAuthor>\\<AppName>} \item Win 7 (not
   roaming):
   \file{C:\\Users\\<username>\\AppData\\Local\\<AppAuthor>\\<AppName>}
   \item Win 7 (roaming):
   \file{C:\\Users\\<username>\\AppData\\Roaming\\<AppAuthor>\\<AppName>}
-  }
-
-  For Unix, we follow the XDG spec and support
-  \env{$XDG_CONFIG_HOME}. We don't use \env{$XDG_DATA_HOME}
-  as that data dir is mostly used at the time of
-  installation, instead of the application adding data
-  during runtime. Also, in practice, Linux apps tend to
-  store their data in \file{~/.config/<appname>} instead of
-  \file{~/.local/share/<appname>}.
+  } Unix also specifies a separate location for user
+  configuration data in \itemize{ \item Unix:
+  \file{~/.config/<appname>}, in \env{$XDG_CONFIG_HOME} if
+  defined } See for example
+  \url{http://ploum.net/184-cleaning-user-preferences-keeping-user-data/}
+  or
+  \url{http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html}
+  for more information. Arguably plugins such as R packages
+  should go into the user configuration directory and
+  deleting this directory should return the application to
+  a default settings.
+}
+\examples{
+user_data_dir("rappdirs")
+user_config_dir("rappdirs", version="\%p-platform/\%v")
+user_config_dir("rappdirs", roaming=TRUE, os="win")
+user_config_dir("rappdirs", roaming=FALSE, os="win")
+user_config_dir("rappdirs", os="unix")
+user_config_dir("rappdirs", os="mac")
+\dontrun{
+# you could try to use functions to store R libraries in a standard user directory
+# by using the following in your .Rprofile file
+# but unfortunately if rappsdir package was stored in standard user directory then
+# it won't be on R's search path any longer, so would need to be installed system-wide...
+require("utils")
+.libPaths(new=rappdirs::user_config_dir("R", version="\%p-platform/\%v"))
+}
 }
 

@@ -4,7 +4,7 @@
 #'
 #' \itemize{
 #'  \item Mac OS X: \file{~/Library/Caches/<AppName>}
-#'  \item Unix: \file{~/.cache/<appname>} (XDG default)
+#'  \item Unix: \file{~/.cache/<appname>}, \env{$XDG_CACHE_HOME} if defined
 #'  \item Win XP: \file{C:\\Documents and Settings\\<username>\\Local Settings\\Application Data\\<AppAuthor>\\<AppName>\\Cache}
 #'  \item Vista:      \file{C:\\Users\\<username>\\AppData\\Local\\<AppAuthor>\\<AppName>\\Cache}
 #' }
@@ -23,13 +23,29 @@
 #' @inheritParams user_data_dir
 #' @param opinion (logical) can be \code{FALSE} to disable the appending of
 #'   \file{Cache} to the base app data dir for Windows. See discussion below.
+#' @seealso \code{\link{tempdir}} for a non-persistent temporary directory.
+#' @examples
+#' user_cache_dir("rappdirs")
+#' \dontrun{
+#' # Throw this in your R profile to store a R history file in standard cache location
+#' if(capabilities("cledit")) {
+#'   cache_dir <- rappdirs::user_cache_dir("R")
+#'   history_file <- file.path(cache_dir, "Rhistory")
+#'   .First <- function() utils::loadhistory(history_file)
+#'   .Last <- function() { 
+#'     if (!file.exists(cache_dir)) dir.create(cache_dir, recursive = TRUE)
+#'     try(savehistory(history_file))
+#'   }
+#' }
+#' }
 #' @export
-user_cache_dir <- function(appname, appauthor, version = NULL, opinion = TRUE) {
-  switch(os(), 
-    win = file_path(win_path(), appauthor, appname, version, 
+user_cache_dir <- function(appname = NULL, appauthor = appname, version = NULL,
+                           opinion = TRUE, expand = TRUE, os = get_os()) {
+  if (expand) version <- expand_r_libs_specifiers(version)
+  switch(os, 
+    win = file_path(win_path("local"), appauthor, appname, version, 
       if (opinion) "Cache"),
     mac = file_path("~/Library/Caches", appname, version),
-    lin = file_path(Sys.getenv("XDG_CACHE_HOME", "~/.cache"),
-      tolower(appname), version)
+    unix = file_path(Sys.getenv("XDG_CACHE_HOME", "~/.cache"), appname, version)
   )
 }

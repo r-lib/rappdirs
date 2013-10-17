@@ -1,6 +1,8 @@
 export(app_dir)
+export(site_config_dir)
 export(site_data_dir)
 export(user_cache_dir)
+export(user_config_dir)
 export(user_data_dir)
 export(user_log_dir)
 useDynLib(rappdirs)
