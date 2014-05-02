@@ -30,6 +30,7 @@
 user_log_dir <- function(appname = NULL, appauthor = appname, version = NULL, 
                          opinion = TRUE, expand = TRUE, os = get_os()) {
   if (expand) version <- expand_r_libs_specifiers(version)
+  if (is.null(appname)) { version <- NULL }
   switch(os, 
     win = file_path(win_path("local"), appauthor, appname, version, 
       if (opinion) "Logs"),
