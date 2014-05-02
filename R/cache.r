@@ -4,7 +4,7 @@
 #'
 #' \itemize{
 #'  \item Mac OS X: \file{~/Library/Caches/<AppName>}
-#'  \item Unix: \file{~/.cache/<appname>}, \env{$XDG_CACHE_HOME} if defined
+#'  \item Unix: \file{~/.cache/<AppName>}, \env{$XDG_CACHE_HOME} if defined
 #'  \item Win XP: \file{C:\\Documents and Settings\\<username>\\Local Settings\\Application Data\\<AppAuthor>\\<AppName>\\Cache}
 #'  \item Vista:      \file{C:\\Users\\<username>\\AppData\\Local\\<AppAuthor>\\<AppName>\\Cache}
 #' }

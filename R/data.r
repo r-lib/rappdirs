@@ -8,7 +8,7 @@
 #'
 #' \itemize{
 #'   \item Mac OS X:  \file{~/Library/Application Support/<AppName>}
-#'   \item Unix: \file{~/.local/share/<appname>}, in \env{$XDG_DATA_HOME} if defined
+#'   \item Unix: \file{~/.local/share/<AppName>}, in \env{$XDG_DATA_HOME} if defined
 #'   \item Win XP (not roaming):  \file{C:\\Documents and Settings\\<username>\\Data\\<AppAuthor>\\<AppName>}
 #'   \item Win XP (roaming): \file{C:\\Documents and Settings\\<username>\\Local Settings\\Data\\<AppAuthor>\\<AppName>}
 #'   \item Win 7  (not roaming): 
@@ -18,7 +18,7 @@
 #' }
 #' Unix also specifies a separate location for user configuration data in
 #' \itemize{ 
-#'   \item Unix: \file{~/.config/<appname>}, in \env{$XDG_CONFIG_HOME} if defined
+#'   \item Unix: \file{~/.config/<AppName>}, in \env{$XDG_CONFIG_HOME} if defined
 #'  }
 #' See for example \url{http://ploum.net/184-cleaning-user-preferences-keeping-user-data/} 
 #' or \url{http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html} for more information.
@@ -105,7 +105,7 @@ user_config_dir <- function(appname = NULL, appauthor = appname, version = NULL,
 #' }
 #' Unix also specifies a separate location for user-shared configuration data in \env{$XDG_CONFIG_DIRS}.
 #' \itemize{ 
-#'   \item Unix: \file{/etc/xdg/<appname>}, in \env{$XDG_CONFIG_HOME} if defined
+#'   \item Unix: \file{/etc/xdg/<AppName>}, in \env{$XDG_CONFIG_HOME} if defined
 #'  }
 #' 
 #' For Unix, this returns the first default.  Set the \code{multipath=TRUE} to guarantee returning all directories.

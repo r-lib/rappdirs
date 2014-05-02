@@ -35,7 +35,7 @@ Typical user cache directories are:
 \details{
 \itemize{
   \item Mac OS X: \file{~/Library/Logs/<AppName>}
-  \item Unix: \file{~/.cache/<appname>/log}, or under
+  \item Unix: \file{~/.cache/<AppName>/log}, or under
     \\env{$XDG_CACHE_HOME} if defined
   \item Win XP:  \file{C:\\Documents and Settings\\<username>\\Local Settings\\Application Data\\<AppAuthor>\\<AppName>\\Logs}
   \item Vista:

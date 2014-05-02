@@ -46,7 +46,7 @@ Typical user data directories are:
 
 \itemize{
   \item Mac OS X:  \file{~/Library/Application Support/<AppName>}
-  \item Unix: \file{~/.local/share/<appname>}, in \env{$XDG_DATA_HOME} if defined
+  \item Unix: \file{~/.local/share/<AppName>}, in \env{$XDG_DATA_HOME} if defined
   \item Win XP (not roaming):  \file{C:\\Documents and Settings\\<username>\\Data\\<AppAuthor>\\<AppName>}
   \item Win XP (roaming): \file{C:\\Documents and Settings\\<username>\\Local Settings\\Data\\<AppAuthor>\\<AppName>}
   \item Win 7  (not roaming):
@@ -56,7 +56,7 @@ Typical user data directories are:
 }
 Unix also specifies a separate location for user configuration data in
 \itemize{
-  \item Unix: \file{~/.config/<appname>}, in \env{$XDG_CONFIG_HOME} if defined
+  \item Unix: \file{~/.config/<AppName>}, in \env{$XDG_CONFIG_HOME} if defined
  }
 See for example \url{http://ploum.net/184-cleaning-user-preferences-keeping-user-data/}
 or \url{http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html} for more information.

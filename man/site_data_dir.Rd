@@ -51,7 +51,7 @@ Typical user-shared data directories are:
 }
 Unix also specifies a separate location for user-shared configuration data in \env{$XDG_CONFIG_DIRS}.
 \itemize{
-  \item Unix: \file{/etc/xdg/<appname>}, in \env{$XDG_CONFIG_HOME} if defined
+  \item Unix: \file{/etc/xdg/<AppName>}, in \env{$XDG_CONFIG_HOME} if defined
  }
 
 For Unix, this returns the first default.  Set the \code{multipath=TRUE} to guarantee returning all directories.
