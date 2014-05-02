@@ -28,7 +28,7 @@
 #' @param appname is the name of application.
 #' @param appauthor (only required and used on Windows) is the name of the
 #'     appauthor or distributing body for this application. Typically
-#'     it is the owning company name.
+#'     it is the owning company name. This falls back to appname.
 #' @param version is an optional version path element to append to the
 #'     path. You might want to use this if you want multiple versions
 #'     of your app to be able to run independently. If used, this

@@ -14,7 +14,7 @@ user_cache_dir(appname = NULL, appauthor = appname, version = NULL,
 
 \item{appauthor}{(only required and used on Windows) is the name of the
 appauthor or distributing body for this application. Typically
-it is the owning company name.}
+it is the owning company name. This falls back to appname.}
 
 \item{version}{is an optional version path element to append to the
 path. You might want to use this if you want multiple versions
