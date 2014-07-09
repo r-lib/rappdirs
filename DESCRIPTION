@@ -21,9 +21,3 @@ Description: An easy way to determine which directories on the users computer
     (\url{https://github.com/ActiveState/appdirs}) to R.
 BugReports: https://github.com/hadley/rappdirs/issues
 License: MIT
-Collate:
-    'appdir.r'
-    'cache.r'
-    'data.r'
-    'log.r'
-    'utils.r'
