@@ -8,7 +8,9 @@ Authors@R: c(
     person("Sridhar", "Ratnakumar", role = "aut"),
     person("Trent", "Mick", role = "aut"),
     person("Eddy", "Petrisor", role = "ctb"),
-    person("Trevor", "Davis", role = c("trl", "aut"))
+    person("Trevor", "Davis", role = c("trl", "aut")),
+    person("Gabor", "Csardi", role = "ctb"),
+    person("Gregory", "Jefferis", role = "ctb")
     )
 Depends:
     R (>= 2.14)
