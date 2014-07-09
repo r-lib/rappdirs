@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/jefferis/rappdirs.svg)](https://travis-ci.org/jefferis/rappdirs)
+
 `rappdirs` is a port of [appdirs](https://github.com/ActiveState/appdirs) to R.
 
 The problem
