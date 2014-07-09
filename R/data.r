@@ -8,7 +8,7 @@
 #'
 #' \itemize{
 #'   \item Mac OS X:  \file{~/Library/Application Support/<AppName>}
-#'   \item Unix: \file{~/.local/share/<appname>}, in \env{$XDG_DATA_HOME} if defined
+#'   \item Unix: \file{~/.local/share/<AppName>}, in \env{$XDG_DATA_HOME} if defined
 #'   \item Win XP (not roaming):  \file{C:\\Documents and Settings\\<username>\\Data\\<AppAuthor>\\<AppName>}
 #'   \item Win XP (roaming): \file{C:\\Documents and Settings\\<username>\\Local Settings\\Data\\<AppAuthor>\\<AppName>}
 #'   \item Win 7  (not roaming): 
@@ -18,21 +18,23 @@
 #' }
 #' Unix also specifies a separate location for user configuration data in
 #' \itemize{ 
-#'   \item Unix: \file{~/.config/<appname>}, in \env{$XDG_CONFIG_HOME} if defined
+#'   \item Unix: \file{~/.config/<AppName>}, in \env{$XDG_CONFIG_HOME} if defined
 #'  }
 #' See for example \url{http://ploum.net/184-cleaning-user-preferences-keeping-user-data/} 
 #' or \url{http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html} for more information.
 #' Arguably plugins such as R packages should go into the user configuration directory and deleting
 #' this directory should return the application to a default settings.
 #'
-#' @param appname is the name of application.
+#' @param appname is the name of application. If NULL, just the system
+#'     directory is returned.
 #' @param appauthor (only required and used on Windows) is the name of the
 #'     appauthor or distributing body for this application. Typically
-#'     it is the owning company name.
+#'     it is the owning company name. This falls back to appname.
 #' @param version is an optional version path element to append to the
 #'     path. You might want to use this if you want multiple versions
 #'     of your app to be able to run independently. If used, this
-#'     would typically be "<major>.<minor>".
+#'     would typically be "<major>.<minor>". Only applied when appname
+#'     is not NULL.
 #' @param roaming (logical, default \code{FALSE}) can be set \code{TRUE} to
 #'     use the Windows roaming appdata directory. That means that for users on
 #'     a Windows network setup for roaming profiles, this user data will be
@@ -65,6 +67,10 @@
 user_data_dir <- function(appname = NULL, appauthor = appname, version = NULL, 
                           roaming = FALSE, expand = TRUE, os = get_os()) {
   if (expand) version <- expand_r_libs_specifiers(version)
+  if (is.null(appname)) {
+    version <- NULL
+    warning("version is ignored when appname is null")
+  }
   switch(os, 
     win = file_path(win_path(ifelse(roaming, "roaming", "local")), appauthor, appname, version),
     mac = file_path("~/Library/Application Support", appname, version),
@@ -78,6 +84,10 @@ user_data_dir <- function(appname = NULL, appauthor = appname, version = NULL,
 user_config_dir <- function(appname = NULL, appauthor = appname, version = NULL, 
                             roaming = TRUE, expand = TRUE, os = get_os()) {
   if (expand) version <- expand_r_libs_specifiers(version)
+  if (is.null(appname)) {
+    version <- NULL
+    warning("version is ignored when appname is null")
+  }
   switch(os, 
     win = file_path(win_path(ifelse(roaming, "roaming", "local")), appauthor, appname, version),
     mac = file_path("~/Library/Application Support", appname, version),
@@ -105,7 +115,7 @@ user_config_dir <- function(appname = NULL, appauthor = appname, version = NULL,
 #' }
 #' Unix also specifies a separate location for user-shared configuration data in \env{$XDG_CONFIG_DIRS}.
 #' \itemize{ 
-#'   \item Unix: \file{/etc/xdg/<appname>}, in \env{$XDG_CONFIG_HOME} if defined
+#'   \item Unix: \file{/etc/xdg/<AppName>}, in \env{$XDG_CONFIG_HOME} if defined
 #'  }
 #' 
 #' For Unix, this returns the first default.  Set the \code{multipath=TRUE} to guarantee returning all directories.
@@ -120,6 +130,10 @@ user_config_dir <- function(appname = NULL, appauthor = appname, version = NULL,
 site_data_dir <- function(appname = NULL, appauthor = appname, version = NULL, 
                           multipath = FALSE, expand = TRUE, os = get_os()) {
   if (expand) version <- expand_r_libs_specifiers(version)
+  if (is.null(appname)) {
+    version <- NULL
+    warning("version is ignored when appname is null")
+  }
   switch(os,
     win = file_path(win_path("common"), appauthor, appname, version),
     mac = file_path("/Library/Application Support", appname, version),
@@ -133,6 +147,10 @@ site_data_dir <- function(appname = NULL, appauthor = appname, version = NULL,
 site_config_dir <- function(appname = NULL, appauthor = appname, version = NULL,
                             multipath = FALSE, expand = TRUE, os = get_os()) {
   if (expand) version <- expand_r_libs_specifiers(version)
+  if (is.null(appname)) {
+    version <- NULL
+    warning("version is ignored when appname is null")
+  }
   switch(os,
     win = file_path(win_path("common"), appauthor, appname, version),
     mac = file_path("/Library/Application Support", appname, version),

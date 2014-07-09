@@ -10,16 +10,18 @@ user_cache_dir(appname = NULL, appauthor = appname, version = NULL,
 \item{opinion}{(logical) can be \code{FALSE} to disable the appending of
 \file{Cache} to the base app data dir for Windows. See discussion below.}
 
-\item{appname}{is the name of application.}
+\item{appname}{is the name of application. If NULL, just the system
+directory is returned.}
 
 \item{appauthor}{(only required and used on Windows) is the name of the
 appauthor or distributing body for this application. Typically
-it is the owning company name.}
+it is the owning company name. This falls back to appname.}
 
 \item{version}{is an optional version path element to append to the
 path. You might want to use this if you want multiple versions
 of your app to be able to run independently. If used, this
-would typically be "<major>.<minor>".}
+would typically be "<major>.<minor>". Only applied when appname
+is not NULL.}
 
 \item{expand}{If TRUE (the default) will expand the \code{R_LIBS} specifiers with their equivalents.
      See \code{\link{R_LIBS}} for list of all possibly specifiers.}
@@ -34,7 +36,7 @@ Typical user cache directories are:
 \details{
 \itemize{
  \item Mac OS X: \file{~/Library/Caches/<AppName>}
- \item Unix: \file{~/.cache/<appname>}, \env{$XDG_CACHE_HOME} if defined
+ \item Unix: \file{~/.cache/<AppName>}, \env{$XDG_CACHE_HOME} if defined
  \item Win XP: \file{C:\\Documents and Settings\\<username>\\Local Settings\\Application Data\\<AppAuthor>\\<AppName>\\Cache}
  \item Vista:      \file{C:\\Users\\<username>\\AppData\\Local\\<AppAuthor>\\<AppName>\\Cache}
 }

@@ -4,7 +4,7 @@
 #'
 #' \itemize{
 #'   \item Mac OS X: \file{~/Library/Logs/<AppName>}
-#'   \item Unix: \file{~/.cache/<appname>/log}, or under 
+#'   \item Unix: \file{~/.cache/<AppName>/log}, or under
 #'     \\env{$XDG_CACHE_HOME} if defined
 #'   \item Win XP:  \file{C:\\Documents and Settings\\<username>\\Local Settings\\Application Data\\<AppAuthor>\\<AppName>\\Logs}
 #'   \item Vista: 
@@ -30,6 +30,10 @@
 user_log_dir <- function(appname = NULL, appauthor = appname, version = NULL, 
                          opinion = TRUE, expand = TRUE, os = get_os()) {
   if (expand) version <- expand_r_libs_specifiers(version)
+  if (is.null(appname)) {
+    version <- NULL
+    warning("version is ignored when appname is null")
+  }
   switch(os, 
     win = file_path(win_path("local"), appauthor, appname, version, 
       if (opinion) "Logs"),
