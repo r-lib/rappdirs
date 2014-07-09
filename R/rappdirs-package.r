@@ -43,4 +43,5 @@
 #' @docType package
 #' @name rappdirs-package
 #' @aliases rappdirs
+#' @import methods
 NULL

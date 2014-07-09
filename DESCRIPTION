@@ -11,7 +11,8 @@ Authors@R: c(
     person("Trevor", "Davis", role = c("trl", "aut"))
     )
 Depends:
-    R (>= 2.14),
+    R (>= 2.14)
+Imports:
     methods
 Suggests:
     testthat,
