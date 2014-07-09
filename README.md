@@ -96,11 +96,11 @@ On Linux:
     user_log_dir(appname, appauthor)
     # "/home/trentm/.cache/SuperApp/log"
 
-`app_dirs` for convenience
+`app_dir` for convenience
 =========================
 
     library(appdirs)
-    dirs <- app_dirs("SuperApp", "Acme")
+    dirs <- app_dir("SuperApp", "Acme")
     dirs$config()
     # "/Users/trentm/Library/Application Support/SuperApp"
     dirs$data()
@@ -120,7 +120,7 @@ able to run side-by-side, then you may want version-isolation for these
 dirs:
 
     library(appdirs)
-    dirs <- app_dirs("SuperApp", "Acme", version = "1.0")
+    dirs <- app_dir("SuperApp", "Acme", version = "1.0")
     dirs$data()
     # "/Users/trentm/Library/Application Support/SuperApp/1.0"
     dirs$site_data()
