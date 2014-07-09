@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/jefferis/rappdirs.svg)](https://travis-ci.org/jefferis/rappdirs)
+[![Build Status](https://travis-ci.org/hadley/rappdirs.svg)](https://travis-ci.org/hadley/rappdirs)
 
 `rappdirs` is a port of [appdirs](https://github.com/ActiveState/appdirs) to R.
 
