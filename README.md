@@ -1,4 +1,4 @@
-`rappdirs` is a port of [appdirs](https://github.com/ActiveState/appdirs) to R.
+`rappdirs` is a port of [appdirs](https://github.com/ActiveState/appdirs) to R. [![Build Status](https://travis-ci.org/hadley/rappdirs.png?branch=master)](https://travis-ci.org/hadley/rappdirs)
 
 The problem
 ===========
