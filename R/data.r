@@ -67,7 +67,7 @@
 user_data_dir <- function(appname = NULL, appauthor = appname, version = NULL, 
                           roaming = FALSE, expand = TRUE, os = get_os()) {
   if (expand) version <- expand_r_libs_specifiers(version)
-  if (is.null(appname)) {
+  if (is.null(appname) && !is.null(version)) {
     version <- NULL
     warning("version is ignored when appname is null")
   }
@@ -84,7 +84,7 @@ user_data_dir <- function(appname = NULL, appauthor = appname, version = NULL,
 user_config_dir <- function(appname = NULL, appauthor = appname, version = NULL, 
                             roaming = TRUE, expand = TRUE, os = get_os()) {
   if (expand) version <- expand_r_libs_specifiers(version)
-  if (is.null(appname)) {
+  if (is.null(appname) && !is.null(version)) {
     version <- NULL
     warning("version is ignored when appname is null")
   }
@@ -130,7 +130,7 @@ user_config_dir <- function(appname = NULL, appauthor = appname, version = NULL,
 site_data_dir <- function(appname = NULL, appauthor = appname, version = NULL, 
                           multipath = FALSE, expand = TRUE, os = get_os()) {
   if (expand) version <- expand_r_libs_specifiers(version)
-  if (is.null(appname)) {
+  if (is.null(appname) && !is.null(version)) {
     version <- NULL
     warning("version is ignored when appname is null")
   }
@@ -147,7 +147,7 @@ site_data_dir <- function(appname = NULL, appauthor = appname, version = NULL,
 site_config_dir <- function(appname = NULL, appauthor = appname, version = NULL,
                             multipath = FALSE, expand = TRUE, os = get_os()) {
   if (expand) version <- expand_r_libs_specifiers(version)
-  if (is.null(appname)) {
+  if (is.null(appname) && !is.null(version)) {
     version <- NULL
     warning("version is ignored when appname is null")
   }
