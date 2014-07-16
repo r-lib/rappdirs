@@ -7,8 +7,8 @@ test_that("expand_r_libs_specifiers works as expected", {
 })
 test_that("parse_path_string works as expected", {
   expect_equal(parse_path_string("/home/foo/bin:/bin:/usr/share/bin:/bin"),
-               c("/home/foo/bin", "/bin", "/usr/share/bin"))
-  expect_equal(parse_path_string("/home/foo/bin"), "/home/foo/bin")
+               file_path_vec(c("/home/foo/bin", "/bin", "/usr/share/bin")))
+  expect_equal(parse_path_string("/home/foo/bin"), file_path("/home/foo/bin"))
 })
 
 test_that("file_path_vec works as expected", {

@@ -6,9 +6,9 @@ test_that("site_data_dir works as expected", {
         expect_equal(all(c("/usr/local/share/R", "/usr/share/R") %in% site_data_dir("R", os="unix")),
                      FALSE)
     }
-    expect_equal(site_data_dir("R", os="mac"), "/Library/Application Support/R")
-    expect_equal(site_data_dir("R", version="%V", os="mac", expand=TRUE), 
-                 file.path(path.expand("/Library/Application Support/R"), as.character(getRversion())))
-    expect_equal(site_data_dir("R", version="%V", os="mac", expand=FALSE), 
-                 path.expand("/Library/Application Support/R/%V"))
+    expect_equal(site_data_dir("R", os="mac"), file_path("/Library/Application Support/R"))
+    expect_equal(site_data_dir("R", version="%V", os="mac", expand=TRUE),
+                 file_path("/Library/Application Support/R", as.character(getRversion())))
+    expect_equal(site_data_dir("R", version="%V", os="mac", expand=FALSE),
+                 file_path("/Library/Application Support/R/%V"))
 })
