@@ -13,8 +13,7 @@ Authors@R: c(
     person("Gregory", "Jefferis", role = "ctb")
     )
 Depends:
-    R (>= 2.14)
-Imports:
+    R (>= 2.14),
     methods
 Suggests:
     testthat,
