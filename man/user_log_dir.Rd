@@ -27,9 +27,12 @@ is not NULL.}
 \item{expand}{If TRUE (the default) will expand the \code{R_LIBS} specifiers with their equivalents.
      See \code{\link{R_LIBS}} for list of all possibly specifiers.}
 
-\item{os}{Operating system which we should create directory for,
-if NULL (the default) will compute the operating system using R's built in variables/functions.
-Values are "win", "mac", "unix".}
+\item{os}{Operating system whose conventions are used to construct the
+requested directory. Possible values are "win", "mac", "unix". If NULL
+(the default) then the convention of the current operating system
+(as determined by rappdirs:::get_os) will be used. This argument is
+unlikely to find much use outside package testing (see details section of
+\code{\link{user_data_dir}}).}
 }
 \description{
 Typical user cache directories are:
