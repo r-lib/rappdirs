@@ -25,6 +25,12 @@
 #' Arguably plugins such as R packages should go into the user configuration directory and deleting
 #' this directory should return the application to a default settings.
 #'
+#' The \code{os} parameter allows the calculation of directories based on a
+#' convention other than the current operating system. This feature is designed
+#' with package testing in mind and is \emph{not} recommended for end users. One
+#' possible exception is that some users on "mac" might wish to use the "unix" 
+#' XDG convention.
+#' 
 #' @param appname is the name of application. If NULL, just the system
 #'     directory is returned.
 #' @param appauthor (only required and used on Windows) is the name of the
@@ -41,9 +47,12 @@
 #'     sync'd on login. See
 #'     \url{http://technet.microsoft.com/en-us/library/cc766489(WS.10).aspx}
 #'     for a discussion of issues.
-#' @param os Operating system which we should create directory for, 
-#'     if NULL (the default) will compute the operating system using R's built in variables/functions.  
-#'     Values are "win", "mac", "unix".
+#' @param os Operating system whose conventions are used to construct the
+#'     requested directory. Possible values are "win", "mac", "unix". If NULL
+#'     (the default) then the convention of the current operating system
+#'     (as determined by rappdirs:::get_os) will be used. This argument is
+#'     unlikely to find much use outside package testing (see details section of
+#'     \code{\link{user_data_dir}}).
 #' @param expand If TRUE (the default) will expand the \code{R_LIBS} specifiers with their equivalents.  
 #'      See \code{\link{R_LIBS}} for list of all possibly specifiers.
 #' 
