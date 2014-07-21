@@ -42,7 +42,7 @@
 user_cache_dir <- function(appname = NULL, appauthor = appname, version = NULL,
                            opinion = TRUE, expand = TRUE, os = get_os()) {
   if (expand) version <- expand_r_libs_specifiers(version)
-  if (is.null(appname)) {
+  if (is.null(appname) && !is.null(version)) {
     version <- NULL
     warning("version is ignored when appname is null")
   }
