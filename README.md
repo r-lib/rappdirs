@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/hadley/rappdirs.svg)](https://travis-ci.org/hadley/rappdirs)
+[![Travis-CI build Status](https://travis-ci.org/hadley/rappdirs.svg)](https://travis-ci.org/hadley/rappdirs) [![AppVeyor build status](https://ci.appveyor.com/api/projects/status/esqelnh58yryf21b/branch/master)](https://ci.appveyor.com/project/hadley/rappdirs/branch/master)
 
 `rappdirs` is a port of [appdirs](https://github.com/ActiveState/appdirs) to R.
 
