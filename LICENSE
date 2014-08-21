@@ -1,2 +1,7 @@
+Files: *
 YEAR: 2014
 COPYRIGHT HOLDER: Hadley Wickham, RStudio
+
+Files: R/appdir.r, R/cache.r, R/data.r, R/log.r (based on appdirs.py)
+YEAR: 2010
+COPYRIGHT HOLDER: ActiveState Software Inc

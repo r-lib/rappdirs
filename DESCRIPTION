@@ -23,3 +23,6 @@ Description: An easy way to determine which directories on the users computer
     (\url{https://github.com/ActiveState/appdirs}) to R.
 BugReports: https://github.com/hadley/rappdirs/issues
 License: MIT + file LICENSE
+Copyright: Original python appdirs module copyright (c) 2010 ActiveState
+    Software Inc. R port copyright Hadley Wickham, RStudio. See file LICENSE
+    for details.
