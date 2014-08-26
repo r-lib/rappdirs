@@ -7,6 +7,7 @@ Authors@R: c(
     role = c("trl", "cre")),
     person("Sridhar", "Ratnakumar", role = "aut"),
     person("Trent", "Mick", role = "aut"),
+    person("ActiveState", role="cph"),
     person("Eddy", "Petrisor", role = "ctb"),
     person("Trevor", "Davis", role = c("trl", "aut")),
     person("Gabor", "Csardi", role = "ctb"),
@@ -22,4 +23,8 @@ Description: An easy way to determine which directories on the users computer
     you should use to save data, caches and logs. A port of Python's Appdirs
     (\url{https://github.com/ActiveState/appdirs}) to R.
 BugReports: https://github.com/hadley/rappdirs/issues
+URL: https://github.com/hadley/rappdirs https://github.com/ActiveState/appdirs
 License: MIT + file LICENSE
+Copyright: Original python appdirs module copyright (c) 2010 ActiveState
+    Software Inc. R port copyright Hadley Wickham, RStudio. See file LICENSE
+    for details.
