@@ -5,9 +5,11 @@ Version: 0.3
 Authors@R: c(
     person("Hadley", "Wickham", email = "h.wickham@gmail.com",
     role = c("trl", "cre")),
+    person("RStudio", role = "cph"),
     person("Sridhar", "Ratnakumar", role = "aut"),
     person("Trent", "Mick", role = "aut"),
-    person("ActiveState", role="cph"),
+    person("ActiveState", role = "cph", comment =
+      "R/appdir.r, R/cache.r, R/data.r, R/log.r translated from appdirs"),
     person("Eddy", "Petrisor", role = "ctb"),
     person("Trevor", "Davis", role = c("trl", "aut")),
     person("Gabor", "Csardi", role = "ctb"),
