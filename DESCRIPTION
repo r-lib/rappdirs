@@ -4,7 +4,7 @@ Title: Application directories: determine where to save data, caches and logs.
 Version: 0.3
 Authors@R: c(
     person("Hadley", "Wickham", email = "h.wickham@gmail.com",
-    role = c("trl", "cre")),
+    role = c("trl", "cre", "cph")),
     person("RStudio", role = "cph"),
     person("Sridhar", "Ratnakumar", role = "aut"),
     person("Trent", "Mick", role = "aut"),

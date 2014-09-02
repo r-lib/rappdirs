@@ -5,6 +5,8 @@ rappdirs has been tested on os x, windows and linux (ubuntu):
 * Compared to the previous submission, this does a better job of 
   acknowledging the copyright:
   
+    * I've listed myself as a copyright holder in Authors@R
+  
     * Activestate and Rstudio are now listed as a copyright holder in Authors@R.
     
     * The LICENSE follows standard conventions
