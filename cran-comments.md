@@ -5,7 +5,14 @@
 
 ## R CMD check results
 
-0 errors | 0 warnings | 0 notes
+0 errors | 0 warnings | 1 notes
+
+* MIT license
+
+* Link to "http://cran.r-project.org/web/packages/policies.html" triggers
+  false positive for canonical url check
+
+* I also updated my email address to <hadley@rstudio.com>.
 
 ## Reverse dependencies
 

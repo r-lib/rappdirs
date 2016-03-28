@@ -1,6 +1,8 @@
-## rappdirs 0.3.0.9000
+## rappdirs 0.3.1
 
-## rappdirs 0.3
+Minor R CMD check and test fixes.
+
+## rappdirs 0.3.0
 
 * first CRAN release
 * `xxx_dir()` functions only use version when appname is not null
