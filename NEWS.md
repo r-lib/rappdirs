@@ -1,12 +1,11 @@
-rappdirs 0.3.0.9000
-===================
+## rappdirs 0.3.0.9000
 
-rappdirs 0.3
-============
+## rappdirs 0.3
+
 * first CRAN release
-* xxx_dir() functions only use version when appname is not null
+* `xxx_dir()` functions only use version when appname is not null
 * docs: basic package docs (?rappdirs)
-* docs: clarify primary purpose of os argument in xxx_dir() i.e. testing
+* docs: clarify primary purpose of os argument in `xxx_dir()` i.e. testing
 * fix typo in function name in README.md (app_dirs -> app_dir)
 * dev: add travis continuous integration
 * dev: add rstudio project
