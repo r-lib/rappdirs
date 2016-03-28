@@ -30,3 +30,4 @@ License: MIT + file LICENSE
 Copyright: Original python appdirs module copyright (c) 2010 ActiveState
     Software Inc. R port copyright Hadley Wickham, RStudio. See file LICENSE
     for details.
+RoxygenNote: 5.0.1
