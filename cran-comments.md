@@ -1,14 +1,12 @@
-rappdirs has been tested on os x, windows and linux (ubuntu):
+## Test environments
+* local OS X install, R 3.2.4
+* ubuntu 12.04 (on travis-ci), R 3.2.4
+* win-builder (devel and release)
 
-* This is a resubmission of a new package.
+## R CMD check results
 
-* Compared to the previous submission, this does a better job of 
-  acknowledging the copyright:
-  
-    * I've listed myself as a copyright holder in Authors@R
-  
-    * Activestate and Rstudio are now listed as a copyright holder in Authors@R.
-    
-    * The LICENSE follows standard conventions
-    
-    * A comment in Authors@R gives more detail about Activestate's copyright.
+0 errors | 0 warnings | 0 notes
+
+## Reverse dependencies
+
+I did not run R CMD check on the reverse dependencies because this release only fixes minor R CMD check notes, and a test failure illuminated by the dev version of testthat.
