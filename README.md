@@ -32,7 +32,7 @@ or possibly:
 `rappdirs` to the rescue
 =======================
 
-This kind of thing is what the `appdirs` module is for. `appdirs` will
+This kind of thing is what the `rappdirs` package is for. `rappdirs` will
 help you choose an appropriate:
 
 -   user data dir (`user_data_dir`)
@@ -52,7 +52,7 @@ some example output
 
 On Mac OS X:
 
-    library(appdirs)
+    library(rappdirs)
     appname <- "SuperApp"
     appauthor <- "Acme"
     user_config_dir(appname, appauthor)
@@ -68,7 +68,7 @@ On Mac OS X:
 
 On Windows 7:
 
-    library(appdirs)
+    library(rappdirs)
     appname <- "SuperApp"
     appauthor <- "Acme"
     user_config_dir(appname, appauthor)
@@ -84,7 +84,7 @@ On Windows 7:
 
 On Linux:
 
-    library(appdirs)
+    library(rappdirs)
     appname <- "SuperApp"
     appauthor <- "Acme"
     user_config_dir(appname, appauthor)
@@ -101,7 +101,7 @@ On Linux:
 `app_dir` for convenience
 =========================
 
-    library(appdirs)
+    library(rappdirs)
     dirs <- app_dir("SuperApp", "Acme")
     dirs$config()
     # "/Users/trentm/Library/Application Support/SuperApp"
@@ -121,7 +121,7 @@ If you have multiple versions of your app in use that you want to be
 able to run side-by-side, then you may want version-isolation for these
 dirs:
 
-    library(appdirs)
+    library(rappdirs)
     dirs <- app_dir("SuperApp", "Acme", version = "1.0")
     dirs$data()
     # "/Users/trentm/Library/Application Support/SuperApp/1.0"
