@@ -1,33 +1,52 @@
-Package: rappdirs
 Type: Package
-Title: Application Directories: Determine Where to Save Data, Caches, and Logs
+Package: rappdirs
+Title: Application Directories: Determine Where to Save Data,
+    Caches, and Logs
 Version: 0.3.1.9000
-Authors@R: c(
-    person("Hadley", "Wickham", email = "hadley@rstudio.com",
-    role = c("trl", "cre", "cph")),
-    person("RStudio", role = "cph"),
-    person("Sridhar", "Ratnakumar", role = "aut"),
-    person("Trent", "Mick", role = "aut"),
-    person("ActiveState", role = "cph", comment =
-      "R/appdir.r, R/cache.r, R/data.r, R/log.r translated from appdirs"),
-    person("Eddy", "Petrisor", role = "ctb"),
-    person("Trevor", "Davis", role = c("trl", "aut")),
-    person("Gabor", "Csardi", role = "ctb"),
-    person("Gregory", "Jefferis", role = "ctb")
-    )
-Depends:
-    R (>= 2.14),
-    methods
-Suggests:
-    testthat,
-    roxygen2
-Description: An easy way to determine which directories on the users computer
-    you should use to save data, caches and logs. A port of Python's 'Appdirs'
-    (\url{https://github.com/ActiveState/appdirs}) to R.
-BugReports: https://github.com/r-lib/rappdirs/issues
-URL: https://github.com/r-lib/rappdirs, https://github.com/ActiveState/appdirs
+Authors@R: 
+    c(person(given = "Hadley",
+             family = "Wickham",
+             role = c("trl", "cre", "cph"),
+             email = "hadley@rstudio.com"),
+      person(given = "RStudio",
+             role = "cph"),
+      person(given = "Sridhar",
+             family = "Ratnakumar",
+             role = "aut"),
+      person(given = "Trent",
+             family = "Mick",
+             role = "aut"),
+      person(given = "ActiveState",
+             role = "cph",
+             comment = "R/appdir.r, R/cache.r, R/data.r, R/log.r translated from appdirs"),
+      person(given = "Eddy",
+             family = "Petrisor",
+             role = "ctb"),
+      person(given = "Trevor",
+             family = "Davis",
+             role = c("trl", "aut")),
+      person(given = "Gabor",
+             family = "Csardi",
+             role = "ctb"),
+      person(given = "Gregory",
+             family = "Jefferis",
+             role = "ctb"))
+Description: An easy way to determine which directories on the
+    users computer you should use to save data, caches and logs. A port of
+    Python's 'Appdirs' (\url{https://github.com/ActiveState/appdirs}) to
+    R.
 License: MIT + file LICENSE
-Copyright: Original python appdirs module copyright (c) 2010 ActiveState
-    Software Inc. R port copyright Hadley Wickham, RStudio. See file LICENSE
-    for details.
+URL: https://github.com/r-lib/rappdirs,
+    https://github.com/ActiveState/appdirs
+BugReports: https://github.com/r-lib/rappdirs/issues
+Depends:
+    methods,
+    R (>= 2.14)
+Suggests:
+    roxygen2,
+    testthat
+Copyright: Original python appdirs module copyright (c) 2010
+    ActiveState Software Inc. R port copyright Hadley Wickham, RStudio.
+    See file LICENSE for details.
+Encoding: UTF-8
 RoxygenNote: 7.1.1
