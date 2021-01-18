@@ -26,6 +26,17 @@ file_path <- function(...) {
 
 "%||%" <- function(a, b) if (is.null(a)) b else a
 
+base_path <- function(os, type, win, mac, unix) {
+  name <- paste0("R_USER_", type, "_DIR")
+  val <- Sys.getenv(name)
+
+  if (!identical(val, "")) {
+    val
+  } else {
+    switch(check_os(os), win = win, mac = mac, unix = unix)
+  }
+}
+
 win_path <- function(type_appdata = "common") {
   CSIDL_APPDATA <- 26L
   CSIDL_COMMON_APPDATA <- 35L

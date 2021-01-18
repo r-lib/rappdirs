@@ -52,51 +52,33 @@ requested directory. Possible values are "win", "mac", "unix". If \code{NULL}
 (the default) then the current OS will be used.}
 }
 \description{
-\code{user_data_dir} returns full path to the user-specific data dir for this application.
-\code{user_config_dir} returns full path to the user-specific configuration directory for this application
-which returns the same path as user data directory in Windows and Mac but a different one for Unix.
-}
-\details{
-Typical user data directories are:
+\code{user_data_dir()} returns path to the user-specific data directory and
+\code{user_config_dir()} returns full path to the user-specific configuration
+directory. These are the same on Windows and Mac but different on Linux.
+
+These functions first use \code{R_USER_DATA_DIR} and \code{R_USER_CONFIG_DIR} if set.
+Otherwise, they follow platform conventions. Typical user config and data
+directories are:
 \itemize{
-\item Mac OS X:  \verb{~/Library/Application Support/<AppName>}
-\item Unix: \verb{~/.local/share/<AppName>}, in \env{$XDG_DATA_HOME} if defined
-\item Win XP (not roaming):  \verb{C:\\\\Documents and Settings\\\\<username>\\\\Data\\\\<AppAuthor>\\\\<AppName>}
+\item Mac OS X: \verb{~/Library/Application Support/<AppName>}
+\item Win XP (not roaming): \verb{C:\\\\Documents and Settings\\\\<username>\\\\Data\\\\<AppAuthor>\\\\<AppName>}
 \item Win XP (roaming): \verb{C:\\\\Documents and Settings\\\\<username>\\\\Local Settings\\\\Data\\\\<AppAuthor>\\\\<AppName>}
 \item Win 7 (not roaming): \verb{C:\\\\Users\\\\<username>\\\\AppData\\\\Local\\\\<AppAuthor>\\\\<AppName>}
 \item Win 7 (roaming): \verb{C:\\\\Users\\\\<username>\\\\AppData\\\\Roaming\\\\<AppAuthor>\\\\<AppName>}
 }
 
-Unix also specifies a separate location for user configuration data in
+Only Linux makes the distinction between config and data:
 \itemize{
-\item Unix: \verb{~/.config/<AppName>}, in \env{$XDG_CONFIG_HOME} if defined
+\item Data: \verb{~/.local/share/<AppName>}
+\item Config: \verb{~/.config/<AppName>}
 }
-
-See for example \url{http://ploum.net/184-cleaning-user-preferences-keeping-user-data/}
-or \url{https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html} for more information.
-Arguably plugins such as R packages should go into the user configuration directory and deleting
-this directory should return the application to a default settings.
-
-The \code{os} parameter allows the calculation of directories based on a
-convention other than the current operating system. This feature is designed
-with package testing in mind and is \emph{not} recommended for end users. One
-possible exception is that some users on "mac" might wish to use the "unix"
-XDG convention.
 }
 \examples{
 user_data_dir("rappdirs")
-user_config_dir("rappdirs", version = "\%p-platform/\%v")
+
 user_config_dir("rappdirs", roaming = TRUE, os = "win")
 user_config_dir("rappdirs", roaming = FALSE, os = "win")
 user_config_dir("rappdirs", os = "unix")
 user_config_dir("rappdirs", os = "mac")
-\dontrun{
-# you could try to use functions to store R libraries in a standard user directory
-# by using the following in your .Rprofile file
-# but unfortunately if rappsdir package was stored in standard user directory then
-# it won't be on R's search path any longer, so would need to be installed system-wide...
-require("utils")
-.libPaths(new = rappdirs::user_config_dir("R", version = "\%p-platform/\%v"))
-}
-
+user_config_dir("rappdirs", version = "\%p-platform/\%v")
 }

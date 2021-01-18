@@ -27,8 +27,8 @@ of your app to be able to run independently. If used, this
 would typically be \code{"<major>.<minor>"}. Only applied when appname
 is not NULL.}
 
-\item{opinion}{(logical) can be \code{FALSE} to disable the appending of
-\file{Cache} to the base app data dir for Windows. See discussion below.}
+\item{opinion}{(logical) Use \code{FALSE} to disable the appending of
+\code{Cache} on Windows. See discussion below.}
 
 \item{expand}{If TRUE (the default) will expand the \code{R_LIBS} specifiers with their equivalents.
 See \code{\link[=R_LIBS]{R_LIBS()}} for list of all possibly specifiers.}
@@ -38,43 +38,26 @@ requested directory. Possible values are "win", "mac", "unix". If \code{NULL}
 (the default) then the current OS will be used.}
 }
 \description{
-Typical user cache directories are:
-}
-\details{
+This functions uses \code{R_USER_CACHE_DIR} if set. Otherwise, they follow
+platform conventions. Typical user cache directories are:
 \itemize{
-\item Mac OS X: \file{~/Library/Caches/<AppName>}
-\item Unix: \file{~/.cache/<AppName>}, \env{$XDG_CACHE_HOME} if defined
-\item Win XP: \file{C:\\Documents and Settings\\<username>\\Local Settings\\Application Data\\<AppAuthor>\\<AppName>\\Cache}
-\item Vista:      \file{C:\\Users\\<username>\\AppData\\Local\\<AppAuthor>\\<AppName>\\Cache}
+\item Mac OS X: \verb{~/Library/Caches/<AppName>}
+\item Linux: \verb{~/.cache/<AppName>}
+\item Win XP: \verb{C:\\\\Documents and Settings\\\\<username>\\\\Local Settings\\\\Application Data\\\\<AppAuthor>\\\\<AppName>\\\\Cache}
+\item Vista: \verb{C:\\\\Users\\\\<username>\\\\AppData\\\\Local\\\\<AppAuthor>\\\\<AppName>\\\\Cache}
 }
-
-On Windows the only suggestion in the MSDN docs is that local settings go
-in the \code{CSIDL_LOCAL_APPDATA} directory. This is identical to the
-non-roaming app data dir (the default returned by \code{user_data_dir} above).
-Apps typically put cache data somewhere \emph{under} the given dir here. Some
-examples: \file{...\\Mozilla\\Firefox\\Profiles\\<ProfileName>\\Cache},
-\file{...\\Acme\\SuperApp\\Cache\\1.0}
 }
 \section{Opinion}{
 
-This function appends \file{Cache} to the \code{CSIDL_LOCAL_APPDATA} value.
-This can be disabled with \code{opinion = FALSE} option.
+On Windows the only suggestion in the MSDN docs is that local settings go
+in the \code{CSIDL_LOCAL_APPDATA} directory. This is identical to the
+non-roaming app data dir (i.e. \code{\link[=user_data_dir]{user_data_dir()}}). But apps typically put
+cache data somewhere \emph{under} this directory so \code{user_cache_dir()} appends
+\code{Cache} to the \code{CSIDL_LOCAL_APPDATA} value, unless \code{opinion = FALSE}.
 }
 
 \examples{
 user_cache_dir("rappdirs")
-\dontrun{
-# Throw this in your R profile to store a R history file in standard cache location
-if (capabilities("cledit")) {
-  cache_dir <- rappdirs::user_cache_dir("R")
-  history_file <- file.path(cache_dir, "Rhistory")
-  .First <- function() utils::loadhistory(history_file)
-  .Last <- function() {
-    if (!file.exists(cache_dir)) dir.create(cache_dir, recursive = TRUE)
-    try(savehistory(history_file))
-  }
-}
-}
 }
 \seealso{
 \code{\link[=tempdir]{tempdir()}} for a non-persistent temporary directory.
