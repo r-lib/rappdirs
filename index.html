@@ -80,7 +80,7 @@
 <!-- badges: start -->
 
 <!-- badges: end -->
-<p><code>rappdirs</code> is a port of <a href="https://github.com/ActiveState/appdirs">appdirs</a> to R. It lets you find the appropriate directory to save caches, logs, and data, on Linux, Mac, and Windows</p>
+<p><code>rappdirs</code> is a port of <a href="https://github.com/ActiveState/appdirs">appdirs</a> to R. It lets you find the appropriate directory to save caches, logs, and data, on Linux, Mac, and Windows. It allows you to store files that need to shared across R sessions in a way that aligns with the <a href="https://cran.r-project.org/web/packages/policies.html">CRAN policies</a>.</p>
 <div id="motivation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#motivation" class="anchor"></a>Motivation</h2>
@@ -109,7 +109,7 @@
 </ul>
 <p>For example, on Mac:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/r-lib/rappdirs">rappdirs</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rappdirs.r-lib.org">rappdirs</a></span><span class="op">)</span>
 <span class="va">appname</span> <span class="op">&lt;-</span> <span class="st">"SuperApp"</span>
 <span class="va">appauthor</span> <span class="op">&lt;-</span> <span class="st">"Acme"</span>
 <span class="fu"><a href="reference/user_data_dir.html">user_config_dir</a></span><span class="op">(</span><span class="va">appname</span>, <span class="va">appauthor</span><span class="op">)</span>
