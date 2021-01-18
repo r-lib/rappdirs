@@ -46,10 +46,10 @@ win_path_csidl <- function(csidl) {
 }
 
 # How to get reasonable window paths via environmental variables
-win_path_env <- function(type_appdata) {
-  if (type_appdata == "roaming") {
+win_path_env <- function(type) {
+  if (type == "roaming") {
     env_fallback("APPDATA")
-  } else if (type_appdata == "local") {
+  } else if (type == "local") {
     path <- Sys.getenv("LOCALAPPDATA", unset = NA)
     if (is.na(path)) { # environmental variable not defined in XP
       path <- file.path(
@@ -58,14 +58,14 @@ win_path_env <- function(type_appdata) {
       )
     }
     path
-  } else if (type_appdata == "common") {
+  } else if (type == "common") {
     path <- Sys.getenv("PROGRAMDATA", unset = NA)
     if (is.na(path)) {
       path <- file.path(env_fallback("ALLUSERPROFILE"), "Application Data")
     }
     path
   } else {
-    stop("invalid `type_appdata` argument")
+    stop("invalid `type` argument")
   }
 }
 
