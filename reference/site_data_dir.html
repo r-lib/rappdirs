@@ -132,7 +132,7 @@ Typical user-shared data directories are:</p>
   version <span class='op'>=</span> <span class='cn'>NULL</span>,
   multipath <span class='op'>=</span> <span class='cn'>FALSE</span>,
   expand <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  os <span class='op'>=</span> <span class='fu'>get_os</span><span class='op'>(</span><span class='op'>)</span>
+  os <span class='op'>=</span> <span class='cn'>NULL</span>
 <span class='op'>)</span>
 
 <span class='fu'>site_config_dir</span><span class='op'>(</span>
@@ -141,7 +141,7 @@ Typical user-shared data directories are:</p>
   version <span class='op'>=</span> <span class='cn'>NULL</span>,
   multipath <span class='op'>=</span> <span class='cn'>FALSE</span>,
   expand <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  os <span class='op'>=</span> <span class='fu'>get_os</span><span class='op'>(</span><span class='op'>)</span>
+  os <span class='op'>=</span> <span class='cn'>NULL</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -180,11 +180,8 @@ See <code><a href='https://rdrr.io/r/base/libPaths.html'>R_LIBS()</a></code> for
     <tr>
       <th>os</th>
       <td><p>Operating system whose conventions are used to construct the
-requested directory. Possible values are "win", "mac", "unix". If NULL
-(the default) then the convention of the current operating system
-(as determined by rappdirs:::get_os) will be used. This argument is
-unlikely to find much use outside package testing (see details section of
-<code><a href='user_data_dir.html'>user_data_dir()</a></code>).</p></td>
+requested directory. Possible values are "win", "mac", "unix". If <code>NULL</code>
+(the default) then the current OS will be used.</p></td>
     </tr>
     </table>
 

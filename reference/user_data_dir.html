@@ -130,7 +130,7 @@ which returns the same path as user data directory in Windows and Mac but a diff
   version <span class='op'>=</span> <span class='cn'>NULL</span>,
   roaming <span class='op'>=</span> <span class='cn'>FALSE</span>,
   expand <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  os <span class='op'>=</span> <span class='fu'>get_os</span><span class='op'>(</span><span class='op'>)</span>
+  os <span class='op'>=</span> <span class='cn'>NULL</span>
 <span class='op'>)</span>
 
 <span class='fu'>user_config_dir</span><span class='op'>(</span>
@@ -139,7 +139,7 @@ which returns the same path as user data directory in Windows and Mac but a diff
   version <span class='op'>=</span> <span class='cn'>NULL</span>,
   roaming <span class='op'>=</span> <span class='cn'>TRUE</span>,
   expand <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  os <span class='op'>=</span> <span class='fu'>get_os</span><span class='op'>(</span><span class='op'>)</span>
+  os <span class='op'>=</span> <span class='cn'>NULL</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -181,11 +181,8 @@ See <code><a href='https://rdrr.io/r/base/libPaths.html'>R_LIBS()</a></code> for
     <tr>
       <th>os</th>
       <td><p>Operating system whose conventions are used to construct the
-requested directory. Possible values are "win", "mac", "unix". If NULL
-(the default) then the convention of the current operating system
-(as determined by rappdirs:::get_os) will be used. This argument is
-unlikely to find much use outside package testing (see details section of
-<code>user_data_dir()</code>).</p></td>
+requested directory. Possible values are "win", "mac", "unix". If <code>NULL</code>
+(the default) then the current OS will be used.</p></td>
     </tr>
     </table>
 
@@ -216,19 +213,20 @@ XDG convention.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>user_data_dir</span><span class='op'>(</span><span class='st'>"rappdirs"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "~/Library/Application Support/rappdirs"</div><div class='input'><span class='fu'>user_config_dir</span><span class='op'>(</span><span class='st'>"rappdirs"</span>, version<span class='op'>=</span><span class='st'>"%p-platform/%v"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "~/Library/Application Support/rappdirs/x86_64-apple-darwin17.0-platform/4.0"</div><div class='input'><span class='fu'>user_config_dir</span><span class='op'>(</span><span class='st'>"rappdirs"</span>, roaming<span class='op'>=</span><span class='cn'>TRUE</span>, os<span class='op'>=</span><span class='st'>"win"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "&lt;APPDATA&gt;/rappdirs/rappdirs"</div><div class='input'><span class='fu'>user_config_dir</span><span class='op'>(</span><span class='st'>"rappdirs"</span>, roaming<span class='op'>=</span><span class='cn'>FALSE</span>, os<span class='op'>=</span><span class='st'>"win"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "&lt;USERPROFILE&gt;/Local Settings/Application Data/rappdirs/rappdirs"</div><div class='input'><span class='fu'>user_config_dir</span><span class='op'>(</span><span class='st'>"rappdirs"</span>, os<span class='op'>=</span><span class='st'>"unix"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "~/.config/rappdirs"</div><div class='input'><span class='fu'>user_config_dir</span><span class='op'>(</span><span class='st'>"rappdirs"</span>, os<span class='op'>=</span><span class='st'>"mac"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "~/Library/Application Support/rappdirs"</div><div class='input'><span class='fu'>user_config_dir</span><span class='op'>(</span><span class='st'>"rappdirs"</span>, version <span class='op'>=</span> <span class='st'>"%p-platform/%v"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "~/Library/Application Support/rappdirs/x86_64-apple-darwin17.0-platform/4.0"</div><div class='input'><span class='fu'>user_config_dir</span><span class='op'>(</span><span class='st'>"rappdirs"</span>, roaming <span class='op'>=</span> <span class='cn'>TRUE</span>, os <span class='op'>=</span> <span class='st'>"win"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "&lt;APPDATA&gt;/rappdirs/rappdirs"</div><div class='input'><span class='fu'>user_config_dir</span><span class='op'>(</span><span class='st'>"rappdirs"</span>, roaming <span class='op'>=</span> <span class='cn'>FALSE</span>, os <span class='op'>=</span> <span class='st'>"win"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "&lt;USERPROFILE&gt;/Local Settings/Application Data/rappdirs/rappdirs"</div><div class='input'><span class='fu'>user_config_dir</span><span class='op'>(</span><span class='st'>"rappdirs"</span>, os <span class='op'>=</span> <span class='st'>"unix"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "~/.config/rappdirs"</div><div class='input'><span class='fu'>user_config_dir</span><span class='op'>(</span><span class='st'>"rappdirs"</span>, os <span class='op'>=</span> <span class='st'>"mac"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] "~/Library/Application Support/rappdirs"</div><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'># you could try to use functions to store R libraries in a standard user directory</span>
 <span class='co'># by using the following in your .Rprofile file</span>
 <span class='co'># but unfortunately if rappsdir package was stored in standard user directory then</span>
 <span class='co'># it won't be on R's search path any longer, so would need to be installed system-wide...</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='st'>"utils"</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/libPaths.html'>.libPaths</a></span><span class='op'>(</span>new<span class='op'>=</span><span class='fu'>rappdirs</span><span class='fu'>::</span><span class='fu'>user_config_dir</span><span class='op'>(</span><span class='st'>"R"</span>, version<span class='op'>=</span><span class='st'>"%p-platform/%v"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/libPaths.html'>.libPaths</a></span><span class='op'>(</span>new <span class='op'>=</span> <span class='fu'>rappdirs</span><span class='fu'>::</span><span class='fu'>user_config_dir</span><span class='op'>(</span><span class='st'>"R"</span>, version <span class='op'>=</span> <span class='st'>"%p-platform/%v"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='op'>}</span>
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
