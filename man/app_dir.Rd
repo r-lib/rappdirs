@@ -4,8 +4,13 @@
 \alias{app_dir}
 \title{Convenience wrapper for getting app dirs.}
 \usage{
-app_dir(appname = NULL, appauthor = appname, version = NULL,
-  expand = TRUE, os = get_os())
+app_dir(
+  appname = NULL,
+  appauthor = appname,
+  version = NULL,
+  expand = TRUE,
+  os = get_os()
+)
 }
 \arguments{
 \item{appname}{is the name of application. If NULL, just the system
@@ -53,4 +58,3 @@ ggplot2_app$config()
 ggplot2_app$site_config()
 ggplot2_app$site_data()
 }
-

@@ -4,8 +4,14 @@
 \alias{user_log_dir}
 \title{Return full path to the user-specific log dir for this application.}
 \usage{
-user_log_dir(appname = NULL, appauthor = appname, version = NULL,
-  opinion = TRUE, expand = TRUE, os = get_os())
+user_log_dir(
+  appname = NULL,
+  appauthor = appname,
+  version = NULL,
+  opinion = TRUE,
+  expand = TRUE,
+  os = get_os()
+)
 }
 \arguments{
 \item{appname}{is the name of application. If NULL, just the system
@@ -58,7 +64,7 @@ This function appends \file{Logs} to the `CSIDL_LOCAL_APPDATA`
 value for Windows and appends \file{log} to the user cache dir for Unix.
 This can be disabled with the \code{opinion = FALSE} option.
 }
+
 \examples{
   user_log_dir()
 }
-

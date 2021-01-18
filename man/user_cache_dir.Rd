@@ -4,8 +4,14 @@
 \alias{user_cache_dir}
 \title{Return full path to the user-specific cache dir for this application.}
 \usage{
-user_cache_dir(appname = NULL, appauthor = appname, version = NULL,
-  opinion = TRUE, expand = TRUE, os = get_os())
+user_cache_dir(
+  appname = NULL,
+  appauthor = appname,
+  version = NULL,
+  opinion = TRUE,
+  expand = TRUE,
+  os = get_os()
+)
 }
 \arguments{
 \item{appname}{is the name of application. If NULL, just the system
@@ -57,6 +63,7 @@ examples: \file{...\\Mozilla\\Firefox\\Profiles\\<ProfileName>\\Cache},
 This function appends \file{Cache} to the `CSIDL_LOCAL_APPDATA` value.
 This can be disabled with \code{opinion = FALSE} option.
 }
+
 \examples{
 user_cache_dir("rappdirs")
 \dontrun{
@@ -75,4 +82,3 @@ if(capabilities("cledit")) {
 \seealso{
 \code{\link{tempdir}} for a non-persistent temporary directory.
 }
-

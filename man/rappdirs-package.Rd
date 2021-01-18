@@ -2,8 +2,8 @@
 % Please edit documentation in R/rappdirs-package.r
 \docType{package}
 \name{rappdirs-package}
-\alias{rappdirs}
 \alias{rappdirs-package}
+\alias{rappdirs}
 \title{Application directories: determine where to save data, caches and logs.}
 \description{
 rappdirs solves the problem of where to save persistent data 
@@ -54,6 +54,7 @@ rappdirs solves the problem of where to save persistent data
   Limited exceptions may be allowed in interactive sessions if the package 
   obtains confirmation from the user.
 }
+
 \examples{
 dirs <- app_dir("SuperApp", "Acme")
 dirs$config()
@@ -63,4 +64,3 @@ dirs$config()
 \code{\link{app_dir}, \link{user_data_dir}, \link{user_config_dir}, 
   \link{user_cache_dir}, \link{site_data_dir}, \link{user_log_dir}}
 }
-
