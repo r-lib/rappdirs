@@ -144,14 +144,14 @@ outside of the R library or the R per-session <code><a href='https://rdrr.io/r/b
 
     <p>Note that if you use rappdir's <code><a href='user_data_dir.html'>user_data_dir()</a></code>
 and friends to define a storage location for files you must be aware of
-<a href='https://en.wikipedia.org/wiki/Race_condition'>race conditions</a> when
+<a href='http://en.wikipedia.org/wiki/Race_condition'>race conditions</a> when
 more than one R process tries to create/write files in this directory. This
 is in contrast to using the <code><a href='https://rdrr.io/r/base/tempfile.html'>tempdir()</a></code>, <code><a href='https://rdrr.io/r/base/tempfile.html'>tempfile()</a></code>
 base functions which should be unique for each R process. In general the
 directories provided by rappdirs are most suitable for storing data that is
 rarely written but might need to be shared across R sessions.</p>
 <p>Note also that the
-<a href='https://cran.r-project.org/web/packages/policies.html'>CRAN Policies</a>
+<a href='http://cran.r-project.org/web/packages/policies.html'>CRAN Policies</a>
 have the following to say about storage of data by packages:</p><ul>
 <li><p>Packages should not write in the users' home filespace, nor anywhere else
 on the file system apart from the R session's temporary directory (or
