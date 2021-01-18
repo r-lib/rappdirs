@@ -6,5 +6,7 @@ test_that("works on mac and linux", {
 
 test_that("works on windows simulation", {
   skip_on_os("windows")
+  withr::local_envvar(USERPROFILE = NA)
+
   expect_equal(user_cache_dir("R", os = "win"), "<LOCALAPPDATA>/R/R/Cache")
 })

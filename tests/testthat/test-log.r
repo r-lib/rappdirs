@@ -8,5 +8,6 @@ test_that("user_cache_dir works as expected", {
 
 test_that("user_cache_dir works with windows simulation", {
   skip_on_os("windows")
+  withr::local_envvar(USERPROFILE = NA)
   expect_equal(user_log_dir("R", os = "win"), "<LOCALAPPDATA>/R/R/Logs")
 })
