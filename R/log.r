@@ -25,7 +25,7 @@
 #'   \file{Logs} to the base app data dir for Windows, and \file{log} to the
 #'   base cache dir for Unix. See discussion below.
 #' @examples
-#'   user_log_dir()
+#' user_log_dir()
 #' @export
 user_log_dir <- function(appname = NULL, appauthor = appname, version = NULL,
                          opinion = TRUE, expand = TRUE, os = NULL) {
@@ -33,10 +33,14 @@ user_log_dir <- function(appname = NULL, appauthor = appname, version = NULL,
   version <- check_version(version, appname)
 
   switch(check_os(os),
-    win = file_path(win_path("local"), appauthor, appname, version,
-      if (opinion) "Logs"),
+    win = file_path(
+      win_path("local"), appauthor, appname, version,
+      if (opinion) "Logs"
+    ),
     mac = file_path("~/Library/Logs", appname, version),
-    unix = file_path(Sys.getenv("XDG_CACHE_HOME", "~/.cache"),
-      appname, version, if (opinion) "log")
+    unix = file_path(
+      Sys.getenv("XDG_CACHE_HOME", "~/.cache"),
+      appname, version, if (opinion) "log"
+    )
   )
 }

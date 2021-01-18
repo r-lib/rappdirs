@@ -65,7 +65,7 @@ This can be disabled with \code{opinion = FALSE} option.
 user_cache_dir("rappdirs")
 \dontrun{
 # Throw this in your R profile to store a R history file in standard cache location
-if(capabilities("cledit")) {
+if (capabilities("cledit")) {
   cache_dir <- rappdirs::user_cache_dir("R")
   history_file <- file.path(cache_dir, "Rhistory")
   .First <- function() utils::loadhistory(history_file)

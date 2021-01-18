@@ -28,7 +28,7 @@
 #' user_cache_dir("rappdirs")
 #' \dontrun{
 #' # Throw this in your R profile to store a R history file in standard cache location
-#' if(capabilities("cledit")) {
+#' if (capabilities("cledit")) {
 #'   cache_dir <- rappdirs::user_cache_dir("R")
 #'   history_file <- file.path(cache_dir, "Rhistory")
 #'   .First <- function() utils::loadhistory(history_file)
@@ -45,8 +45,10 @@ user_cache_dir <- function(appname = NULL, appauthor = appname, version = NULL,
 
   version <- check_version(version, appname)
   switch(check_os(os),
-    win = file_path(win_path("local"), appauthor, appname, version,
-      if (opinion) "Cache"),
+    win = file_path(
+      win_path("local"), appauthor, appname, version,
+      if (opinion) "Cache"
+    ),
     mac = file_path("~/Library/Caches", appname, version),
     unix = file_path(Sys.getenv("XDG_CACHE_HOME", "~/.cache"), appname, version)
   )

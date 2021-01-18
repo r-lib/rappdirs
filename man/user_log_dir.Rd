@@ -63,5 +63,5 @@ This can be disabled with the \code{opinion = FALSE} option.
 }
 
 \examples{
-  user_log_dir()
+user_log_dir()
 }

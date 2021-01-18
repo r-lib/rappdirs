@@ -52,20 +52,20 @@
 #'
 #' @examples
 #' user_data_dir("rappdirs")
-#' user_config_dir("rappdirs", version="%p-platform/%v")
-#' user_config_dir("rappdirs", roaming=TRUE, os="win")
-#' user_config_dir("rappdirs", roaming=FALSE, os="win")
-#' user_config_dir("rappdirs", os="unix")
-#' user_config_dir("rappdirs", os="mac")
+#' user_config_dir("rappdirs", version = "%p-platform/%v")
+#' user_config_dir("rappdirs", roaming = TRUE, os = "win")
+#' user_config_dir("rappdirs", roaming = FALSE, os = "win")
+#' user_config_dir("rappdirs", os = "unix")
+#' user_config_dir("rappdirs", os = "mac")
 #' \dontrun{
 #' # you could try to use functions to store R libraries in a standard user directory
 #' # by using the following in your .Rprofile file
 #' # but unfortunately if rappsdir package was stored in standard user directory then
 #' # it won't be on R's search path any longer, so would need to be installed system-wide...
 #' require("utils")
-#' .libPaths(new=rappdirs::user_config_dir("R", version="%p-platform/%v"))
+#' .libPaths(new = rappdirs::user_config_dir("R", version = "%p-platform/%v"))
 #' }
-
+#'
 #' @export
 user_data_dir <- function(appname = NULL, appauthor = appname, version = NULL,
                           roaming = FALSE, expand = TRUE, os = NULL) {
@@ -75,8 +75,10 @@ user_data_dir <- function(appname = NULL, appauthor = appname, version = NULL,
   switch(check_os(os),
     win = file_path(win_path(ifelse(roaming, "roaming", "local")), appauthor, appname, version),
     mac = file_path("~/Library/Application Support", appname, version),
-    unix = file_path(Sys.getenv("XDG_DATA_HOME", "~/.local/share"),
-      appname, version)
+    unix = file_path(
+      Sys.getenv("XDG_DATA_HOME", "~/.local/share"),
+      appname, version
+    )
   )
 }
 
@@ -90,8 +92,10 @@ user_config_dir <- function(appname = NULL, appauthor = appname, version = NULL,
   switch(check_os(os),
     win = file_path(win_path(ifelse(roaming, "roaming", "local")), appauthor, appname, version),
     mac = file_path("~/Library/Application Support", appname, version),
-    unix = file_path(Sys.getenv("XDG_CONFIG_HOME", "~/.config"),
-      appname, version)
+    unix = file_path(
+      Sys.getenv("XDG_CONFIG_HOME", "~/.config"),
+      appname, version
+    )
   )
 }
 
@@ -130,9 +134,11 @@ site_data_dir <- function(appname = NULL, appauthor = appname, version = NULL,
   switch(check_os(os),
     win = file_path(win_path("common"), appauthor, appname, version),
     mac = file_path("/Library/Application Support", appname, version),
-    unix = file_path_site_unix(Sys.getenv("XDG_DATA_DIRS", "/usr/local/share:/usr/share"),
-                               appname, version, multipath)
+    unix = file_path_site_unix(
+      Sys.getenv("XDG_DATA_DIRS", "/usr/local/share:/usr/share"),
+      appname, version, multipath
     )
+  )
 }
 
 #' @rdname site_data_dir
@@ -145,8 +151,10 @@ site_config_dir <- function(appname = NULL, appauthor = appname, version = NULL,
   switch(check_os(os),
     win = file_path(win_path("common"), appauthor, appname, version),
     mac = file_path("/Library/Application Support", appname, version),
-    unix = file_path_site_unix(Sys.getenv("XDG_CONFIG_DIRS", "/etc/xdg"),
-                               appname, version, multipath)
+    unix = file_path_site_unix(
+      Sys.getenv("XDG_CONFIG_DIRS", "/etc/xdg"),
+      appname, version, multipath
+    )
   )
 }
 

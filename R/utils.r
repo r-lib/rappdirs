@@ -12,7 +12,7 @@ check_os <- function(os) {
       stop("`os` must be a string", call. = FALSE)
     }
     if (!os %in% c("win", "mac", "unix")) {
-      stop("`os` must be one of 'win', 'mac', 'unix'", call. =FALSE)
+      stop("`os` must be one of 'win', 'mac', 'unix'", call. = FALSE)
     }
     os
   }
@@ -23,10 +23,12 @@ gsub_special <- function(pattern, replacement, x) {
 }
 
 expand_r_libs_specifiers <- function(version_path) {
-  if (is.null(version_path)) return (NULL)
+  if (is.null(version_path)) {
+    return(NULL)
+  }
   rversion <- getRversion()
   version_path <- gsub_special("%V", rversion, version_path)
-  version_path <- gsub_special("%v", paste(rversion$major, rversion$minor, sep="."), version_path)
+  version_path <- gsub_special("%v", paste(rversion$major, rversion$minor, sep = "."), version_path)
   version_path <- gsub_special("%p", R.version$platform, version_path)
   version_path <- gsub_special("%o", R.version$os, version_path)
   version_path <- gsub_special("%a", R.version$arch, version_path)
@@ -34,7 +36,7 @@ expand_r_libs_specifiers <- function(version_path) {
   version_path
 }
 
-parse_path_string <- function(path, sep=":") {
+parse_path_string <- function(path, sep = ":") {
   unique(strsplit(path, sep)[[1]])
 }
 
@@ -70,7 +72,7 @@ win_path_env <- function(type_appdata) {
   if (type_appdata == "roaming") {
     env_fallback("APPDATA")
   } else if (type_appdata == "local") {
-    path <- Sys.getenv("LOCALAPPDATA", unset=NA)
+    path <- Sys.getenv("LOCALAPPDATA", unset = NA)
     if (is.na(path)) { # environmental variable not defined in XP
       path <- file.path(
         env_fallback("USERPROFILE"),
@@ -79,7 +81,7 @@ win_path_env <- function(type_appdata) {
     }
     path
   } else if (type_appdata == "common") {
-    path <- Sys.getenv("PROGRAMDATA", unset=NA)
+    path <- Sys.getenv("PROGRAMDATA", unset = NA)
     if (is.na(path)) {
       path <- file.path(env_fallback("ALLUSERPROFILE"), "Application Data")
     }

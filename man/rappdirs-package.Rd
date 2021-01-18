@@ -59,7 +59,6 @@ obtains confirmation from the user.
 \examples{
 dirs <- app_dir("SuperApp", "Acme")
 dirs$config()
-
 }
 \seealso{
 \verb{[app_dir], [user_data_dir], [user_config_dir], [user_cache_dir], [site_data_dir], [user_log_dir]}

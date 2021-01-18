@@ -25,7 +25,7 @@ app_dir <- function(appname = NULL, appauthor = appname, version = NULL, expand 
 }
 
 appdirs <- setRefClass("AppDirs",
-  fields = c("appname", "appauthor", "version", "expand", "os" ),
+  fields = c("appname", "appauthor", "version", "expand", "os"),
   methods = list(
     cache = function(opinion = TRUE) user_cache_dir(appname, appauthor, version, opinion, expand, os),
     log = function(opinion = TRUE) user_log_dir(appname, appauthor, version, opinion, expand, os),
