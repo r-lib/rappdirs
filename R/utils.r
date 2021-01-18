@@ -1,12 +1,6 @@
 check_os <- function(os) {
   if (is.null(os)) {
-    if (.Platform$OS.type == "windows") {
-      "win"
-    } else if (Sys.info()["sysname"] == "Darwin") {
-      "mac"
-    } else {
-      "unix"
-    }
+    get_os()
   } else {
     if (length(os) != 1 || !is.character(os)) {
       stop("`os` must be a string", call. = FALSE)
@@ -15,6 +9,16 @@ check_os <- function(os) {
       stop("`os` must be one of 'win', 'mac', 'unix'", call. = FALSE)
     }
     os
+  }
+}
+
+get_os <- function() {
+  if (.Platform$OS.type == "windows") {
+    "win"
+  } else if (Sys.info()["sysname"] == "Darwin") {
+    "mac"
+  } else {
+    "unix"
   }
 }
 
@@ -69,12 +73,16 @@ win_path_env <- function(type) {
   }
 }
 
-# Provide fallbacks so that examples still work when not called on window
 env_fallback <- function(env) {
   val <- Sys.getenv(env)
 
   if (identical(val, "")) {
-    paste0("<", env, ">")
+    if (get_os() == "win") {
+      stop("Can't find envvar '", env, "'", call. = FALSE)
+    } else {
+      # Fall back so examples still work when not on windows
+      paste0("<", env, ">")
+    }
   } else {
     val
   }
