@@ -40,7 +40,15 @@
 
 
 <meta property="og:title" content="Convenience wrapper for getting app dirs. — app_dir" />
-<meta property="og:description" content="Has methods:" />
+<meta property="og:description" content="Has methods:
+cache
+log
+data
+config
+site_data
+site_config
+
+" />
 
 
 
@@ -117,7 +125,15 @@
     </div>
 
     <div class="ref-description">
-    <p>Has methods:</p>
+    <p>Has methods:</p><ul>
+<li><p><code>cache</code></p></li>
+<li><p><code>log</code></p></li>
+<li><p><code>data</code></p></li>
+<li><p><code>config</code></p></li>
+<li><p><code>site_data</code></p></li>
+<li><p><code>site_config</code></p></li>
+</ul>
+
     </div>
 
     <pre class="usage"><span class='fu'>app_dir</span><span class='op'>(</span>
@@ -147,13 +163,13 @@ it is the owning company name. This falls back to appname.</p></td>
       <td><p>is an optional version path element to append to the
 path. You might want to use this if you want multiple versions
 of your app to be able to run independently. If used, this
-would typically be "&lt;major&gt;.&lt;minor&gt;". Only applied when appname
+would typically be <code>"&lt;major&gt;.&lt;minor&gt;"</code>. Only applied when appname
 is not NULL.</p></td>
     </tr>
     <tr>
       <th>expand</th>
       <td><p>If TRUE (the default) will expand the <code>R_LIBS</code> specifiers with their equivalents.
-See <code><a href='https://rdrr.io/r/base/libPaths.html'>R_LIBS</a></code> for list of all possibly specifiers.</p></td>
+See <code><a href='https://rdrr.io/r/base/libPaths.html'>R_LIBS()</a></code> for list of all possibly specifiers.</p></td>
     </tr>
     <tr>
       <th>os</th>
@@ -162,21 +178,9 @@ requested directory. Possible values are "win", "mac", "unix". If NULL
 (the default) then the convention of the current operating system
 (as determined by rappdirs:::get_os) will be used. This argument is
 unlikely to find much use outside package testing (see details section of
-<code><a href='user_data_dir.html'>user_data_dir</a></code>).</p></td>
+<code><a href='user_data_dir.html'>user_data_dir()</a></code>).</p></td>
     </tr>
     </table>
-
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    
-<ul>
-<li><p><code>cache</code></p></li>
-<li><p><code>log</code></p></li>
-<li><p><code>data</code></p></li>
-<li><p><code>config</code></p></li>
-<li><p><code>site_data</code></p></li>
-<li><p><code>site_config</code></p></li>
-</ul>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>

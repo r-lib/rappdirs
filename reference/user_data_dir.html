@@ -41,7 +41,7 @@
 
 <meta property="og:title" content="Return path to user data directories. — user_data_dir" />
 <meta property="og:description" content="user_data_dir returns full path to the user-specific data dir for this application.
-user_config_dir returns full path to the user-specific configuration directory for this application 
+user_config_dir returns full path to the user-specific configuration directory for this application
 which returns the same path as user data directory in Windows and Mac but a different one for Unix." />
 
 
@@ -120,7 +120,7 @@ which returns the same path as user data directory in Windows and Mac but a diff
 
     <div class="ref-description">
     <p><code>user_data_dir</code> returns full path to the user-specific data dir for this application.
-<code>user_config_dir</code> returns full path to the user-specific configuration directory for this application 
+<code>user_config_dir</code> returns full path to the user-specific configuration directory for this application
 which returns the same path as user data directory in Windows and Mac but a different one for Unix.</p>
     </div>
 
@@ -161,7 +161,7 @@ it is the owning company name. This falls back to appname.</p></td>
       <td><p>is an optional version path element to append to the
 path. You might want to use this if you want multiple versions
 of your app to be able to run independently. If used, this
-would typically be "&lt;major&gt;.&lt;minor&gt;". Only applied when appname
+would typically be <code>"&lt;major&gt;.&lt;minor&gt;"</code>. Only applied when appname
 is not NULL.</p></td>
     </tr>
     <tr>
@@ -170,13 +170,13 @@ is not NULL.</p></td>
 use the Windows roaming appdata directory. That means that for users on
 a Windows network setup for roaming profiles, this user data will be
 sync'd on login. See
-<a href='http://technet.microsoft.com/en-us/library/cc766489(WS.10).aspx'>http://technet.microsoft.com/en-us/library/cc766489(WS.10).aspx</a>
+<a href='https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-vista/cc766489(v=ws.10)'>https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-vista/cc766489(v=ws.10)</a>
 for a discussion of issues.</p></td>
     </tr>
     <tr>
       <th>expand</th>
       <td><p>If TRUE (the default) will expand the <code>R_LIBS</code> specifiers with their equivalents.
-See <code><a href='https://rdrr.io/r/base/libPaths.html'>R_LIBS</a></code> for list of all possibly specifiers.</p></td>
+See <code><a href='https://rdrr.io/r/base/libPaths.html'>R_LIBS()</a></code> for list of all possibly specifiers.</p></td>
     </tr>
     <tr>
       <th>os</th>
@@ -185,32 +185,33 @@ requested directory. Possible values are "win", "mac", "unix". If NULL
 (the default) then the convention of the current operating system
 (as determined by rappdirs:::get_os) will be used. This argument is
 unlikely to find much use outside package testing (see details section of
-<code>user_data_dir</code>).</p></td>
+<code>user_data_dir()</code>).</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Typical user data directories are:</p>
-<ul>
-<li><p>Mac OS X:  <code class="file">~/Library/Application Support/&lt;AppName&gt;</code></p></li>
-<li><p>Unix: <code class="file">~/.local/share/&lt;AppName&gt;</code>, in <code class="env">$XDG_DATA_HOME</code> if defined</p></li>
-<li><p>Win XP (not roaming):  <code class="file">C:\Documents and Settings\&lt;username&gt;\Data\&lt;AppAuthor&gt;\&lt;AppName&gt;</code></p></li>
-<li><p>Win XP (roaming): <code class="file">C:\Documents and Settings\&lt;username&gt;\Local Settings\Data\&lt;AppAuthor&gt;\&lt;AppName&gt;</code></p></li>
-<li><p>Win 7  (not roaming): 
-    <code class="file">C:\Users\&lt;username&gt;\AppData\Local\&lt;AppAuthor&gt;\&lt;AppName&gt;</code></p></li>
-<li><p>Win 7 (roaming):      
-    <code class="file">C:\Users\&lt;username&gt;\AppData\Roaming\&lt;AppAuthor&gt;\&lt;AppName&gt;</code></p></li>
-</ul><p>Unix also specifies a separate location for user configuration data in</p><ul>
-<li><p>Unix: <code class="file">~/.config/&lt;AppName&gt;</code>, in <code class="env">$XDG_CONFIG_HOME</code> if defined</p></li>
-</ul><p>See for example <a href='http://ploum.net/184-cleaning-user-preferences-keeping-user-data/'>http://ploum.net/184-cleaning-user-preferences-keeping-user-data/</a> 
-or <a href='http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html'>http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html</a> for more information.
+    <p>Typical user data directories are:</p><ul>
+<li><p>Mac OS X:  <code>~/Library/Application Support/&lt;AppName&gt;</code></p></li>
+<li><p>Unix: <code>~/.local/share/&lt;AppName&gt;</code>, in <code class="env">$XDG_DATA_HOME</code> if defined</p></li>
+<li><p>Win XP (not roaming):  <code>C:\\Documents and Settings\\&lt;username&gt;\\Data\\&lt;AppAuthor&gt;\\&lt;AppName&gt;</code></p></li>
+<li><p>Win XP (roaming): <code>C:\\Documents and Settings\\&lt;username&gt;\\Local Settings\\Data\\&lt;AppAuthor&gt;\\&lt;AppName&gt;</code></p></li>
+<li><p>Win 7 (not roaming): <code>C:\\Users\\&lt;username&gt;\\AppData\\Local\\&lt;AppAuthor&gt;\\&lt;AppName&gt;</code></p></li>
+<li><p>Win 7 (roaming): <code>C:\\Users\\&lt;username&gt;\\AppData\\Roaming\\&lt;AppAuthor&gt;\\&lt;AppName&gt;</code></p></li>
+</ul>
+
+<p>Unix also specifies a separate location for user configuration data in</p><ul>
+<li><p>Unix: <code>~/.config/&lt;AppName&gt;</code>, in <code class="env">$XDG_CONFIG_HOME</code> if defined</p></li>
+</ul>
+
+<p>See for example <a href='http://ploum.net/184-cleaning-user-preferences-keeping-user-data/'>http://ploum.net/184-cleaning-user-preferences-keeping-user-data/</a>
+or <a href='https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html'>https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html</a> for more information.
 Arguably plugins such as R packages should go into the user configuration directory and deleting
 this directory should return the application to a default settings.</p>
 <p>The <code>os</code> parameter allows the calculation of directories based on a
 convention other than the current operating system. This feature is designed
 with package testing in mind and is <em>not</em> recommended for end users. One
-possible exception is that some users on "mac" might wish to use the "unix" 
+possible exception is that some users on "mac" might wish to use the "unix"
 XDG convention.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>

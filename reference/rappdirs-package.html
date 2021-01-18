@@ -40,8 +40,8 @@
 
 
 <meta property="og:title" content="Application directories: determine where to save data, caches and logs. — rappdirs-package" />
-<meta property="og:description" content="rappdirs solves the problem of where to save persistent data 
-  outside of the R library or the R per-session tempdir." />
+<meta property="og:description" content="rappdirs solves the problem of where to save persistent data
+outside of the R library or the R per-session tempdir()." />
 
 
 
@@ -118,8 +118,8 @@
     </div>
 
     <div class="ref-description">
-    <p>rappdirs solves the problem of where to save persistent data 
-  outside of the R library or the R per-session <code><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></code>.</p>
+    <p>rappdirs solves the problem of where to save persistent data
+outside of the R library or the R per-session <code><a href='https://rdrr.io/r/base/tempfile.html'>tempdir()</a></code>.</p>
     </div>
 
 
@@ -138,32 +138,33 @@
 
     
 
-  
+
 <p>The <code>app_dir</code> provides a convenient single entry point.</p>
     <h2 class="hasAnchor" id="caveats"><a class="anchor" href="#caveats"></a>Caveats</h2>
 
-    <p>Note that if you use rappdir's <code><a href='user_data_dir.html'>user_data_dir</a></code> 
-  and friends to define a storage location for files you must be aware of 
-  <a href='http://en.wikipedia.org/wiki/Race_condition'>race conditions</a> when 
-  more than one R process tries to create/write files in this directory. This
-  is in contrast to using the <code><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></code>, <code><a href='https://rdrr.io/r/base/tempfile.html'>tempfile</a></code>
-  base functions which should be unique for each R process. In general the
-  directories provided by rappdirs are most suitable for storing data that is
-  rarely written but might need to be shared across R sessions.</p>  
-<p>Note also that the 
-  <a href='http://cran.r-project.org/web/packages/policies.html'>CRAN Policies</a> 
-  have the following to say about storage of data by packages:</p>  
-<p>- Packages should not write in the users' home filespace, nor anywhere else
-  on the file system apart from the R session's temporary directory (or 
-  during installation in the location pointed to by TMPDIR: and such usage 
-  should be cleaned up). Installing into the system's R installation (e.g., 
-  scripts to its bin directory) is not allowed.</p>  
-<p>Limited exceptions may be allowed in interactive sessions if the package 
-  obtains confirmation from the user.</p>
+    <p>Note that if you use rappdir's <code><a href='user_data_dir.html'>user_data_dir()</a></code>
+and friends to define a storage location for files you must be aware of
+<a href='https://en.wikipedia.org/wiki/Race_condition'>race conditions</a> when
+more than one R process tries to create/write files in this directory. This
+is in contrast to using the <code><a href='https://rdrr.io/r/base/tempfile.html'>tempdir()</a></code>, <code><a href='https://rdrr.io/r/base/tempfile.html'>tempfile()</a></code>
+base functions which should be unique for each R process. In general the
+directories provided by rappdirs are most suitable for storing data that is
+rarely written but might need to be shared across R sessions.</p>
+<p>Note also that the
+<a href='https://cran.r-project.org/web/packages/policies.html'>CRAN Policies</a>
+have the following to say about storage of data by packages:</p><ul>
+<li><p>Packages should not write in the users' home filespace, nor anywhere else
+on the file system apart from the R session's temporary directory (or
+during installation in the location pointed to by TMPDIR: and such usage
+should be cleaned up). Installing into the system's R installation (e.g.,
+scripts to its bin directory) is not allowed.</p></li>
+</ul>
+
+<p>Limited exceptions may be allowed in interactive sessions if the package
+obtains confirmation from the user.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='app_dir.html'>app_dir</a>, <a href='user_data_dir.html'>user_data_dir</a>, <a href='user_data_dir.html'>user_config_dir</a>, 
-  <a href='user_cache_dir.html'>user_cache_dir</a>, <a href='site_data_dir.html'>site_data_dir</a>, <a href='user_log_dir.html'>user_log_dir</a></code></p></div>
+    <div class='dont-index'><p><code>[app_dir], [user_data_dir], [user_config_dir], [user_cache_dir], [site_data_dir], [user_log_dir]</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>dirs</span> <span class='op'>&lt;-</span> <span class='fu'><a href='app_dir.html'>app_dir</a></span><span class='op'>(</span><span class='st'>"SuperApp"</span>, <span class='st'>"Acme"</span><span class='op'>)</span>

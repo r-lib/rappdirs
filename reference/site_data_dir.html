@@ -41,7 +41,7 @@
 
 <meta property="og:title" content="Return full path to the user-shared data dir for this application. — site_data_dir" />
 <meta property="og:description" content="site_data_dir returns full path to the user-shared data dir for this application.
-site_config_dir returns full path to the user-specific configuration directory for this application 
+site_config_dir returns full path to the user-specific configuration directory for this application
 which returns the same path as site data directory in Windows and Mac but a different one for Unix.
 Typical user-shared data directories are:" />
 
@@ -121,7 +121,7 @@ Typical user-shared data directories are:" />
 
     <div class="ref-description">
     <p><code>site_data_dir</code> returns full path to the user-shared data dir for this application.
-<code>site_config_dir</code> returns full path to the user-specific configuration directory for this application 
+<code>site_config_dir</code> returns full path to the user-specific configuration directory for this application
 which returns the same path as site data directory in Windows and Mac but a different one for Unix.
 Typical user-shared data directories are:</p>
     </div>
@@ -163,7 +163,7 @@ it is the owning company name. This falls back to appname.</p></td>
       <td><p>is an optional version path element to append to the
 path. You might want to use this if you want multiple versions
 of your app to be able to run independently. If used, this
-would typically be "&lt;major&gt;.&lt;minor&gt;". Only applied when appname
+would typically be <code>"&lt;major&gt;.&lt;minor&gt;"</code>. Only applied when appname
 is not NULL.</p></td>
     </tr>
     <tr>
@@ -175,7 +175,7 @@ By default, the first directory is returned</p></td>
     <tr>
       <th>expand</th>
       <td><p>If TRUE (the default) will expand the <code>R_LIBS</code> specifiers with their equivalents.
-See <code><a href='https://rdrr.io/r/base/libPaths.html'>R_LIBS</a></code> for list of all possibly specifiers.</p></td>
+See <code><a href='https://rdrr.io/r/base/libPaths.html'>R_LIBS()</a></code> for list of all possibly specifiers.</p></td>
     </tr>
     <tr>
       <th>os</th>
@@ -184,7 +184,7 @@ requested directory. Possible values are "win", "mac", "unix". If NULL
 (the default) then the convention of the current operating system
 (as determined by rappdirs:::get_os) will be used. This argument is
 unlikely to find much use outside package testing (see details section of
-<code><a href='user_data_dir.html'>user_data_dir</a></code>).</p></td>
+<code><a href='user_data_dir.html'>user_data_dir()</a></code>).</p></td>
     </tr>
     </table>
 
@@ -192,15 +192,15 @@ unlikely to find much use outside package testing (see details section of
 
     
 <ul>
-<li><p>Mac OS X:   <code class="file">/Library/Application Support/&lt;AppName&gt;</code></p></li>
-<li><p>Unix:       <code class="file">/usr/local/share:/usr/share/</code></p></li>
-<li><p>Win XP:     <code class="file">C:\Documents and Settings\All Users\Application Data\&lt;AppAuthor&gt;\&lt;AppName&gt;</code></p></li>
-<li><p>Vista:      (Fail! <code class="file">C:\ProgramData</code> is a hidden <em>system</em>
-   directory on Vista.)</p></li>
-<li><p>Win 7:      <code class="file">C:\ProgramData\&lt;AppAuthor&gt;\&lt;AppName&gt;</code>.  
-   Hidden, but writeable on Win 7.</p></li>
-</ul><p>Unix also specifies a separate location for user-shared configuration data in <code class="env">$XDG_CONFIG_DIRS</code>.</p><ul>
-<li><p>Unix: <code class="file">/etc/xdg/&lt;AppName&gt;</code>, in <code class="env">$XDG_CONFIG_HOME</code> if defined</p></li>
+<li><p>Mac OS X:  <code>/Library/Application Support/&lt;AppName&gt;</code></p></li>
+<li><p>Unix:      <code>/usr/local/share:/usr/share/</code></p></li>
+<li><p>Win XP:    <code>C:\\Documents and Settings\\All Users\\Application Data\\&lt;AppAuthor&gt;\\&lt;AppName&gt;</code></p></li>
+<li><p>Vista:     (Fail! <code>C:\\ProgramData</code> is a hidden <em>system</em> directory on Vista.)</p></li>
+<li><p>Win 7:     <code>C:\\ProgramData\\&lt;AppAuthor&gt;\\&lt;AppName&gt;</code>. Hidden, but writeable on Win 7.</p></li>
+</ul>
+
+<p>Unix also specifies a separate location for user-shared configuration data in <code class="env">$XDG_CONFIG_DIRS</code>.</p><ul>
+<li><p>Unix: <code>/etc/xdg/&lt;AppName&gt;</code>, in <code class="env">$XDG_CONFIG_HOME</code> if defined</p></li>
 </ul>
 
 <p>For Unix, this returns the first default.  Set the <code>multipath=TRUE</code> to guarantee returning all directories.</p>

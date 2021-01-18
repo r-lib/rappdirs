@@ -148,7 +148,7 @@ it is the owning company name. This falls back to appname.</p></td>
       <td><p>is an optional version path element to append to the
 path. You might want to use this if you want multiple versions
 of your app to be able to run independently. If used, this
-would typically be "&lt;major&gt;.&lt;minor&gt;". Only applied when appname
+would typically be <code>"&lt;major&gt;.&lt;minor&gt;"</code>. Only applied when appname
 is not NULL.</p></td>
     </tr>
     <tr>
@@ -160,7 +160,7 @@ base cache dir for Unix. See discussion below.</p></td>
     <tr>
       <th>expand</th>
       <td><p>If TRUE (the default) will expand the <code>R_LIBS</code> specifiers with their equivalents.
-See <code><a href='https://rdrr.io/r/base/libPaths.html'>R_LIBS</a></code> for list of all possibly specifiers.</p></td>
+See <code><a href='https://rdrr.io/r/base/libPaths.html'>R_LIBS()</a></code> for list of all possibly specifiers.</p></td>
     </tr>
     <tr>
       <th>os</th>
@@ -169,7 +169,7 @@ requested directory. Possible values are "win", "mac", "unix". If NULL
 (the default) then the convention of the current operating system
 (as determined by rappdirs:::get_os) will be used. This argument is
 unlikely to find much use outside package testing (see details section of
-<code><a href='user_data_dir.html'>user_data_dir</a></code>).</p></td>
+<code><a href='user_data_dir.html'>user_data_dir()</a></code>).</p></td>
     </tr>
     </table>
 
@@ -179,10 +179,10 @@ unlikely to find much use outside package testing (see details section of
 <ul>
 <li><p>Mac OS X: <code class="file">~/Library/Logs/&lt;AppName&gt;</code></p></li>
 <li><p>Unix: <code class="file">~/.cache/&lt;AppName&gt;/log</code>, or under
-    \env$XDG_CACHE_HOME if defined</p></li>
+\env$XDG_CACHE_HOME if defined</p></li>
 <li><p>Win XP:  <code class="file">C:\Documents and Settings\&lt;username&gt;\Local Settings\Application Data\&lt;AppAuthor&gt;\&lt;AppName&gt;\Logs</code></p></li>
-<li><p>Vista: 
-    <code class="file">C:\Users\&lt;username&gt;\AppData\Local\&lt;AppAuthor&gt;\&lt;AppName&gt;\Logs</code></p></li>
+<li><p>Vista:
+<code class="file">C:\Users\&lt;username&gt;\AppData\Local\&lt;AppAuthor&gt;\&lt;AppName&gt;\Logs</code></p></li>
 </ul>
 
 <p>On Windows the only suggestion in the MSDN docs is that local settings
@@ -192,7 +192,7 @@ examples of what some windows apps use for a logs dir.)</p>
 
     
 
-<p>This function appends <code class="file">Logs</code> to the `CSIDL_LOCAL_APPDATA`
+<p>This function appends <code class="file">Logs</code> to the <code>CSIDL_LOCAL_APPDATA</code>
 value for Windows and appends <code class="file">log</code> to the user cache dir for Unix.
 This can be disabled with the <code>opinion = FALSE</code> option.</p>
 
