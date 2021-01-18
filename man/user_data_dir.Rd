@@ -41,7 +41,7 @@ is not NULL.}
 use the Windows roaming appdata directory. That means that for users on
 a Windows network setup for roaming profiles, this user data will be
 sync'd on login. See
-\url{http://technet.microsoft.com/en-us/library/cc766489(WS.10).aspx}
+\url{https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-vista/cc766489(v=ws.10)}
 for a discussion of issues.}
 
 \item{expand}{If TRUE (the default) will expand the \code{R_LIBS} specifiers with their equivalents.
@@ -76,7 +76,7 @@ Unix also specifies a separate location for user configuration data in
 }
 
 See for example \url{http://ploum.net/184-cleaning-user-preferences-keeping-user-data/}
-or \url{http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html} for more information.
+or \url{https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html} for more information.
 Arguably plugins such as R packages should go into the user configuration directory and deleting
 this directory should return the application to a default settings.
 

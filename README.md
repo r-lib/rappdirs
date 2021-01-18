@@ -142,5 +142,5 @@ If you set the argument expand = TRUE (the default) you can have directories tha
     user_config_dir("R", version="%p-platform/%v")
     # "/home/trevorld/.config/R/x86_64-pc-linux-gnu-platform/3.0"
 
-  [roaming profiles]: http://bit.ly/9yl3b6
-  [XDG spec]: http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html
+  [roaming profiles]: <https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-vista/cc766489(v=ws.10)>
+  [XDG spec]: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html

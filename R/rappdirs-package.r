@@ -23,7 +23,7 @@
 #'
 #' @section Caveats: Note that if you use rappdir's [user_data_dir()]
 #'   and friends to define a storage location for files you must be aware of
-#'   [race conditions](http://en.wikipedia.org/wiki/Race_condition) when
+#'   [race conditions](https://en.wikipedia.org/wiki/Race_condition) when
 #'   more than one R process tries to create/write files in this directory. This
 #'   is in contrast to using the [tempdir()], [tempfile()]
 #'   base functions which should be unique for each R process. In general the
@@ -31,7 +31,7 @@
 #'   rarely written but might need to be shared across R sessions.
 #'
 #'   Note also that the
-#'   [CRAN Policies](http://cran.r-project.org/web/packages/policies.html)
+#'   [CRAN Policies](https://cran.r-project.org/web/packages/policies.html)
 #'   have the following to say about storage of data by packages:
 #'
 #'   - Packages should not write in the users' home filespace, nor anywhere else

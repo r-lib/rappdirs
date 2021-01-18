@@ -18,7 +18,7 @@
 #' * Unix: `~/.config/<AppName>`, in \env{$XDG_CONFIG_HOME} if defined
 #'
 #' See for example <http://ploum.net/184-cleaning-user-preferences-keeping-user-data/>
-#' or <http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html> for more information.
+#' or <https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html> for more information.
 #' Arguably plugins such as R packages should go into the user configuration directory and deleting
 #' this directory should return the application to a default settings.
 #'
@@ -42,7 +42,7 @@
 #'     use the Windows roaming appdata directory. That means that for users on
 #'     a Windows network setup for roaming profiles, this user data will be
 #'     sync'd on login. See
-#'     <http://technet.microsoft.com/en-us/library/cc766489(WS.10).aspx>
+#'     <https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-vista/cc766489(v=ws.10)>
 #'     for a discussion of issues.
 #' @param os Operating system whose conventions are used to construct the
 #'     requested directory. Possible values are "win", "mac", "unix". If NULL
