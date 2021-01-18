@@ -1,7 +1,10 @@
-test_that("user_cache_dir works as expected", {
-  if (Sys.getenv("XDG_CACHE_HOME", path.expand("~/.cache")) == path.expand("~/.cache")) {
-    expect_equal(user_cache_dir("R", os="unix"), "~/.cache/R")
-  }
+test_that("works on mac and linux", {
+  withr::local_envvar(XDG_CACHE_HOME = NA)
+  expect_equal(user_cache_dir("R", os="unix"), "~/.cache/R")
   expect_equal(user_cache_dir("R", os="mac"), "~/Library/Caches/R")
-  expect_warning(user_cache_dir(version = "1.1"), regexp = "appname")
+})
+
+test_that("works on windows simulation", {
+  skip_on_os("windows")
+  expect_equal(user_cache_dir("R", os="win"), "<LOCALAPPDATA>/R/R/Cache")
 })
