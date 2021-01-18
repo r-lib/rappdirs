@@ -10,19 +10,19 @@ test_that("windows env simulation is correct", {
     skip_on_os("windows")
     withr::local_envvar(LOCALAPPDATA = NA, PROGRAMDATA = NA)
 
-    withr::local_envvar(APPDATA = "C:\\config")
+    withr::local_envvar(APPDATA = "C:/config")
     expect_equal(
         user_config_dir("R", os="win", roaming=TRUE),
         "C:/config/R/R"
     )
 
-    withr::local_envvar("USERPROFILE" = "C:\\config1")
+    withr::local_envvar("USERPROFILE" = "C:/config1")
     expect_equal(
         user_config_dir("R", os="win", roaming=FALSE),
         "C:/config1/Local Settings/Application Data/R/R"
     )
 
-    withr::local_envvar("LOCALAPPDATA" = "C:\\config2")
+    withr::local_envvar("LOCALAPPDATA" = "C:/config2")
     expect_equal(
         user_config_dir("R", os="win", roaming=FALSE),
         "C:/config2/R/R"

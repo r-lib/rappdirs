@@ -33,8 +33,7 @@ parse_path_string <- function(path, sep=":") {
 file_path <- function(...) {
   x <- list(...)
   x <- x[!vapply(x, is.null, logical(1))]
-  x <- do.call("file.path", x)
-  gsub("\\\\", "/", x) # lightweight windows normalization
+  do.call("file.path", x)
 }
 
 "%||%" <- function(a, b) if (is.null(a)) b else a
