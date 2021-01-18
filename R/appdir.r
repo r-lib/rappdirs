@@ -1,15 +1,13 @@
 #' Convenience wrapper for getting app dirs.
 #'
+#' @description
 #' Has methods:
-#'
-#' \itemize{
-#'   \item \code{cache}
-#'   \item \code{log}
-#'   \item \code{data}
-#'   \item \code{config}
-#'   \item \code{site_data}
-#'   \item \code{site_config}
-#' }
+#' * `cache`
+#' * `log`
+#' * `data`
+#' * `config`
+#' * `site_data`
+#' * `site_config`
 #'
 #' @inheritParams user_data_dir
 #' @export

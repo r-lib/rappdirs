@@ -34,7 +34,7 @@ it is the owning company name. This falls back to appname.}
 \item{version}{is an optional version path element to append to the
 path. You might want to use this if you want multiple versions
 of your app to be able to run independently. If used, this
-would typically be "<major>.<minor>". Only applied when appname
+would typically be \code{"<major>.<minor>"}. Only applied when appname
 is not NULL.}
 
 \item{roaming}{(logical, default \code{FALSE}) can be set \code{TRUE} to
@@ -45,38 +45,37 @@ sync'd on login. See
 for a discussion of issues.}
 
 \item{expand}{If TRUE (the default) will expand the \code{R_LIBS} specifiers with their equivalents.
-See \code{\link{R_LIBS}} for list of all possibly specifiers.}
+See \code{\link[=R_LIBS]{R_LIBS()}} for list of all possibly specifiers.}
 
 \item{os}{Operating system whose conventions are used to construct the
 requested directory. Possible values are "win", "mac", "unix". If NULL
 (the default) then the convention of the current operating system
 (as determined by rappdirs:::get_os) will be used. This argument is
 unlikely to find much use outside package testing (see details section of
-\code{\link{user_data_dir}}).}
+\code{\link[=user_data_dir]{user_data_dir()}}).}
 }
 \description{
 \code{user_data_dir} returns full path to the user-specific data dir for this application.
-\code{user_config_dir} returns full path to the user-specific configuration directory for this application 
+\code{user_config_dir} returns full path to the user-specific configuration directory for this application
 which returns the same path as user data directory in Windows and Mac but a different one for Unix.
 }
 \details{
 Typical user data directories are:
-
 \itemize{
-  \item Mac OS X:  \file{~/Library/Application Support/<AppName>}
-  \item Unix: \file{~/.local/share/<AppName>}, in \env{$XDG_DATA_HOME} if defined
-  \item Win XP (not roaming):  \file{C:\\Documents and Settings\\<username>\\Data\\<AppAuthor>\\<AppName>}
-  \item Win XP (roaming): \file{C:\\Documents and Settings\\<username>\\Local Settings\\Data\\<AppAuthor>\\<AppName>}
-  \item Win 7  (not roaming): 
-    \file{C:\\Users\\<username>\\AppData\\Local\\<AppAuthor>\\<AppName>}
-  \item Win 7 (roaming):      
-    \file{C:\\Users\\<username>\\AppData\\Roaming\\<AppAuthor>\\<AppName>}
+\item Mac OS X:  \verb{~/Library/Application Support/<AppName>}
+\item Unix: \verb{~/.local/share/<AppName>}, in \env{$XDG_DATA_HOME} if defined
+\item Win XP (not roaming):  \verb{C:\\\\Documents and Settings\\\\<username>\\\\Data\\\\<AppAuthor>\\\\<AppName>}
+\item Win XP (roaming): \verb{C:\\\\Documents and Settings\\\\<username>\\\\Local Settings\\\\Data\\\\<AppAuthor>\\\\<AppName>}
+\item Win 7 (not roaming): \verb{C:\\\\Users\\\\<username>\\\\AppData\\\\Local\\\\<AppAuthor>\\\\<AppName>}
+\item Win 7 (roaming): \verb{C:\\\\Users\\\\<username>\\\\AppData\\\\Roaming\\\\<AppAuthor>\\\\<AppName>}
 }
+
 Unix also specifies a separate location for user configuration data in
-\itemize{ 
-  \item Unix: \file{~/.config/<AppName>}, in \env{$XDG_CONFIG_HOME} if defined
- }
-See for example \url{http://ploum.net/184-cleaning-user-preferences-keeping-user-data/} 
+\itemize{
+\item Unix: \verb{~/.config/<AppName>}, in \env{$XDG_CONFIG_HOME} if defined
+}
+
+See for example \url{http://ploum.net/184-cleaning-user-preferences-keeping-user-data/}
 or \url{http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html} for more information.
 Arguably plugins such as R packages should go into the user configuration directory and deleting
 this directory should return the application to a default settings.
@@ -84,7 +83,7 @@ this directory should return the application to a default settings.
 The \code{os} parameter allows the calculation of directories based on a
 convention other than the current operating system. This feature is designed
 with package testing in mind and is \emph{not} recommended for end users. One
-possible exception is that some users on "mac" might wish to use the "unix" 
+possible exception is that some users on "mac" might wish to use the "unix"
 XDG convention.
 }
 \examples{

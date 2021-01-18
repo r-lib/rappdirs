@@ -12,16 +12,16 @@
 #' }
 #'
 #' On Windows the only suggestion in the MSDN docs is that local settings
-#' go in the \code{CSIDL_LOCAL_APPDATA} directory. (Note: I'm interested in
+#' go in the `CSIDL_LOCAL_APPDATA` directory. (Note: I'm interested in
 #' examples of what some windows apps use for a logs dir.)
 #'
 #' @section Opinion:
 #' This function appends \file{Logs} to the `CSIDL_LOCAL_APPDATA`
 #' value for Windows and appends \file{log} to the user cache dir for Unix.
-#' This can be disabled with the \code{opinion = FALSE} option.
+#' This can be disabled with the `opinion = FALSE` option.
 #'
 #' @inheritParams user_data_dir
-#' @param opinion (logical) can be \code{FALSE} to disable the appending of
+#' @param opinion (logical) can be `FALSE` to disable the appending of
 #'   \file{Logs} to the base app data dir for Windows, and \file{log} to the
 #'   base cache dir for Unix. See discussion below.
 #' @examples

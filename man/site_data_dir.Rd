@@ -34,7 +34,7 @@ it is the owning company name. This falls back to appname.}
 \item{version}{is an optional version path element to append to the
 path. You might want to use this if you want multiple versions
 of your app to be able to run independently. If used, this
-would typically be "<major>.<minor>". Only applied when appname
+would typically be \code{"<major>.<minor>"}. Only applied when appname
 is not NULL.}
 
 \item{multipath}{is an optional parameter only applicable to *nix
@@ -42,35 +42,34 @@ which indicates that the entire list of data dirs should be returned
 By default, the first directory is returned}
 
 \item{expand}{If TRUE (the default) will expand the \code{R_LIBS} specifiers with their equivalents.
-See \code{\link{R_LIBS}} for list of all possibly specifiers.}
+See \code{\link[=R_LIBS]{R_LIBS()}} for list of all possibly specifiers.}
 
 \item{os}{Operating system whose conventions are used to construct the
 requested directory. Possible values are "win", "mac", "unix". If NULL
 (the default) then the convention of the current operating system
 (as determined by rappdirs:::get_os) will be used. This argument is
 unlikely to find much use outside package testing (see details section of
-\code{\link{user_data_dir}}).}
+\code{\link[=user_data_dir]{user_data_dir()}}).}
 }
 \description{
 \code{site_data_dir} returns full path to the user-shared data dir for this application.
-\code{site_config_dir} returns full path to the user-specific configuration directory for this application 
+\code{site_config_dir} returns full path to the user-specific configuration directory for this application
 which returns the same path as site data directory in Windows and Mac but a different one for Unix.
 Typical user-shared data directories are:
 }
 \details{
 \itemize{
-\item Mac OS X:   \file{/Library/Application Support/<AppName>}
-\item Unix:       \file{/usr/local/share:/usr/share/}
-\item Win XP:     \file{C:\\Documents and Settings\\All Users\\Application Data\\<AppAuthor>\\<AppName>}
-\item Vista:      (Fail! \file{C:\\ProgramData} is a hidden \emph{system}
-   directory on Vista.)
-\item Win 7:      \file{C:\\ProgramData\\<AppAuthor>\\<AppName>}.  
-   Hidden, but writeable on Win 7.
+\item Mac OS X:  \verb{/Library/Application Support/<AppName>}
+\item Unix:      \verb{/usr/local/share:/usr/share/}
+\item Win XP:    \verb{C:\\\\Documents and Settings\\\\All Users\\\\Application Data\\\\<AppAuthor>\\\\<AppName>}
+\item Vista:     (Fail! \verb{C:\\\\ProgramData} is a hidden \emph{system} directory on Vista.)
+\item Win 7:     \verb{C:\\\\ProgramData\\\\<AppAuthor>\\\\<AppName>}. Hidden, but writeable on Win 7.
 }
+
 Unix also specifies a separate location for user-shared configuration data in \env{$XDG_CONFIG_DIRS}.
-\itemize{ 
-  \item Unix: \file{/etc/xdg/<AppName>}, in \env{$XDG_CONFIG_HOME} if defined
- }
+\itemize{
+\item Unix: \verb{/etc/xdg/<AppName>}, in \env{$XDG_CONFIG_HOME} if defined
+}
 
 For Unix, this returns the first default.  Set the \code{multipath=TRUE} to guarantee returning all directories.
 }

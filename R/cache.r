@@ -18,12 +18,12 @@
 #'
 #' @section Opinion:
 #' This function appends \file{Cache} to the `CSIDL_LOCAL_APPDATA` value.
-#' This can be disabled with \code{opinion = FALSE} option.
+#' This can be disabled with `opinion = FALSE` option.
 #'
 #' @inheritParams user_data_dir
-#' @param opinion (logical) can be \code{FALSE} to disable the appending of
+#' @param opinion (logical) can be `FALSE` to disable the appending of
 #'   \file{Cache} to the base app data dir for Windows. See discussion below.
-#' @seealso \code{\link{tempdir}} for a non-persistent temporary directory.
+#' @seealso [tempdir()] for a non-persistent temporary directory.
 #' @examples
 #' user_cache_dir("rappdirs")
 #' \dontrun{
