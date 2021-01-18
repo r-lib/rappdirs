@@ -19,7 +19,8 @@
 #' ggplot2_app$config()
 #' ggplot2_app$site_config()
 #' ggplot2_app$site_data()
-app_dir <- function(appname = NULL, appauthor = appname, version = NULL, expand = TRUE, os = get_os()) {
+app_dir <- function(appname = NULL, appauthor = appname, version = NULL, expand = TRUE, os = NULL) {
+  os <- check_os(os)
   appdirs$new(appname = appname, appauthor = appauthor, version = version, expand = expand, os = os)
 }
 

@@ -1,12 +1,20 @@
-get_os <- function() {
-  if (.Platform$OS.type == "windows") {
-    "win"
-  } else if (Sys.info()["sysname"] == "Darwin") {
-    "mac"
-  } else if (.Platform$OS.type == "unix") {
-    "unix"
+check_os <- function(os) {
+  if (is.null(os)) {
+    if (.Platform$OS.type == "windows") {
+      "win"
+    } else if (Sys.info()["sysname"] == "Darwin") {
+      "mac"
+    } else {
+      "unix"
+    }
   } else {
-    stop("Unknown OS")
+    if (length(os) != 1 || !is.character(os)) {
+      stop("`os` must be a string", call. = FALSE)
+    }
+    if (!os %in% c("win", "mac", "unix")) {
+      stop("`os` must be one of 'win', 'mac', 'unix'", call. =FALSE)
+    }
+    os
   }
 }
 

@@ -9,7 +9,7 @@ app_dir(
   appauthor = appname,
   version = NULL,
   expand = TRUE,
-  os = get_os()
+  os = NULL
 )
 }
 \arguments{
@@ -30,11 +30,8 @@ is not NULL.}
 See \code{\link[=R_LIBS]{R_LIBS()}} for list of all possibly specifiers.}
 
 \item{os}{Operating system whose conventions are used to construct the
-requested directory. Possible values are "win", "mac", "unix". If NULL
-(the default) then the convention of the current operating system
-(as determined by rappdirs:::get_os) will be used. This argument is
-unlikely to find much use outside package testing (see details section of
-\code{\link[=user_data_dir]{user_data_dir()}}).}
+requested directory. Possible values are "win", "mac", "unix". If \code{NULL}
+(the default) then the current OS will be used.}
 }
 \description{
 Has methods:

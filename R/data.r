@@ -45,11 +45,8 @@
 #'     <https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-vista/cc766489(v=ws.10)>
 #'     for a discussion of issues.
 #' @param os Operating system whose conventions are used to construct the
-#'     requested directory. Possible values are "win", "mac", "unix". If NULL
-#'     (the default) then the convention of the current operating system
-#'     (as determined by rappdirs:::get_os) will be used. This argument is
-#'     unlikely to find much use outside package testing (see details section of
-#'     [user_data_dir()]).
+#'     requested directory. Possible values are "win", "mac", "unix". If `NULL`
+#'     (the default) then the current OS will be used.
 #' @param expand If TRUE (the default) will expand the `R_LIBS` specifiers with their equivalents.
 #'      See [R_LIBS()] for list of all possibly specifiers.
 #'
@@ -71,11 +68,11 @@
 
 #' @export
 user_data_dir <- function(appname = NULL, appauthor = appname, version = NULL,
-                          roaming = FALSE, expand = TRUE, os = get_os()) {
+                          roaming = FALSE, expand = TRUE, os = NULL) {
   if (expand) version <- expand_r_libs_specifiers(version)
   version <- check_version(version, appname)
 
-  switch(os,
+  switch(check_os(os),
     win = file_path(win_path(ifelse(roaming, "roaming", "local")), appauthor, appname, version),
     mac = file_path("~/Library/Application Support", appname, version),
     unix = file_path(Sys.getenv("XDG_DATA_HOME", "~/.local/share"),
@@ -86,11 +83,11 @@ user_data_dir <- function(appname = NULL, appauthor = appname, version = NULL,
 #' @rdname user_data_dir
 #' @export
 user_config_dir <- function(appname = NULL, appauthor = appname, version = NULL,
-                            roaming = TRUE, expand = TRUE, os = get_os()) {
+                            roaming = TRUE, expand = TRUE, os = NULL) {
   if (expand) version <- expand_r_libs_specifiers(version)
   version <- check_version(version, appname)
 
-  switch(os,
+  switch(check_os(os),
     win = file_path(win_path(ifelse(roaming, "roaming", "local")), appauthor, appname, version),
     mac = file_path("~/Library/Application Support", appname, version),
     unix = file_path(Sys.getenv("XDG_CONFIG_HOME", "~/.config"),
@@ -126,11 +123,11 @@ user_config_dir <- function(appname = NULL, appauthor = appname, version = NULL,
 #' Do not use this on Windows. See the note above for why.
 #' @export
 site_data_dir <- function(appname = NULL, appauthor = appname, version = NULL,
-                          multipath = FALSE, expand = TRUE, os = get_os()) {
+                          multipath = FALSE, expand = TRUE, os = NULL) {
   if (expand) version <- expand_r_libs_specifiers(version)
   version <- check_version(version, appname)
 
-  switch(os,
+  switch(check_os(os),
     win = file_path(win_path("common"), appauthor, appname, version),
     mac = file_path("/Library/Application Support", appname, version),
     unix = file_path_site_unix(Sys.getenv("XDG_DATA_DIRS", "/usr/local/share:/usr/share"),
@@ -141,11 +138,11 @@ site_data_dir <- function(appname = NULL, appauthor = appname, version = NULL,
 #' @rdname site_data_dir
 #' @export
 site_config_dir <- function(appname = NULL, appauthor = appname, version = NULL,
-                            multipath = FALSE, expand = TRUE, os = get_os()) {
+                            multipath = FALSE, expand = TRUE, os = NULL) {
   if (expand) version <- expand_r_libs_specifiers(version)
   version <- check_version(version, appname)
 
-  switch(os,
+  switch(check_os(os),
     win = file_path(win_path("common"), appauthor, appname, version),
     mac = file_path("/Library/Application Support", appname, version),
     unix = file_path_site_unix(Sys.getenv("XDG_CONFIG_DIRS", "/etc/xdg"),
