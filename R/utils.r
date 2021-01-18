@@ -61,21 +61,21 @@ win_path <- function(type_appdata = "common", os = get_os()) {
 CSIDL_APPDATA <- 26L
 CSIDL_COMMON_APPDATA <- 35L
 CSIDL_LOCAL_APPDATA <- 28L
-#' @useDynLib rappdirs
+#' @useDynLib rappdirs, .registration=TRUE
 win_path_csidl <- function(csidl = CSIDL_COMMON_APPDATA) {
   stopifnot(is.integer(csidl), length(csidl) == 1)
-  path <- .Call("win_path", csidl, PACKAGE = "rappdirs")
+  path <- .Call(win_path_, csidl, PACKAGE = "rappdirs")
   path
 }
 
 Sys.getenv_force <- function(env) {
   val <- Sys.getenv(env, unset = NA)
   if (!is.na(val)) return(val)
-  stop("Could not find Windows environmental variables") 
+  stop("Could not find Windows environmental variables")
 }
 # How to get reasonable window paths via environmental variables
 win_path_env <- function(type_appdata) {
-  if (type_appdata == "roaming") { 
+  if (type_appdata == "roaming") {
     Sys.getenv_force("APPDATA")
   } else if (type_appdata == "local") {
     path <- Sys.getenv("LOCALAPPDATA", unset=NA)
@@ -86,7 +86,7 @@ win_path_env <- function(type_appdata) {
     path
   } else if (type_appdata == "common") {
     path <- Sys.getenv("PROGRAMDATA", unset=NA)
-    if (is.na(path)) { 
+    if (is.na(path)) {
       path <- file.path(Sys.getenv_force("ALLUSERPROFILE"),
                               "Application Data")
     }

@@ -7,7 +7,7 @@
 // SHGetFolderPath documentation:
 // http://msdn.microsoft.com/en-us/library/windows/desktop/bb762181.aspx
 
-SEXP win_path(SEXP _folder) {
+SEXP win_path_(SEXP _folder) {
     int folder = INTEGER(_folder)[0];
     TCHAR startupFolder[MAX_PATH];
     HRESULT hr = SHGetFolderPath(0, folder, 0, 0, startupFolder);
@@ -27,7 +27,7 @@ SEXP win_path(SEXP _folder) {
 
 #else
 
-SEXP win_path(int folder) {
+SEXP win_path_(int folder) {
     return R_NilValue;
 }
 
