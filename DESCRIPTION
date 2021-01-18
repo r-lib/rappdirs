@@ -45,7 +45,8 @@ Depends:
 Suggests:
     roxygen2,
     testthat (>= 3.0.0),
-    covr
+    covr,
+    withr
 Copyright: Original python appdirs module copyright (c) 2010
     ActiveState Software Inc. R port copyright Hadley Wickham, RStudio.
     See file LICENSE for details.
