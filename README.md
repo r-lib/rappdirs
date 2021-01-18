@@ -1,14 +1,22 @@
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
 # rappdirs
 
 <!-- badges: start -->
+
 [![R-CMD-check](https://github.com/r-lib/rappdirs/workflows/R-CMD-check/badge.svg)](https://github.com/r-lib/rappdirs/actions)
-[![R-CMD-check](https://github.com/r-lib/rappdirs/workflows/R-CMD-check/badge.svg)](https://github.com/r-lib/rappdirs/actions)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/rappdirs)](https://CRAN.R-project.org/package=rappdirs)
+
 <!-- badges: end -->
 
-`rappdirs` is a port of [appdirs](https://github.com/ActiveState/appdirs) to R.
+`rappdirs` is a port of
+[appdirs](https://github.com/ActiveState/appdirs) to R. It lets you find
+the appropriate directory to save caches, logs, and data, on Linux, Mac,
+and Windows
 
-The problem
-===========
+## Motivation
 
 What directory should your app use for storing user data? If running on
 Mac OS X, you should use:
@@ -23,10 +31,13 @@ or possibly:
 
     C:\Documents and Settings\<User>\Application Data\<AppAuthor>\<AppName>
 
-for [roaming profiles][] but that is another story.
+for [roaming
+profiles](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-vista/cc766489(v=ws.10))
+but that is another story.
 
-On Linux (and other Unices) the dir, according to the [XDG spec][] (and
-subject to some interpretation), is either:
+On Linux (and other Unices) the dir, according to the [XDG
+spec](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html)
+(and subject to some interpretation), is either:
 
     ~/.config/<AppName>     
 
@@ -34,113 +45,31 @@ or possibly:
 
     ~/.local/share/<AppName>
 
-`rappdirs` to the rescue
-=======================
+## Usage
 
-This kind of thing is what the `appdirs` module is for. `appdirs` will
-help you choose an appropriate:
+This kind of thing is what rappdirs is for. rappdirs will help you
+choose an appropriate:
 
--   user data dir (`user_data_dir`)
--   user config dir (`user_config_dir`)
--   user cache dir (`user_cache_dir`)
--   site data dir (`site_data_dir`)
--   user log dir (`user_log_dir`)
+-   user data dir (`user_data_dir()`)
+-   user config dir (`user_config_dir()`)
+-   user cache dir (`user_cache_dir()`)
+-   site data dir (`site_data_dir()`)
+-   user log dir (`user_log_dir()`)
 
-and also:
+For example, on Mac:
 
--   is slightly opinionated on the directory names used. Look for
-    'Opinion' in documentation and code for when an opinion is being
-    applied.
-
-some example output
-===================
-
-On Mac OS X:
-
-    library(rappdirs)
-    appname <- "SuperApp"
-    appauthor <- "Acme"
-    user_config_dir(appname, appauthor)
-    # "/Users/trentm/Library/Application Support/SuperApp"
-    user_data_dir(appname, appauthor)
-    # "/Users/trentm/Library/Application Support/SuperApp"
-    site_data_dir(appname, appauthor)
-    # "/Library/Application Support/SuperApp"
-    user_cache_dir(appname, appauthor)
-    "/Users/trentm/Library/Caches/SuperApp"
-    user_log_dir(appname, appauthor)
-    "/Users/trentm/Library/Logs/SuperApp"
-
-On Windows 7:
-
-    library(rappdirs)
-    appname <- "SuperApp"
-    appauthor <- "Acme"
-    user_config_dir(appname, appauthor)
-    # "C:\\Users\\trentm\\AppData\\Local\\Acme\\SuperApp"
-    user_data_dir(appname, appauthor)
-    # "C:\\Users\\trentm\\AppData\\Local\\Acme\\SuperApp"
-    user_data_dir(appname, appauthor, roaming=True)
-    # "C:\\Users\\trentm\\AppData\\Roaming\\Acme\\SuperApp"
-    user_cache_dir(appname, appauthor)
-    # "C:\\Users\\trentm\\AppData\\Local\\Acme\\SuperApp\\Cache"
-    user_log_dir(appname, appauthor)
-    # "C:\\Users\\trentm\\AppData\\Local\\Acme\\SuperApp\\Logs"
-
-On Linux:
-
-    library(rappdirs)
-    appname <- "SuperApp"
-    appauthor <- "Acme"
-    user_config_dir(appname, appauthor)
-    # "/home/trentm/.config/SuperApp
-    user_data_dir(appname, appauthor)
-    # "/home/trentm/.local/share/SuperApp
-    site_config_dir(appname, appauthor)
-    # "/etc/xdg/SuperApp"
-    user_cache_dir(appname, appauthor)
-    # "/home/trentm/.cache/SuperApp"
-    user_log_dir(appname, appauthor)
-    # "/home/trentm/.cache/SuperApp/log"
-
-`app_dir` for convenience
-=========================
-
-    library(rappdirs)
-    dirs <- app_dir("SuperApp", "Acme")
-    dirs$config()
-    # "/Users/trentm/Library/Application Support/SuperApp"
-    dirs$data()
-    # "/Users/trentm/Library/Application Support/SuperApp"
-    dirs$site_data()
-    # "/Library/Application Support/SuperApp"
-    dirs$cache()
-    # "/Users/trentm/Library/Caches/SuperApp"
-    dirs$log()
-    # "/Users/trentm/Library/Logs/SuperApp"
-
-Per-version isolation
-=====================
-
-If you have multiple versions of your app in use that you want to be
-able to run side-by-side, then you may want version-isolation for these
-dirs:
-
-    library(rappdirs)
-    dirs <- app_dir("SuperApp", "Acme", version = "1.0")
-    dirs$data()
-    # "/Users/trentm/Library/Application Support/SuperApp/1.0"
-    dirs$site_data()
-    # "/Library/Application Support/SuperApp/1.0"
-    dirs$cache()
-    # "/Users/trentm/Library/Caches/SuperApp/1.0"
-    dirs$log()
-    # "/Users/trentm/Library/Logs/SuperApp/1.0"
-
-If you set the argument expand = TRUE (the default) you can have directories that correspond to R versions:
-
-    user_config_dir("R", version="%p-platform/%v")
-    # "/home/trevorld/.config/R/x86_64-pc-linux-gnu-platform/3.0"
-
-  [roaming profiles]: <https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-vista/cc766489(v=ws.10)>
-  [XDG spec]: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
+``` r
+library(rappdirs)
+appname <- "SuperApp"
+appauthor <- "Acme"
+user_config_dir(appname, appauthor)
+#> [1] "/Users/hadley/Library/Application Support/SuperApp"
+user_data_dir(appname, appauthor)
+#> [1] "/Users/hadley/Library/Application Support/SuperApp"
+site_data_dir(appname, appauthor)
+#> [1] "/Library/Application Support/SuperApp"
+user_cache_dir(appname, appauthor)
+#> [1] "/Users/hadley/Library/Caches/SuperApp"
+user_log_dir(appname, appauthor)
+#> [1] "/Users/hadley/Library/Logs/SuperApp"
+```
