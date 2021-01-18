@@ -41,9 +41,7 @@
 #' @export
 user_cache_dir <- function(appname = NULL, appauthor = appname, version = NULL,
                            opinion = TRUE, expand = TRUE, os = NULL) {
-  if (expand) version <- expand_r_libs_specifiers(version)
-
-  version <- check_version(version, appname)
+  version <- check_version(version, appname, expand)
   switch(check_os(os),
     win = file_path(
       win_path("local"), appauthor, appname, version,

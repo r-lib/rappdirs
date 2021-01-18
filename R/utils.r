@@ -18,28 +18,6 @@ check_os <- function(os) {
   }
 }
 
-gsub_special <- function(pattern, replacement, x) {
-  gsub(paste0("([^%]|^)", pattern), paste0("\\1", replacement), x)
-}
-
-expand_r_libs_specifiers <- function(version_path) {
-  if (is.null(version_path)) {
-    return(NULL)
-  }
-  rversion <- getRversion()
-  version_path <- gsub_special("%V", rversion, version_path)
-  version_path <- gsub_special("%v", paste(rversion$major, rversion$minor, sep = "."), version_path)
-  version_path <- gsub_special("%p", R.version$platform, version_path)
-  version_path <- gsub_special("%o", R.version$os, version_path)
-  version_path <- gsub_special("%a", R.version$arch, version_path)
-  version_path <- gsub("%%", "%", version_path)
-  version_path
-}
-
-parse_path_string <- function(path, sep = ":") {
-  unique(strsplit(path, sep)[[1]])
-}
-
 file_path <- function(...) {
   x <- list(...)
   x <- x[!vapply(x, is.null, logical(1))]
@@ -91,15 +69,6 @@ win_path_env <- function(type_appdata) {
   }
 }
 
-check_version <- function(version, appname) {
-  if (is.null(appname) && !is.null(version)) {
-    warning("version is ignored when appname is null", call. = FALSE)
-    NULL
-  } else {
-    version
-  }
-}
-
 # Provide fallbacks so that examples still work when not called on window
 env_fallback <- function(env) {
   val <- Sys.getenv(env)
@@ -109,4 +78,36 @@ env_fallback <- function(env) {
   } else {
     val
   }
+}
+
+# version -----------------------------------------------------------------
+
+check_version <- function(version, appname, expand = FALSE) {
+  if (is.null(appname) && !is.null(version)) {
+    warning("version is ignored when appname is null", call. = FALSE)
+    NULL
+  } else {
+    if (expand) {
+      version <- expand_r_libs_specifiers(version)
+    }
+    version
+  }
+}
+
+expand_r_libs_specifiers <- function(x) {
+  if (is.null(x)) {
+    return(NULL)
+  }
+  rversion <- getRversion()
+  x <- gsub_special("%V", rversion, x)
+  x <- gsub_special("%v", paste(rversion$major, rversion$minor, sep = "."), x)
+  x <- gsub_special("%p", R.version$platform, x)
+  x <- gsub_special("%o", R.version$os, x)
+  x <- gsub_special("%a", R.version$arch, x)
+  x <- gsub("%%", "%", x)
+  x
+}
+
+gsub_special <- function(pattern, replacement, x) {
+  gsub(paste0("([^%]|^)", pattern), paste0("\\1", replacement), x)
 }

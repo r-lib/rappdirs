@@ -69,8 +69,7 @@
 #' @export
 user_data_dir <- function(appname = NULL, appauthor = appname, version = NULL,
                           roaming = FALSE, expand = TRUE, os = NULL) {
-  if (expand) version <- expand_r_libs_specifiers(version)
-  version <- check_version(version, appname)
+  version <- check_version(version, appname, expand)
 
   switch(check_os(os),
     win = file_path(win_path(ifelse(roaming, "roaming", "local")), appauthor, appname, version),
@@ -86,8 +85,7 @@ user_data_dir <- function(appname = NULL, appauthor = appname, version = NULL,
 #' @export
 user_config_dir <- function(appname = NULL, appauthor = appname, version = NULL,
                             roaming = TRUE, expand = TRUE, os = NULL) {
-  if (expand) version <- expand_r_libs_specifiers(version)
-  version <- check_version(version, appname)
+  version <- check_version(version, appname, expand)
 
   switch(check_os(os),
     win = file_path(win_path(ifelse(roaming, "roaming", "local")), appauthor, appname, version),
@@ -128,8 +126,7 @@ user_config_dir <- function(appname = NULL, appauthor = appname, version = NULL,
 #' @export
 site_data_dir <- function(appname = NULL, appauthor = appname, version = NULL,
                           multipath = FALSE, expand = TRUE, os = NULL) {
-  if (expand) version <- expand_r_libs_specifiers(version)
-  version <- check_version(version, appname)
+  version <- check_version(version, appname, expand)
 
   switch(check_os(os),
     win = file_path(win_path("common"), appauthor, appname, version),
@@ -145,8 +142,7 @@ site_data_dir <- function(appname = NULL, appauthor = appname, version = NULL,
 #' @export
 site_config_dir <- function(appname = NULL, appauthor = appname, version = NULL,
                             multipath = FALSE, expand = TRUE, os = NULL) {
-  if (expand) version <- expand_r_libs_specifiers(version)
-  version <- check_version(version, appname)
+  version <- check_version(version, appname, expand)
 
   switch(check_os(os),
     win = file_path(win_path("common"), appauthor, appname, version),
@@ -162,4 +158,8 @@ site_config_dir <- function(appname = NULL, appauthor = appname, version = NULL,
 file_path_site_unix <- function(sys_getenv, appname, version, multipath = FALSE) {
   paths <- parse_path_string(sys_getenv)
   file_path(if (multipath) paths else paths[[1]], appname, version)
+}
+
+parse_path_string <- function(path, sep = ":") {
+  unique(strsplit(path, sep)[[1]])
 }
