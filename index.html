@@ -117,7 +117,7 @@
 <h1 class="hasAnchor">
 <a href="#some-example-output" class="anchor"></a>some example output</h1>
 <p>On Mac OS X:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">library</span>(appdirs)</span>
+<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">library</span>(rappdirs)</span>
 <span id="cb6-2"><a href="#cb6-2"></a>appname &lt;-<span class="st"> "SuperApp"</span></span>
 <span id="cb6-3"><a href="#cb6-3"></a>appauthor &lt;-<span class="st"> "Acme"</span></span>
 <span id="cb6-4"><a href="#cb6-4"></a><span class="kw">user_config_dir</span>(appname, appauthor)</span>
@@ -131,7 +131,7 @@
 <span id="cb6-12"><a href="#cb6-12"></a><span class="kw">user_log_dir</span>(appname, appauthor)</span>
 <span id="cb6-13"><a href="#cb6-13"></a><span class="st">"/Users/trentm/Library/Logs/SuperApp"</span></span></code></pre></div>
 <p>On Windows 7:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">library</span>(appdirs)</span>
+<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">library</span>(rappdirs)</span>
 <span id="cb7-2"><a href="#cb7-2"></a>appname &lt;-<span class="st"> "SuperApp"</span></span>
 <span id="cb7-3"><a href="#cb7-3"></a>appauthor &lt;-<span class="st"> "Acme"</span></span>
 <span id="cb7-4"><a href="#cb7-4"></a><span class="kw">user_config_dir</span>(appname, appauthor)</span>
@@ -145,7 +145,7 @@
 <span id="cb7-12"><a href="#cb7-12"></a><span class="kw">user_log_dir</span>(appname, appauthor)</span>
 <span id="cb7-13"><a href="#cb7-13"></a><span class="co"># "C:\\Users\\trentm\\AppData\\Local\\Acme\\SuperApp\\Logs"</span></span></code></pre></div>
 <p>On Linux:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">library</span>(appdirs)</span>
+<div class="sourceCode" id="cb8"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">library</span>(rappdirs)</span>
 <span id="cb8-2"><a href="#cb8-2"></a>appname &lt;-<span class="st"> "SuperApp"</span></span>
 <span id="cb8-3"><a href="#cb8-3"></a>appauthor &lt;-<span class="st"> "Acme"</span></span>
 <span id="cb8-4"><a href="#cb8-4"></a><span class="kw">user_config_dir</span>(appname, appauthor)</span>
@@ -162,7 +162,7 @@
 <div id="app_dir-for-convenience" class="section level1">
 <h1 class="hasAnchor">
 <a href="#app_dir-for-convenience" class="anchor"></a><code>app_dir</code> for convenience</h1>
-<div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">library</span>(appdirs)</span>
+<div class="sourceCode" id="cb9"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">library</span>(rappdirs)</span>
 <span id="cb9-2"><a href="#cb9-2"></a>dirs &lt;-<span class="st"> </span><span class="kw">app_dir</span>(<span class="st">"SuperApp"</span>, <span class="st">"Acme"</span>)</span>
 <span id="cb9-3"><a href="#cb9-3"></a>dirs<span class="op">$</span><span class="kw">config</span>()</span>
 <span id="cb9-4"><a href="#cb9-4"></a><span class="co"># "/Users/trentm/Library/Application Support/SuperApp"</span></span>
@@ -179,7 +179,7 @@
 <h1 class="hasAnchor">
 <a href="#per-version-isolation" class="anchor"></a>Per-version isolation</h1>
 <p>If you have multiple versions of your app in use that you want to be able to run side-by-side, then you may want version-isolation for these dirs:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">library</span>(appdirs)</span>
+<div class="sourceCode" id="cb10"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">library</span>(rappdirs)</span>
 <span id="cb10-2"><a href="#cb10-2"></a>dirs &lt;-<span class="st"> </span><span class="kw">app_dir</span>(<span class="st">"SuperApp"</span>, <span class="st">"Acme"</span>, <span class="dt">version =</span> <span class="st">"1.0"</span>)</span>
 <span id="cb10-3"><a href="#cb10-3"></a>dirs<span class="op">$</span><span class="kw">data</span>()</span>
 <span id="cb10-4"><a href="#cb10-4"></a><span class="co"># "/Users/trentm/Library/Application Support/SuperApp/1.0"</span></span>
