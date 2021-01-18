@@ -39,7 +39,7 @@ win_path <- function(type_appdata = "common") {
 }
 
 #' @useDynLib rappdirs, .registration=TRUE
-win_path_csidl <- function(csidl = CSIDL_COMMON_APPDATA) {
+win_path_csidl <- function(csidl) {
   stopifnot(is.integer(csidl), length(csidl) == 1)
   path <- .Call(win_path_, csidl, PACKAGE = "rappdirs")
   path
