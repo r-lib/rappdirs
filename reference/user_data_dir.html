@@ -40,9 +40,24 @@
 
 
 <meta property="og:title" content="Path to user config/data directories — user_data_dir" />
-<meta property="og:description" content="user_data_dir returns full path to the user-specific data dir for this application.
-user_config_dir returns full path to the user-specific configuration directory for this application
-which returns the same path as user data directory in Windows and Mac but a different one for Unix." />
+<meta property="og:description" content="user_data_dir() returns path to the user-specific data directory and
+user_config_dir() returns full path to the user-specific configuration
+directory. These are the same on Windows and Mac but different on Linux.
+These functions first use R_USER_DATA_DIR and R_USER_CONFIG_DIR if set.
+Otherwise, they follow platform conventions. Typical user config and data
+directories are:
+Mac OS X: ~/Library/Application Support/&amp;lt;AppName&amp;gt;
+Win XP (not roaming): C:\\Documents and Settings\\&amp;lt;username&amp;gt;\\Data\\&amp;lt;AppAuthor&amp;gt;\\&amp;lt;AppName&amp;gt;
+Win XP (roaming): C:\\Documents and Settings\\&amp;lt;username&amp;gt;\\Local Settings\\Data\\&amp;lt;AppAuthor&amp;gt;\\&amp;lt;AppName&amp;gt;
+Win 7 (not roaming): C:\\Users\\&amp;lt;username&amp;gt;\\AppData\\Local\\&amp;lt;AppAuthor&amp;gt;\\&amp;lt;AppName&amp;gt;
+Win 7 (roaming): C:\\Users\\&amp;lt;username&amp;gt;\\AppData\\Roaming\\&amp;lt;AppAuthor&amp;gt;\\&amp;lt;AppName&amp;gt;
+
+
+Only Linux makes the distinction between config and data:
+Data: ~/.local/share/&amp;lt;AppName&amp;gt;
+Config: ~/.config/&amp;lt;AppName&amp;gt;
+
+" />
 
 
 
@@ -119,9 +134,24 @@ which returns the same path as user data directory in Windows and Mac but a diff
     </div>
 
     <div class="ref-description">
-    <p><code>user_data_dir</code> returns full path to the user-specific data dir for this application.
-<code>user_config_dir</code> returns full path to the user-specific configuration directory for this application
-which returns the same path as user data directory in Windows and Mac but a different one for Unix.</p>
+    <p><code>user_data_dir()</code> returns path to the user-specific data directory and
+<code>user_config_dir()</code> returns full path to the user-specific configuration
+directory. These are the same on Windows and Mac but different on Linux.</p>
+<p>These functions first use <code>R_USER_DATA_DIR</code> and <code>R_USER_CONFIG_DIR</code> if set.
+Otherwise, they follow platform conventions. Typical user config and data
+directories are:</p><ul>
+<li><p>Mac OS X: <code>~/Library/Application Support/&lt;AppName&gt;</code></p></li>
+<li><p>Win XP (not roaming): <code>C:\\Documents and Settings\\&lt;username&gt;\\Data\\&lt;AppAuthor&gt;\\&lt;AppName&gt;</code></p></li>
+<li><p>Win XP (roaming): <code>C:\\Documents and Settings\\&lt;username&gt;\\Local Settings\\Data\\&lt;AppAuthor&gt;\\&lt;AppName&gt;</code></p></li>
+<li><p>Win 7 (not roaming): <code>C:\\Users\\&lt;username&gt;\\AppData\\Local\\&lt;AppAuthor&gt;\\&lt;AppName&gt;</code></p></li>
+<li><p>Win 7 (roaming): <code>C:\\Users\\&lt;username&gt;\\AppData\\Roaming\\&lt;AppAuthor&gt;\\&lt;AppName&gt;</code></p></li>
+</ul>
+
+<p>Only Linux makes the distinction between config and data:</p><ul>
+<li><p>Data: <code>~/.local/share/&lt;AppName&gt;</code></p></li>
+<li><p>Config: <code>~/.config/&lt;AppName&gt;</code></p></li>
+</ul>
+
     </div>
 
     <pre class="usage"><span class='fu'>user_data_dir</span><span class='op'>(</span>
@@ -186,48 +216,16 @@ requested directory. Possible values are "win", "mac", "unix". If <code>NULL</co
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Typical user data directories are:</p><ul>
-<li><p>Mac OS X:  <code>~/Library/Application Support/&lt;AppName&gt;</code></p></li>
-<li><p>Unix: <code>~/.local/share/&lt;AppName&gt;</code>, in <code class="env">$XDG_DATA_HOME</code> if defined</p></li>
-<li><p>Win XP (not roaming):  <code>C:\\Documents and Settings\\&lt;username&gt;\\Data\\&lt;AppAuthor&gt;\\&lt;AppName&gt;</code></p></li>
-<li><p>Win XP (roaming): <code>C:\\Documents and Settings\\&lt;username&gt;\\Local Settings\\Data\\&lt;AppAuthor&gt;\\&lt;AppName&gt;</code></p></li>
-<li><p>Win 7 (not roaming): <code>C:\\Users\\&lt;username&gt;\\AppData\\Local\\&lt;AppAuthor&gt;\\&lt;AppName&gt;</code></p></li>
-<li><p>Win 7 (roaming): <code>C:\\Users\\&lt;username&gt;\\AppData\\Roaming\\&lt;AppAuthor&gt;\\&lt;AppName&gt;</code></p></li>
-</ul>
-
-<p>Unix also specifies a separate location for user configuration data in</p><ul>
-<li><p>Unix: <code>~/.config/&lt;AppName&gt;</code>, in <code class="env">$XDG_CONFIG_HOME</code> if defined</p></li>
-</ul>
-
-<p>See for example <a href='http://ploum.net/184-cleaning-user-preferences-keeping-user-data/'>http://ploum.net/184-cleaning-user-preferences-keeping-user-data/</a>
-or <a href='https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html'>https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html</a> for more information.
-Arguably plugins such as R packages should go into the user configuration directory and deleting
-this directory should return the application to a default settings.</p>
-<p>The <code>os</code> parameter allows the calculation of directories based on a
-convention other than the current operating system. This feature is designed
-with package testing in mind and is <em>not</em> recommended for end users. One
-possible exception is that some users on "mac" might wish to use the "unix"
-XDG convention.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>user_data_dir</span><span class='op'>(</span><span class='st'>"rappdirs"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "~/Library/Application Support/rappdirs"</div><div class='input'><span class='fu'>user_config_dir</span><span class='op'>(</span><span class='st'>"rappdirs"</span>, version <span class='op'>=</span> <span class='st'>"%p-platform/%v"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "~/Library/Application Support/rappdirs/x86_64-apple-darwin17.0-platform/4.0"</div><div class='input'><span class='fu'>user_config_dir</span><span class='op'>(</span><span class='st'>"rappdirs"</span>, roaming <span class='op'>=</span> <span class='cn'>TRUE</span>, os <span class='op'>=</span> <span class='st'>"win"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "~/Library/Application Support/rappdirs"</div><div class='input'>
+<span class='fu'>user_config_dir</span><span class='op'>(</span><span class='st'>"rappdirs"</span>, roaming <span class='op'>=</span> <span class='cn'>TRUE</span>, os <span class='op'>=</span> <span class='st'>"win"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] "&lt;APPDATA&gt;/rappdirs/rappdirs"</div><div class='input'><span class='fu'>user_config_dir</span><span class='op'>(</span><span class='st'>"rappdirs"</span>, roaming <span class='op'>=</span> <span class='cn'>FALSE</span>, os <span class='op'>=</span> <span class='st'>"win"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] "&lt;USERPROFILE&gt;/Local Settings/Application Data/rappdirs/rappdirs"</div><div class='input'><span class='fu'>user_config_dir</span><span class='op'>(</span><span class='st'>"rappdirs"</span>, os <span class='op'>=</span> <span class='st'>"unix"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] "~/.config/rappdirs"</div><div class='input'><span class='fu'>user_config_dir</span><span class='op'>(</span><span class='st'>"rappdirs"</span>, os <span class='op'>=</span> <span class='st'>"mac"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "~/Library/Application Support/rappdirs"</div><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='co'># you could try to use functions to store R libraries in a standard user directory</span>
-<span class='co'># by using the following in your .Rprofile file</span>
-<span class='co'># but unfortunately if rappsdir package was stored in standard user directory then</span>
-<span class='co'># it won't be on R's search path any longer, so would need to be installed system-wide...</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>require</a></span><span class='op'>(</span><span class='st'>"utils"</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/libPaths.html'>.libPaths</a></span><span class='op'>(</span>new <span class='op'>=</span> <span class='fu'>rappdirs</span><span class='fu'>::</span><span class='fu'>user_config_dir</span><span class='op'>(</span><span class='st'>"R"</span>, version <span class='op'>=</span> <span class='st'>"%p-platform/%v"</span><span class='op'>)</span><span class='op'>)</span>
-<span class='op'>}</span>
-
-</div></pre>
+</div><div class='output co'>#&gt; [1] "~/Library/Application Support/rappdirs"</div><div class='input'><span class='fu'>user_config_dir</span><span class='op'>(</span><span class='st'>"rappdirs"</span>, version <span class='op'>=</span> <span class='st'>"%p-platform/%v"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "~/Library/Application Support/rappdirs/x86_64-apple-darwin17.0-platform/4.0"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
