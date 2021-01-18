@@ -6,14 +6,15 @@ test_that("user_config_dir works as expected", {
                  "~/Library/Application Support/R/%V")
 })
 
-test_that("on windows, uses APPDATA when roaming", {
-    withr::local_envvar("APPDATA" = "C:\\config")
-    expect_equal(user_config_dir("R", os="win", roaming=TRUE), "C:/config/R/R")
-})
-
-test_that("on windows, uses LOCALAPPDATA or USERPROFILE when not roaming", {
+test_that("windows env simulation is correct", {
     skip_on_os("windows")
     withr::local_envvar(LOCALAPPDATA = NA, PROGRAMDATA = NA)
+
+    withr::local_envvar(APPDATA = "C:\\config")
+    expect_equal(
+        user_config_dir("R", os="win", roaming=TRUE),
+        "C:/config/R/R"
+    )
 
     withr::local_envvar("USERPROFILE" = "C:\\config1")
     expect_equal(
