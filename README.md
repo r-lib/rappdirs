@@ -1,6 +1,9 @@
 # rappdirs
 
-[![Build Status](https://travis-ci.org/r-lib/rappdirs.svg)](https://travis-ci.org/r-lib/rappdirs)
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/r-lib/rappdirs/workflows/R-CMD-check/badge.svg)](https://github.com/r-lib/rappdirs/actions)
+[![R-CMD-check](https://github.com/r-lib/rappdirs/workflows/R-CMD-check/badge.svg)](https://github.com/r-lib/rappdirs/actions)
+<!-- badges: end -->
 
 `rappdirs` is a port of [appdirs](https://github.com/ActiveState/appdirs) to R.
 
