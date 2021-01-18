@@ -95,3 +95,12 @@ win_path_env <- function(type_appdata) {
     stop("invalid `type_appdata` argument")
   }
 }
+
+check_version <- function(version, appname) {
+  if (is.null(appname) && !is.null(version)) {
+    warning("version is ignored when appname is null", call. = FALSE)
+    NULL
+  } else {
+    version
+  }
+}

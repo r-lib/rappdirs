@@ -13,3 +13,10 @@ test_that("file_path_vec works as expected", {
   expect_equal(file_path_vec("rappdirs", "appname", "version"),
                file_path("rappdirs", "appname", "version"))
 })
+
+test_that("check_version works as expected", {
+  expect_snapshot({
+    expect_equal(check_version("1", NULL), NULL)
+    expect_equal(check_version("1", "R"), "1")
+  })
+})
