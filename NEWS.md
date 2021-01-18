@@ -1,5 +1,9 @@
 ## rappdirs 0.3.1.9000
 
+* `user_data_dir()`, `use_cache_dir()` and `use_config_dir()` now respect
+  `R_USER_DATA_DIR`, `R_USER_CACHE_DIR` and `R_USER_CONFIG_DIR` env vars
+  (#27).
+
 * No longer uses methods package.
 
 ## rappdirs 0.3.1

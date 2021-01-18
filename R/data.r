@@ -1,32 +1,24 @@
 #' Path to user config/data directories
 #'
-#' `user_data_dir` returns full path to the user-specific data dir for this application.
-#' `user_config_dir` returns full path to the user-specific configuration directory for this application
-#' which returns the same path as user data directory in Windows and Mac but a different one for Unix.
+#' @description
+#' `user_data_dir()` returns path to the user-specific data directory and
+#' `user_config_dir()` returns full path to the user-specific configuration
+#' directory. These are the same on Windows and Mac but different on Linux.
 #'
-#' Typical user data directories are:
+#' These functions first use `R_USER_DATA_DIR` and `R_USER_CONFIG_DIR` if set.
+#' Otherwise, they follow platform conventions. Typical user config and data
+#' directories are:
 #'
-#' * Mac OS X:  `~/Library/Application Support/<AppName>`
-#' * Unix: `~/.local/share/<AppName>`, in \env{$XDG_DATA_HOME} if defined
-#' * Win XP (not roaming):  `C:\\Documents and Settings\\<username>\\Data\\<AppAuthor>\\<AppName>`
+#' * Mac OS X: `~/Library/Application Support/<AppName>`
+#' * Win XP (not roaming): `C:\\Documents and Settings\\<username>\\Data\\<AppAuthor>\\<AppName>`
 #' * Win XP (roaming): `C:\\Documents and Settings\\<username>\\Local Settings\\Data\\<AppAuthor>\\<AppName>`
 #' * Win 7 (not roaming): `C:\\Users\\<username>\\AppData\\Local\\<AppAuthor>\\<AppName>`
 #' * Win 7 (roaming): `C:\\Users\\<username>\\AppData\\Roaming\\<AppAuthor>\\<AppName>`
 #'
-#' Unix also specifies a separate location for user configuration data in
+#' Only Linux makes the distinction between config and data:
 #'
-#' * Unix: `~/.config/<AppName>`, in \env{$XDG_CONFIG_HOME} if defined
-#'
-#' See for example <http://ploum.net/184-cleaning-user-preferences-keeping-user-data/>
-#' or <https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html> for more information.
-#' Arguably plugins such as R packages should go into the user configuration directory and deleting
-#' this directory should return the application to a default settings.
-#'
-#' The `os` parameter allows the calculation of directories based on a
-#' convention other than the current operating system. This feature is designed
-#' with package testing in mind and is *not* recommended for end users. One
-#' possible exception is that some users on "mac" might wish to use the "unix"
-#' XDG convention.
+#' * Data: `~/.local/share/<AppName>`
+#' * Config: `~/.config/<AppName>`
 #'
 #' @param appname is the name of application. If NULL, just the system
 #'     directory is returned.
@@ -49,35 +41,28 @@
 #'     (the default) then the current OS will be used.
 #' @param expand If TRUE (the default) will expand the `R_LIBS` specifiers with their equivalents.
 #'      See [R_LIBS()] for list of all possibly specifiers.
-#'
+#' @export
 #' @examples
 #' user_data_dir("rappdirs")
-#' user_config_dir("rappdirs", version = "%p-platform/%v")
+#'
 #' user_config_dir("rappdirs", roaming = TRUE, os = "win")
 #' user_config_dir("rappdirs", roaming = FALSE, os = "win")
 #' user_config_dir("rappdirs", os = "unix")
 #' user_config_dir("rappdirs", os = "mac")
-#' \dontrun{
-#' # you could try to use functions to store R libraries in a standard user directory
-#' # by using the following in your .Rprofile file
-#' # but unfortunately if rappsdir package was stored in standard user directory then
-#' # it won't be on R's search path any longer, so would need to be installed system-wide...
-#' require("utils")
-#' .libPaths(new = rappdirs::user_config_dir("R", version = "%p-platform/%v"))
-#' }
-#'
-#' @export
+#' user_config_dir("rappdirs", version = "%p-platform/%v")
 user_data_dir <- function(appname = NULL, appauthor = appname, version = NULL,
                           roaming = FALSE, expand = TRUE, os = NULL) {
   version <- check_version(version, appname, expand)
 
+  base <- base_path(os, "DATA",
+    win  = win_path(ifelse(roaming, "roaming", "local")),
+    mac  = "~/Library/Application Support",
+    unix = Sys.getenv("XDG_DATA_HOME", "~/.local/share")
+  )
   switch(check_os(os),
-    win = file_path(win_path(ifelse(roaming, "roaming", "local")), appauthor, appname, version),
-    mac = file_path("~/Library/Application Support", appname, version),
-    unix = file_path(
-      Sys.getenv("XDG_DATA_HOME", "~/.local/share"),
-      appname, version
-    )
+    win = file_path(base, appauthor, appname, version),
+    mac = file_path(base, appname, version),
+    unix = file_path(base, appname, version)
   )
 }
 
@@ -87,13 +72,16 @@ user_config_dir <- function(appname = NULL, appauthor = appname, version = NULL,
                             roaming = TRUE, expand = TRUE, os = NULL) {
   version <- check_version(version, appname, expand)
 
+  base <- base_path(os, "CONFIG",
+    win  = win_path(ifelse(roaming, "roaming", "local")),
+    mac  = "~/Library/Application Support",
+    unix = Sys.getenv("XDG_CONFIG_HOME", "~/.config")
+  )
+
   switch(check_os(os),
-    win = file_path(win_path(ifelse(roaming, "roaming", "local")), appauthor, appname, version),
-    mac = file_path("~/Library/Application Support", appname, version),
-    unix = file_path(
-      Sys.getenv("XDG_CONFIG_HOME", "~/.config"),
-      appname, version
-    )
+    win = file_path(base, appauthor, appname, version),
+    mac = file_path(base, appname, version),
+    unix = file_path(base, appname, version)
   )
 }
 

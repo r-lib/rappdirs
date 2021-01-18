@@ -33,6 +33,13 @@ test_that("can override linux paths with envvars", {
   expect_equal(site_config_dir("R", os = "unix"), "D/R")
 })
 
+test_that("can override with R_USER_DATA_DIR", {
+  withr::local_envvar(R_USER_DATA_DIR = "/test")
+  expect_equal(user_data_dir("R", os = "mac"), "/test/R")
+
+  withr::local_envvar(R_USER_CONFIG_DIR = "/test")
+  expect_equal(user_config_dir("R", os = "mac"), "/test/R")
+})
 
 test_that("can optionally use all XDG_DATA_DIRS", {
   withr::local_envvar(XDG_DATA_DIRS = "/usr/local/share:/usr/share")
