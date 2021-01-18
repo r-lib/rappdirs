@@ -33,27 +33,19 @@ parse_path_string <- function(path, sep=":") {
 file_path <- function(...) {
   x <- list(...)
   x <- x[!vapply(x, is.null, logical(1))]
-
-  do.call("file.path", x)
+  x <- do.call("file.path", x)
+  gsub("\\\\", "/", x) # lightweight windows normalization
 }
 
 "%||%" <- function(a, b) if (is.null(a)) b else a
 
 # type_appdata in "roaming", "local", "common"
-win_path <- function(type_appdata = "common", os = get_os()) {
-  if (os == "win") {
-    switch(type_appdata,
-      roaming = win_path_csidl(CSIDL_APPDATA) %||% win_path_env("roaming"),
-      local = win_path_csidl(CSIDL_LOCAL_APPDATA) %||% win_path_env("local"),
-      common = win_path_csidl(CSIDL_COMMON_APPDATA) %||% win_path_env("common")
-    )
-  } else {
-    switch(type_appdata,
-      roaming = "C:/Users/<username>/AppData",
-      local = "C:/Users/<username>/Local",
-      common = "C:/ProgramData"
-    )
-  }
+win_path <- function(type_appdata = "common") {
+  switch(type_appdata,
+    roaming = win_path_csidl(CSIDL_APPDATA) %||% win_path_env("roaming"),
+    local = win_path_csidl(CSIDL_LOCAL_APPDATA) %||% win_path_env("local"),
+    common = win_path_csidl(CSIDL_COMMON_APPDATA) %||% win_path_env("common")
+  )
 }
 
 CSIDL_APPDATA <- 26L
