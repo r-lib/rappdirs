@@ -3,7 +3,7 @@
 \name{user_data_dir}
 \alias{user_data_dir}
 \alias{user_config_dir}
-\title{Return path to user data directories.}
+\title{Path to user config/data directories}
 \usage{
 user_data_dir(
   appname = NULL,

@@ -2,7 +2,7 @@
 % Please edit documentation in R/cache.r
 \name{user_cache_dir}
 \alias{user_cache_dir}
-\title{Return full path to the user-specific cache dir for this application.}
+\title{Path to user cache directory}
 \usage{
 user_cache_dir(
   appname = NULL,

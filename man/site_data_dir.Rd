@@ -3,7 +3,7 @@
 \name{site_data_dir}
 \alias{site_data_dir}
 \alias{site_config_dir}
-\title{Return full path to the user-shared data dir for this application.}
+\title{Path to shared data/config directories}
 \usage{
 site_data_dir(
   appname = NULL,

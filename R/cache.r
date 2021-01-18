@@ -1,4 +1,4 @@
-#' Return full path to the user-specific cache dir for this application.
+#' Path to user cache directory
 #'
 #' Typical user cache directories are:
 #'

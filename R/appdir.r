@@ -1,15 +1,16 @@
-#' Convenience wrapper for getting app dirs.
+#' Record app information in a convenient object
 #'
 #' @description
 #' Has methods:
-#' * `cache`
-#' * `log`
-#' * `data`
-#' * `config`
-#' * `site_data`
-#' * `site_config`
+#' * `$cache()`
+#' * `$log()`
+#' * `$data()`
+#' * `$config()`
+#' * `$site_data()`
+#' * `$site_config()`
 #'
 #' @inheritParams user_data_dir
+#' @keywords internal
 #' @export
 #' @examples
 #' ggplot2_app <- app_dir("ggplot2", "hadley")

@@ -2,7 +2,7 @@
 % Please edit documentation in R/appdir.r
 \name{app_dir}
 \alias{app_dir}
-\title{Convenience wrapper for getting app dirs.}
+\title{Record app information in a convenient object}
 \usage{
 app_dir(
   appname = NULL,
@@ -36,12 +36,12 @@ requested directory. Possible values are "win", "mac", "unix". If \code{NULL}
 \description{
 Has methods:
 \itemize{
-\item \code{cache}
-\item \code{log}
-\item \code{data}
-\item \code{config}
-\item \code{site_data}
-\item \code{site_config}
+\item \verb{$cache()}
+\item \verb{$log()}
+\item \verb{$data()}
+\item \verb{$config()}
+\item \verb{$site_data()}
+\item \verb{$site_config()}
 }
 }
 \examples{
@@ -53,3 +53,4 @@ ggplot2_app$config()
 ggplot2_app$site_config()
 ggplot2_app$site_data()
 }
+\keyword{internal}

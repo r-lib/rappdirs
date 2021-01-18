@@ -2,7 +2,7 @@
 % Please edit documentation in R/log.r
 \name{user_log_dir}
 \alias{user_log_dir}
-\title{Return full path to the user-specific log dir for this application.}
+\title{Path to user log directory}
 \usage{
 user_log_dir(
   appname = NULL,
@@ -52,8 +52,7 @@ Typical user cache directories are:
 }
 
 On Windows the only suggestion in the MSDN docs is that local settings
-go in the \code{CSIDL_LOCAL_APPDATA} directory. (Note: I'm interested in
-examples of what some windows apps use for a logs dir.)
+go in the \code{CSIDL_LOCAL_APPDATA} directory.
 }
 \section{Opinion}{
 

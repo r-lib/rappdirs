@@ -1,4 +1,4 @@
-#' Return path to user data directories.
+#' Path to user config/data directories
 #'
 #' `user_data_dir` returns full path to the user-specific data dir for this application.
 #' `user_config_dir` returns full path to the user-specific configuration directory for this application
@@ -98,7 +98,7 @@ user_config_dir <- function(appname = NULL, appauthor = appname, version = NULL,
 }
 
 
-#' Return full path to the user-shared data dir for this application.
+#' Path to shared data/config directories
 #'
 #' `site_data_dir` returns full path to the user-shared data dir for this application.
 #' `site_config_dir` returns full path to the user-specific configuration directory for this application

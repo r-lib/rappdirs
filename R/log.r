@@ -1,4 +1,4 @@
-#' Return full path to the user-specific log dir for this application.
+#' Path to user log directory
 #'
 #' Typical user cache directories are:
 #'
@@ -12,8 +12,7 @@
 #' }
 #'
 #' On Windows the only suggestion in the MSDN docs is that local settings
-#' go in the `CSIDL_LOCAL_APPDATA` directory. (Note: I'm interested in
-#' examples of what some windows apps use for a logs dir.)
+#' go in the `CSIDL_LOCAL_APPDATA` directory.
 #'
 #' @section Opinion:
 #' This function appends \file{Logs} to the `CSIDL_LOCAL_APPDATA`
