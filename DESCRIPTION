@@ -39,8 +39,7 @@ License: MIT + file LICENSE
 URL: https://rappdirs.r-lib.org, https://github.com/r-lib/rappdirs
 BugReports: https://github.com/r-lib/rappdirs/issues
 Depends:
-    methods,
-    R (>= 2.14)
+    R (>= 3.2)
 Suggests:
     roxygen2,
     testthat (>= 3.0.0),

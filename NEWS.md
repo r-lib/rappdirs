@@ -1,5 +1,7 @@
 ## rappdirs 0.3.1.9000
 
+* No longer uses methods package.
+
 ## rappdirs 0.3.1
 
 Minor R CMD check and test fixes.

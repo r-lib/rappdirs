@@ -5,5 +5,4 @@
 #'  * [site_data_dir()]
 #'  * [user_log_dir()]
 #' @keywords internal
-#' @import methods
 "_PACKAGE"
