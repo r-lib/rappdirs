@@ -12,6 +12,9 @@ test_that("on windows, uses APPDATA when roaming", {
 })
 
 test_that("on windows, uses LOCALAPPDATA or USERPROFILE when not roaming", {
+    skip_on_os("windows")
+    withr::local_envvar(LOCALAPPDATA = NA, PROGRAMDATA = NA)
+
     withr::local_envvar("USERPROFILE" = "C:\\config1")
     expect_equal(
         user_config_dir("R", os="win", roaming=FALSE),

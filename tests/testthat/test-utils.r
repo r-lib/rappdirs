@@ -14,3 +14,20 @@ test_that("parse_path_string works as expected", {
 test_that("file_path drops NULLs", {
   expect_equal(file_path("a", NULL, "b"), "a/b")
 })
+
+test_that("windows fallbacks work", {
+  skip_on_os("windows")
+  withr::local_envvar(LOCALAPPDATA = NA, PROGRAMDATA = NA)
+
+  expect_equal(win_path_env("roaming"), "<APPDATA>")
+
+  expect_equal(win_path_env("local"), "<USERPROFILE>/Local Settings/Application Data")
+  withr::local_envvar(LOCALAPPDATA = "<LOCALAPPDATA>")
+  expect_equal(win_path_env("local"), "<LOCALAPPDATA>")
+
+  expect_equal(win_path_env("common"), "<ALLUSERPROFILE>/Application Data")
+  withr::local_envvar(PROGRAMDATA = "<PROGRAMDATA>")
+  expect_equal(win_path_env("common"), "<PROGRAMDATA>")
+
+  expect_error(win_path_env("foo"), "invalid")
+})
