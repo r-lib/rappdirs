@@ -1,4 +1,3 @@
-context("user_config_dir")
 test_that("user_config_dir works as expected", {
     if (Sys.getenv("XDG_CONFIG_HOME", path.expand("~/.config")) == path.expand("~/.config")) {
         expect_equal(user_config_dir("R", os="unix"), file_path("~/.config/R"))

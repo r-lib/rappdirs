@@ -1,4 +1,3 @@
-context("appdir")
 test_that("appdir works as expected", {
   ggplot2_app <- app_dir("ggplot2", "hadley")
   if (get_os() != "unix") {
