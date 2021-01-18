@@ -27,16 +27,14 @@ expand_r_libs_specifiers <- function(version_path) {
 }
 
 parse_path_string <- function(path, sep=":") {
-  normalizePath(unique(strsplit(path, sep)[[1]]), mustWork=FALSE)
+  unique(strsplit(path, sep)[[1]])
 }
 
 file_path <- function(...) {
-  normalizePath(do.call("file.path", as.list(c(...))), mustWork = FALSE)
-}
+  x <- list(...)
+  x <- x[!vapply(x, is.null, logical(1))]
 
-# For site_*_dir with multipath = TRUE
-file_path_vec <- function(paths, ...) {
-  vapply(paths, file_path, FUN.VALUE = character(1), ..., USE.NAMES = FALSE)
+  do.call("file.path", x)
 }
 
 "%||%" <- function(a, b) if (is.null(a)) b else a
