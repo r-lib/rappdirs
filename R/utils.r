@@ -26,8 +26,11 @@ file_path <- function(...) {
 
 "%||%" <- function(a, b) if (is.null(a)) b else a
 
-# type_appdata in "roaming", "local", "common"
 win_path <- function(type_appdata = "common") {
+  CSIDL_APPDATA <- 26L
+  CSIDL_COMMON_APPDATA <- 35L
+  CSIDL_LOCAL_APPDATA <- 28L
+
   switch(type_appdata,
     roaming = win_path_csidl(CSIDL_APPDATA) %||% win_path_env("roaming"),
     local = win_path_csidl(CSIDL_LOCAL_APPDATA) %||% win_path_env("local"),
@@ -35,9 +38,6 @@ win_path <- function(type_appdata = "common") {
   )
 }
 
-CSIDL_APPDATA <- 26L
-CSIDL_COMMON_APPDATA <- 35L
-CSIDL_LOCAL_APPDATA <- 28L
 #' @useDynLib rappdirs, .registration=TRUE
 win_path_csidl <- function(csidl = CSIDL_COMMON_APPDATA) {
   stopifnot(is.integer(csidl), length(csidl) == 1)
