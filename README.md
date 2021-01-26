@@ -65,13 +65,13 @@ library(rappdirs)
 appname <- "SuperApp"
 appauthor <- "Acme"
 user_config_dir(appname, appauthor)
-#> [1] "/Users/hadley/Library/Application Support/SuperApp"
+#> [1] "~/Library/Application Support/SuperApp"
 user_data_dir(appname, appauthor)
-#> [1] "/Users/hadley/Library/Application Support/SuperApp"
+#> [1] "~/Library/Application Support/SuperApp"
 site_data_dir(appname, appauthor)
 #> [1] "/Library/Application Support/SuperApp"
 user_cache_dir(appname, appauthor)
-#> [1] "/Users/hadley/Library/Caches/SuperApp"
+#> [1] "~/Library/Caches/SuperApp"
 user_log_dir(appname, appauthor)
-#> [1] "/Users/hadley/Library/Logs/SuperApp"
+#> [1] "~/Library/Logs/SuperApp"
 ```
