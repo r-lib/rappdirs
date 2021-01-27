@@ -9,6 +9,10 @@
 
 0 errors | 0 warnings | 0 notes
 
-## Reverse dependencies
+## revdepcheck results
 
-I did not run R CMD check on the reverse dependencies because this release only fixes minor R CMD check notes, and a test failure illuminated by the dev version of testthat.
+We checked 77 reverse dependencies, comparing R CMD check results across CRAN and dev versions of this package.
+
+ * We saw 0 new problems
+ * We failed to check 0 packages
+
