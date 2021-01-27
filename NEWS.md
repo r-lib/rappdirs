@@ -1,3 +1,5 @@
+# rappdirs (development version)
+
 # rappdirs 0.3.2
 
 * `user_data_dir()`, `use_cache_dir()` and `use_config_dir()` now respect
