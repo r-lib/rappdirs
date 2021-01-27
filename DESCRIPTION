@@ -2,7 +2,7 @@ Type: Package
 Package: rappdirs
 Title: Application Directories: Determine Where to Save Data,
     Caches, and Logs
-Version: 0.3.1.9000
+Version: 0.3.2
 Authors@R: 
     c(person(given = "Hadley",
              family = "Wickham",
