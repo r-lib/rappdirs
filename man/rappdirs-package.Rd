@@ -9,7 +9,7 @@
 \description{
 An easy way to determine which directories on the
     users computer you should use to save data, caches and logs. A port of
-    Python's 'Appdirs' (\url{https://github.com/ActiveState/appdirs}) to
+    Python's 'Appdirs' (<https://github.com/ActiveState/appdirs>) to
     R.
 }
 \section{Main functions}{
