@@ -8,6 +8,10 @@ test_that("file_path drops NULLs", {
   expect_equal(file_path("a", NULL, "b"), "a/b")
 })
 
+test_that("file_path is not vectorised", {
+  expect_equal(file_path(c("a", "b"), c("c", "d")), "a/b/c/d")
+})
+
 test_that("windows fallbacks work", {
   skip_on_os("windows")
   withr::local_envvar(LOCALAPPDATA = NA, PROGRAMDATA = NA)

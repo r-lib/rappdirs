@@ -23,9 +23,7 @@ get_os <- function() {
 }
 
 file_path <- function(...) {
-  x <- list(...)
-  x <- x[!vapply(x, is.null, logical(1))]
-  do.call("file.path", x)
+  paste(c(...), collapse = .Platform$file.sep)
 }
 
 "%||%" <- function(a, b) if (is.null(a)) b else a

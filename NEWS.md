@@ -1,5 +1,8 @@
 # rappdirs (development version)
 
+* rappdirs functions are no longer vectorised; this was an accidental change
+  in 0.3.2 (#32).
+
 # rappdirs 0.3.2
 
 * `user_data_dir()`, `use_cache_dir()` and `use_config_dir()` now respect

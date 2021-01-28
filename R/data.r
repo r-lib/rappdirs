@@ -145,7 +145,14 @@ site_config_dir <- function(appname = NULL, appauthor = appname, version = NULL,
 # wrapper with `multipath` and use `parse_path_string` for cleaner switch statement
 file_path_site_unix <- function(sys_getenv, appname, version, multipath = FALSE) {
   paths <- parse_path_string(sys_getenv)
-  file_path(if (multipath) paths else paths[[1]], appname, version)
+  if (multipath) {
+    vapply(paths, file_path, appname, version,
+      FUN.VALUE = character(1),
+      USE.NAMES = FALSE
+    )
+  } else {
+    file_path(paths[[1]], appname, version)
+  }
 }
 
 parse_path_string <- function(path, sep = ":") {
