@@ -27,7 +27,7 @@ SEXP win_path_(SEXP _folder) {
 
 #else
 
-SEXP win_path_(int folder) {
+SEXP win_path_(SEXP folder) {
     return R_NilValue;
 }
 
