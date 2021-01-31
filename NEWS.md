@@ -1,3 +1,5 @@
+# rappdirs (development version)
+
 # rappdirs 0.3.3
 
 * rappdirs functions are no longer vectorised; this was an accidental change
