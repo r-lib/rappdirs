@@ -24,6 +24,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -36,18 +38,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">rappdirs</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.3</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
@@ -57,7 +53,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/r-lib/rappdirs/">
+  <a href="https://github.com/r-lib/rappdirs/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -74,31 +70,30 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="rappdirs" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#rappdirs" class="anchor"></a>rappdirs</h1></div>
+<div class="section level1">
+<div class="page-header"><h1 id="rappdirs">rappdirs<a class="anchor" aria-label="anchor" href="#rappdirs"></a>
+</h1></div>
 <!-- badges: start -->
 
-<!-- badges: end -->
-<p><code>rappdirs</code> is a port of <a href="https://github.com/ActiveState/appdirs">appdirs</a> to R. It lets you find the appropriate directory to save caches, logs, and data, on Linux, Mac, and Windows. It allows you to store files that need to shared across R sessions in a way that aligns with the <a href="https://cran.r-project.org/web/packages/policies.html">CRAN policies</a>.</p>
-<div id="motivation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#motivation" class="anchor"></a>Motivation</h2>
+<p><code>rappdirs</code> is a port of <a href="https://github.com/ActiveState/appdirs" class="external-link">appdirs</a> to R. It lets you find the appropriate directory to save caches, logs, and data, on Linux, Mac, and Windows. It allows you to store files that need to shared across R sessions in a way that aligns with the <a href="https://cran.r-project.org/web/packages/policies.html" class="external-link">CRAN policies</a>.</p>
+<div class="section level2">
+<h2 id="motivation">Motivation<a class="anchor" aria-label="anchor" href="#motivation"></a>
+</h2>
 <p>What directory should your app use for storing user data? If running on Mac OS X, you should use:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="op">~</span><span class="er">/</span>Library<span class="op">/</span>Application Support<span class="op">/</span><span class="er">&lt;</span>AppName<span class="op">&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">~</span><span class="er">/</span>Library<span class="sc">/</span>Application Support<span class="sc">/</span><span class="er">&lt;</span>AppName<span class="sc">&gt;</span></span></code></pre></div>
 <p>If on Windows (at least English Win XP) that should be:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>C<span class="op">:</span>\Documents and Settings\<span class="op">&lt;</span>User<span class="op">&gt;</span>\Application Data\Local Settings\<span class="op">&lt;</span>AppAuthor<span class="op">&gt;</span>\<span class="op">&lt;</span>AppName<span class="op">&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>C<span class="sc">:</span>\Documents and Settings\<span class="sc">&lt;</span>User<span class="sc">&gt;</span>\Application Data\Local Settings\<span class="sc">&lt;</span>AppAuthor<span class="sc">&gt;</span>\<span class="sc">&lt;</span>AppName<span class="sc">&gt;</span></span></code></pre></div>
 <p>or possibly:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>C<span class="op">:</span>\Documents and Settings\<span class="op">&lt;</span>User<span class="op">&gt;</span>\Application Data\<span class="op">&lt;</span>AppAuthor<span class="op">&gt;</span>\<span class="op">&lt;</span>AppName<span class="op">&gt;</span></span></code></pre></div>
-<p>for <a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-vista/cc766489(v=ws.10)">roaming profiles</a> but that is another story.</p>
-<p>On Linux (and other Unices) the dir, according to the <a href="https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html">XDG spec</a> (and subject to some interpretation), is either:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="op">~</span><span class="er">/</span>.config<span class="op">/</span><span class="er">&lt;</span>AppName<span class="op">&gt;</span><span class="st">     </span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>C<span class="sc">:</span>\Documents and Settings\<span class="sc">&lt;</span>User<span class="sc">&gt;</span>\Application Data\<span class="sc">&lt;</span>AppAuthor<span class="sc">&gt;</span>\<span class="sc">&lt;</span>AppName<span class="sc">&gt;</span></span></code></pre></div>
+<p>for <a href="https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-vista/cc766489(v=ws.10)" class="external-link">roaming profiles</a> but that is another story.</p>
+<p>On Linux (and other Unices) the dir, according to the <a href="https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html" class="external-link">XDG spec</a> (and subject to some interpretation), is either:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">~</span><span class="er">/</span>.config<span class="sc">/</span><span class="er">&lt;</span>AppName<span class="sc">&gt;</span>     </span></code></pre></div>
 <p>or possibly:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="op">~</span><span class="er">/</span>.local<span class="op">/</span>share<span class="op">/</span><span class="er">&lt;</span>AppName<span class="op">&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="sc">~</span><span class="er">/</span>.local<span class="sc">/</span>share<span class="sc">/</span><span class="er">&lt;</span>AppName<span class="sc">&gt;</span></span></code></pre></div>
 </div>
-<div id="usage" class="section level2">
-<h2 class="hasAnchor">
-<a href="#usage" class="anchor"></a>Usage</h2>
+<div class="section level2">
+<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
+</h2>
 <p>This kind of thing is what rappdirs is for. rappdirs will help you choose an appropriate:</p>
 <ul>
 <li>user data dir (<code><a href="reference/user_data_dir.html">user_data_dir()</a></code>)</li>
@@ -109,72 +104,86 @@
 </ul>
 <p>For example, on Mac:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rappdirs.r-lib.org">rappdirs</a></span><span class="op">)</span>
-<span class="va">appname</span> <span class="op">&lt;-</span> <span class="st">"SuperApp"</span>
-<span class="va">appauthor</span> <span class="op">&lt;-</span> <span class="st">"Acme"</span>
-<span class="fu"><a href="reference/user_data_dir.html">user_config_dir</a></span><span class="op">(</span><span class="va">appname</span>, <span class="va">appauthor</span><span class="op">)</span>
-<span class="co">#&gt; [1] "~/Library/Application Support/SuperApp"</span>
-<span class="fu"><a href="reference/user_data_dir.html">user_data_dir</a></span><span class="op">(</span><span class="va">appname</span>, <span class="va">appauthor</span><span class="op">)</span>
-<span class="co">#&gt; [1] "~/Library/Application Support/SuperApp"</span>
-<span class="fu"><a href="reference/site_data_dir.html">site_data_dir</a></span><span class="op">(</span><span class="va">appname</span>, <span class="va">appauthor</span><span class="op">)</span>
-<span class="co">#&gt; [1] "/Library/Application Support/SuperApp"</span>
-<span class="fu"><a href="reference/user_cache_dir.html">user_cache_dir</a></span><span class="op">(</span><span class="va">appname</span>, <span class="va">appauthor</span><span class="op">)</span>
-<span class="co">#&gt; [1] "~/Library/Caches/SuperApp"</span>
-<span class="fu"><a href="reference/user_log_dir.html">user_log_dir</a></span><span class="op">(</span><span class="va">appname</span>, <span class="va">appauthor</span><span class="op">)</span>
-<span class="co">#&gt; [1] "~/Library/Logs/SuperApp"</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rappdirs.r-lib.org">rappdirs</a></span><span class="op">)</span></span>
+<span><span class="va">appname</span> <span class="op">&lt;-</span> <span class="st">"SuperApp"</span></span>
+<span><span class="va">appauthor</span> <span class="op">&lt;-</span> <span class="st">"Acme"</span></span>
+<span><span class="fu"><a href="reference/user_data_dir.html">user_config_dir</a></span><span class="op">(</span><span class="va">appname</span>, <span class="va">appauthor</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "~/Library/Application Support/SuperApp"</span></span>
+<span><span class="fu"><a href="reference/user_data_dir.html">user_data_dir</a></span><span class="op">(</span><span class="va">appname</span>, <span class="va">appauthor</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "~/Library/Application Support/SuperApp"</span></span>
+<span><span class="fu"><a href="reference/site_data_dir.html">site_data_dir</a></span><span class="op">(</span><span class="va">appname</span>, <span class="va">appauthor</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "/Library/Application Support/SuperApp"</span></span>
+<span><span class="fu"><a href="reference/user_cache_dir.html">user_cache_dir</a></span><span class="op">(</span><span class="va">appname</span>, <span class="va">appauthor</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "~/Library/Caches/SuperApp"</span></span>
+<span><span class="fu"><a href="reference/user_log_dir.html">user_log_dir</a></span><span class="op">(</span><span class="va">appname</span>, <span class="va">appauthor</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "~/Library/Logs/SuperApp"</span></span></code></pre></div>
 </div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=rappdirs">https://​cloud.r-project.org/​package=rappdirs</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/r-lib/rappdirs/">https://​github.com/​r-lib/​rappdirs/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/r-lib/rappdirs/issues">https://​github.com/​r-lib/​rappdirs/​issues</a>
-</li>
-</ul>
-</div>
-<div class="license">
-<h2>License</h2>
-<ul class="list-unstyled">
-<li>
-<a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a>
-</li>
-</ul>
-</div>
-<div class="developers">
-<h2>Developers</h2>
-<ul class="list-unstyled">
-<li>
-<a href="http://hadley.nz">Hadley Wickham</a> <br><small class="roles"> Translator, maintainer, copyright holder </small>  </li>
-<li>Sridhar Ratnakumar <br><small class="roles"> Author </small>  </li>
-<li>Trent Mick <br><small class="roles"> Author </small>  </li>
-<li>Trevor Davis <br><small class="roles"> Translator, author </small>  </li>
-<li><a href="authors.html">All authors...</a></li>
+<li><a href="https://cloud.r-project.org/package=rappdirs" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/r-lib/rappdirs/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/r-lib/rappdirs/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="license">
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/r-lib/rappdirs/actions"><img src="https://github.com/r-lib/rappdirs/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://CRAN.R-project.org/package=rappdirs"><img src="https://www.r-pkg.org/badges/version/rappdirs" alt="CRAN status"></a></li>
+<li><a href="LICENSE.html">Full license</a></li>
+<li><small><a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
+
+<div class="community">
+<h2 data-toc-skip>Community</h2>
+<ul class="list-unstyled">
+<li><a href="CODE_OF_CONDUCT.html">Code of conduct</a></li>
+</ul>
 </div>
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing rappdirs</a></li>
+</ul>
+</div>
+
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
+<ul class="list-unstyled">
+<li>Hadley Wickham <br><small class="roles"> Translator, maintainer, copyright holder </small>  </li>
+<li>Sridhar Ratnakumar <br><small class="roles"> Author </small>  </li>
+<li>Trent Mick <br><small class="roles"> Author </small>  </li>
+<li>Trevor Davis <br><small class="roles"> Translator, author </small>  </li>
+<li><a href="authors.html">More about authors...</a></li>
+</ul>
+</div>
+
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/r-lib/rappdirs/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/r-lib/rappdirs/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://app.codecov.io/gh/r-lib/rappdirs?branch=main" class="external-link"><img src="https://codecov.io/gh/r-lib/rappdirs/branch/main/graph/badge.svg" alt="Codecov test coverage"></a></li>
+</ul>
+</div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="http://hadley.nz">Hadley Wickham</a>, Sridhar Ratnakumar, Trent Mick, Trevor Davis.</p>
+  <p></p>
+<p>Developed by Hadley Wickham, Sridhar Ratnakumar, Trent Mick, Trevor Davis.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -182,6 +191,8 @@
 
   
 
+
+  
 
   </body>
 </html>
