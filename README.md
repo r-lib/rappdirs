@@ -48,6 +48,20 @@ or possibly:
 
     ~/.local/share/<AppName>
 
+## Installation
+
+Stable version:
+
+``` r
+install.packages("rappdirs")
+```
+
+Development version:
+
+``` r
+pak::pak("r-lib/rappdirs")
+```
+
 ## Usage
 
 This kind of thing is what rappdirs is for. rappdirs will help you
