@@ -4,11 +4,9 @@
 # rappdirs
 
 <!-- badges: start -->
-
-[![R-CMD-check](https://github.com/r-lib/rappdirs/workflows/R-CMD-check/badge.svg)](https://github.com/r-lib/rappdirs/actions)
-[![CRAN
-status](https://www.r-pkg.org/badges/version/rappdirs)](https://CRAN.R-project.org/package=rappdirs)
-
+[![R-CMD-check](https://github.com/r-lib/rappdirs/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/r-lib/rappdirs/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/r-lib/rappdirs/branch/main/graph/badge.svg)](https://app.codecov.io/gh/r-lib/rappdirs?branch=main)
 <!-- badges: end -->
 
 `rappdirs` is a port of
