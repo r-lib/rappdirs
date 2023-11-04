@@ -40,7 +40,7 @@ or possibly:
 
     C:\Documents and Settings\<User>\Application Data\<AppAuthor>\<AppName>
 
-for [roaming profiles](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-vista/cc766489(v=ws.10)) but that is another story.
+for [roaming profiles](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-vista/cc766489(v=ws.10)) but that is another story.
 
 On Linux (and other Unices) the dir, according to the [XDG spec](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html) (and subject to some interpretation), is either:
 

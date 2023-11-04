@@ -34,7 +34,7 @@ or possibly:
     C:\Documents and Settings\<User>\Application Data\<AppAuthor>\<AppName>
 
 for [roaming
-profiles](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-vista/cc766489(v=ws.10))
+profiles](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-vista/cc766489(v=ws.10))
 but that is another story.
 
 On Linux (and other Unices) the dir, according to the [XDG
@@ -52,11 +52,11 @@ or possibly:
 This kind of thing is what rappdirs is for. rappdirs will help you
 choose an appropriate:
 
--   user data dir (`user_data_dir()`)
--   user config dir (`user_config_dir()`)
--   user cache dir (`user_cache_dir()`)
--   site data dir (`site_data_dir()`)
--   user log dir (`user_log_dir()`)
+- user data dir (`user_data_dir()`)
+- user config dir (`user_config_dir()`)
+- user cache dir (`user_cache_dir()`)
+- site data dir (`site_data_dir()`)
+- user log dir (`user_log_dir()`)
 
 For example, on Mac:
 

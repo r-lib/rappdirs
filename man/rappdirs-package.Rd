@@ -4,13 +4,9 @@
 \name{rappdirs-package}
 \alias{rappdirs}
 \alias{rappdirs-package}
-\title{rappdirs: Application Directories: Determine Where to Save Data,
-    Caches, and Logs}
+\title{rappdirs: Application Directories: Determine Where to Save Data, Caches, and Logs}
 \description{
-An easy way to determine which directories on the
-    users computer you should use to save data, caches and logs. A port of
-    Python's 'Appdirs' (<https://github.com/ActiveState/appdirs>) to
-    R.
+An easy way to determine which directories on the users computer you should use to save data, caches and logs. A port of Python's 'Appdirs' (\url{https://github.com/ActiveState/appdirs}) to R.
 }
 \section{Main functions}{
 

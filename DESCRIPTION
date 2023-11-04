@@ -49,6 +49,6 @@ Copyright: Original python appdirs module copyright (c) 2010
     ActiveState Software Inc. R port copyright Hadley Wickham, RStudio.
     See file LICENSE for details.
 Encoding: UTF-8
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.3
 Config/testthat/edition: 3
 Roxygen: list(markdown = TRUE)
