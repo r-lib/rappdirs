@@ -2,7 +2,6 @@
 
     Code
       app <- app_dir("ggplot2", "hadley", os = "mac")
-    Code
       app$cache()
     Output
       [1] "~/Library/Caches/ggplot2"

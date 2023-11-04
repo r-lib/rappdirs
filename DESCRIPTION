@@ -42,7 +42,7 @@ Depends:
     R (>= 3.2)
 Suggests:
     roxygen2,
-    testthat (>= 3.0.0),
+    testthat (>= 3.2.0),
     covr,
     withr
 Copyright: Original python appdirs module copyright (c) 2010
