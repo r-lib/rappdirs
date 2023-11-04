@@ -7,9 +7,7 @@ Authors@R:
     c(person(given = "Hadley",
              family = "Wickham",
              role = c("trl", "cre", "cph"),
-             email = "hadley@rstudio.com"),
-      person(given = "RStudio",
-             role = "cph"),
+             email = "hadley@posit.co"),
       person(given = "Sridhar",
              family = "Ratnakumar",
              role = "aut"),
@@ -48,7 +46,7 @@ Suggests:
     covr,
     withr
 Copyright: Original python appdirs module copyright (c) 2010
-    ActiveState Software Inc. R port copyright Hadley Wickham, RStudio.
+    ActiveState Software Inc. R port copyright Hadley Wickham, Posit, PBC.
     See file LICENSE for details.
 Encoding: UTF-8
 RoxygenNote: 7.2.3
