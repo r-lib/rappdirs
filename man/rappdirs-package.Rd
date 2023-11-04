@@ -45,6 +45,7 @@ Other contributors:
   \item Eddy Petrisor [contributor]
   \item Gabor Csardi [contributor]
   \item Gregory Jefferis [contributor]
+  \item Posit Software, PBC [copyright holder, funder]
 }
 
 }

@@ -30,7 +30,9 @@ Authors@R:
              role = "ctb"),
       person(given = "Gregory",
              family = "Jefferis",
-             role = "ctb"))
+             role = "ctb"),
+      person("Posit Software, PBC", role = c("cph", "fnd"))
+      )
 Description: An easy way to determine which directories on the
     users computer you should use to save data, caches and logs. A port of
     Python's 'Appdirs' (<https://github.com/ActiveState/appdirs>) to
