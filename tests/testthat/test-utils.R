@@ -30,8 +30,7 @@ test_that("windows fallbacks work", {
 })
 
 test_that("check_version works as expected", {
-  expect_snapshot({
-    expect_equal(check_version("1", NULL), NULL)
-    expect_equal(check_version("1", "R"), "1")
-  })
+  expect_warning(out <- check_version("1", NULL), "version is ignored when appname is null")
+  expect_equal(out, NULL)
+  expect_equal(check_version("1", "R"), "1")
 })
