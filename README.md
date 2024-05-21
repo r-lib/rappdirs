@@ -13,9 +13,7 @@ coverage](https://codecov.io/gh/r-lib/rappdirs/branch/main/graph/badge.svg)](htt
 `rappdirs` is a port of
 [appdirs](https://github.com/ActiveState/appdirs) to R. It lets you find
 the appropriate directory to save caches, logs, and data, on Linux, Mac,
-and Windows. It allows you to store files that need to shared across R
-sessions in a way that aligns with the [CRAN
-policies](https://cran.r-project.org/web/packages/policies.html).
+and Windows. 
 
 ## Motivation
 
