@@ -10,7 +10,7 @@ Authors@R: c(
     person("ActiveState", role = "cph",
            comment = "R/appdir.r, R/cache.r, R/data.r, R/log.r translated from appdirs"),
     person("Eddy", "Petrisor", role = "ctb"),
-    person("Trevor", "Davis", role = c("trl", "aut")),
+    person("Trevor", "Davis", role = c("trl", "aut"), comment = c(ORCID = "0000-0001-6341-4639")),
     person("Gabor", "Csardi", role = "ctb"),
     person("Gregory", "Jefferis", role = "ctb"),
     person("Posit Software, PBC", role = c("cph", "fnd"))
