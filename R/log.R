@@ -5,7 +5,7 @@
 #' \itemize{
 #'   \item Mac OS X: \file{~/Library/Logs/<AppName>}
 #'   \item Unix: \file{~/.cache/<AppName>/log}, or under
-#'     \\env{$XDG_CACHE_HOME} if defined
+#'     \env{$XDG_CACHE_HOME} if defined
 #'   \item Win XP:  \file{C:\\Documents and Settings\\<username>\\Local Settings\\Application Data\\<AppAuthor>\\<AppName>\\Logs}
 #'   \item Vista:
 #'     \file{C:\\Users\\<username>\\AppData\\Local\\<AppAuthor>\\<AppName>\\Logs}
