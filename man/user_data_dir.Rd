@@ -41,7 +41,7 @@ is not NULL.}
 use the Windows roaming appdata directory. That means that for users on
 a Windows network setup for roaming profiles, this user data will be
 sync'd on login. See
-\url{https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-vista/cc766489(v=ws.10)}
+<https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-vista/cc766489(v=ws.10).
 for a discussion of issues.}
 
 \item{expand}{If TRUE (the default) will expand the \code{R_LIBS} specifiers with their equivalents.

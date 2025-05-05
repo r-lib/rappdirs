@@ -5,18 +5,15 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/r-lib/rappdirs/workflows/R-CMD-check/badge.svg)](https://github.com/r-lib/rappdirs/actions)
-[![CRAN
-status](https://www.r-pkg.org/badges/version/rappdirs)](https://CRAN.R-project.org/package=rappdirs)
-
+[![R-CMD-check](https://github.com/r-lib/rappdirs/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/r-lib/rappdirs/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/r-lib/rappdirs/branch/main/graph/badge.svg)](https://app.codecov.io/gh/r-lib/rappdirs?branch=main)
 <!-- badges: end -->
 
 `rappdirs` is a port of
 [appdirs](https://github.com/ActiveState/appdirs) to R. It lets you find
 the appropriate directory to save caches, logs, and data, on Linux, Mac,
-and Windows. It allows you to store files that need to shared across R
-sessions in a way that aligns with the [CRAN
-policies](https://cran.r-project.org/web/packages/policies.html).
+and Windows. 
 
 ## Motivation
 
@@ -34,7 +31,7 @@ or possibly:
     C:\Documents and Settings\<User>\Application Data\<AppAuthor>\<AppName>
 
 for [roaming
-profiles](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-vista/cc766489(v=ws.10))
+profiles](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-vista/cc766489(v=ws.10))
 but that is another story.
 
 On Linux (and other Unices) the dir, according to the [XDG
@@ -47,16 +44,30 @@ or possibly:
 
     ~/.local/share/<AppName>
 
+## Installation
+
+Stable version:
+
+``` r
+install.packages("rappdirs")
+```
+
+Development version:
+
+``` r
+pak::pak("r-lib/rappdirs")
+```
+
 ## Usage
 
 This kind of thing is what rappdirs is for. rappdirs will help you
 choose an appropriate:
 
--   user data dir (`user_data_dir()`)
--   user config dir (`user_config_dir()`)
--   user cache dir (`user_cache_dir()`)
--   site data dir (`site_data_dir()`)
--   user log dir (`user_log_dir()`)
+- user data dir (`user_data_dir()`)
+- user config dir (`user_config_dir()`)
+- user cache dir (`user_cache_dir()`)
+- site data dir (`site_data_dir()`)
+- user log dir (`user_log_dir()`)
 
 For example, on Mac:
 

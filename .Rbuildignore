@@ -10,3 +10,4 @@
 ^pkgdown$
 ^revdep$
 ^CRAN-RELEASE$
+^LICENSE\.md$

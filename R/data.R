@@ -34,7 +34,7 @@
 #'     use the Windows roaming appdata directory. That means that for users on
 #'     a Windows network setup for roaming profiles, this user data will be
 #'     sync'd on login. See
-#'     <https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-vista/cc766489(v=ws.10)>
+#'     <https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-vista/cc766489(v=ws.10).
 #'     for a discussion of issues.
 #' @param os Operating system whose conventions are used to construct the
 #'     requested directory. Possible values are "win", "mac", "unix". If `NULL`
