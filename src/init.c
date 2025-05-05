@@ -7,7 +7,7 @@
 extern SEXP win_path_(SEXP);
 
 static const R_CallMethodDef CallEntries[] = {
-    {"win_path_", (DL_FUNC) &win_path_, 1},
+    {"win_path_", (DL_FUNC) win_path_, 1},
     {NULL, NULL, 0}
 };
 
