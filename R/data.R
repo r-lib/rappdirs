@@ -50,16 +50,25 @@
 #' user_config_dir("rappdirs", os = "unix")
 #' user_config_dir("rappdirs", os = "mac")
 #' user_config_dir("rappdirs", version = "%p-platform/%v")
-user_data_dir <- function(appname = NULL, appauthor = appname, version = NULL,
-                          roaming = FALSE, expand = TRUE, os = NULL) {
+user_data_dir <- function(
+  appname = NULL,
+  appauthor = appname,
+  version = NULL,
+  roaming = FALSE,
+  expand = TRUE,
+  os = NULL
+) {
   version <- check_version(version, appname, expand)
 
-  base <- base_path(os, "DATA",
-    win  = win_path(ifelse(roaming, "roaming", "local")),
-    mac  = "~/Library/Application Support",
+  base <- base_path(
+    os,
+    "DATA",
+    win = win_path(ifelse(roaming, "roaming", "local")),
+    mac = "~/Library/Application Support",
     unix = Sys.getenv("XDG_DATA_HOME", "~/.local/share")
   )
-  switch(check_os(os),
+  switch(
+    check_os(os),
     win = file_path(base, appauthor, appname, version),
     mac = file_path(base, appname, version),
     unix = file_path(base, appname, version)
@@ -68,17 +77,26 @@ user_data_dir <- function(appname = NULL, appauthor = appname, version = NULL,
 
 #' @rdname user_data_dir
 #' @export
-user_config_dir <- function(appname = NULL, appauthor = appname, version = NULL,
-                            roaming = TRUE, expand = TRUE, os = NULL) {
+user_config_dir <- function(
+  appname = NULL,
+  appauthor = appname,
+  version = NULL,
+  roaming = TRUE,
+  expand = TRUE,
+  os = NULL
+) {
   version <- check_version(version, appname, expand)
 
-  base <- base_path(os, "CONFIG",
-    win  = win_path(ifelse(roaming, "roaming", "local")),
-    mac  = "~/Library/Application Support",
+  base <- base_path(
+    os,
+    "CONFIG",
+    win = win_path(ifelse(roaming, "roaming", "local")),
+    mac = "~/Library/Application Support",
     unix = Sys.getenv("XDG_CONFIG_HOME", "~/.config")
   )
 
-  switch(check_os(os),
+  switch(
+    check_os(os),
     win = file_path(base, appauthor, appname, version),
     mac = file_path(base, appname, version),
     unix = file_path(base, appname, version)
@@ -112,41 +130,68 @@ user_config_dir <- function(appname = NULL, appauthor = appname, version = NULL,
 #' @section Warning:
 #' Do not use this on Windows. See the note above for why.
 #' @export
-site_data_dir <- function(appname = NULL, appauthor = appname, version = NULL,
-                          multipath = FALSE, expand = TRUE, os = NULL) {
+site_data_dir <- function(
+  appname = NULL,
+  appauthor = appname,
+  version = NULL,
+  multipath = FALSE,
+  expand = TRUE,
+  os = NULL
+) {
   version <- check_version(version, appname, expand)
 
-  switch(check_os(os),
+  switch(
+    check_os(os),
     win = file_path(win_path("common"), appauthor, appname, version),
     mac = file_path("/Library/Application Support", appname, version),
     unix = file_path_site_unix(
       Sys.getenv("XDG_DATA_DIRS", "/usr/local/share:/usr/share"),
-      appname, version, multipath
+      appname,
+      version,
+      multipath
     )
   )
 }
 
 #' @rdname site_data_dir
 #' @export
-site_config_dir <- function(appname = NULL, appauthor = appname, version = NULL,
-                            multipath = FALSE, expand = TRUE, os = NULL) {
+site_config_dir <- function(
+  appname = NULL,
+  appauthor = appname,
+  version = NULL,
+  multipath = FALSE,
+  expand = TRUE,
+  os = NULL
+) {
   version <- check_version(version, appname, expand)
 
-  switch(check_os(os),
+  switch(
+    check_os(os),
     win = file_path(win_path("common"), appauthor, appname, version),
     mac = file_path("/Library/Application Support", appname, version),
     unix = file_path_site_unix(
       Sys.getenv("XDG_CONFIG_DIRS", "/etc/xdg"),
-      appname, version, multipath
+      appname,
+      version,
+      multipath
     )
   )
 }
 
 # wrapper with `multipath` and use `parse_path_string` for cleaner switch statement
-file_path_site_unix <- function(sys_getenv, appname, version, multipath = FALSE) {
+file_path_site_unix <- function(
+  sys_getenv,
+  appname,
+  version,
+  multipath = FALSE
+) {
   paths <- parse_path_string(sys_getenv)
   if (multipath) {
-    vapply(paths, file_path, appname, version,
+    vapply(
+      paths,
+      file_path,
+      appname,
+      version,
       FUN.VALUE = character(1),
       USE.NAMES = FALSE
     )

@@ -18,7 +18,10 @@ test_that("windows fallbacks work", {
 
   expect_equal(win_path_env("roaming"), "<APPDATA>")
 
-  expect_equal(win_path_env("local"), "<USERPROFILE>/Local Settings/Application Data")
+  expect_equal(
+    win_path_env("local"),
+    "<USERPROFILE>/Local Settings/Application Data"
+  )
   withr::local_envvar(LOCALAPPDATA = "<LOCALAPPDATA>")
   expect_equal(win_path_env("local"), "<LOCALAPPDATA>")
 
@@ -26,7 +29,7 @@ test_that("windows fallbacks work", {
   withr::local_envvar(PROGRAMDATA = "<PROGRAMDATA>")
   expect_equal(win_path_env("common"), "<PROGRAMDATA>")
 
-  expect_error(win_path_env("foo"), "invalid")
+  expect_snapshot(error = TRUE, win_path_env("foo"))
 })
 
 test_that("check_version works as expected", {

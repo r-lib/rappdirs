@@ -44,7 +44,8 @@ win_path <- function(type_appdata = "common") {
   CSIDL_COMMON_APPDATA <- 35L
   CSIDL_LOCAL_APPDATA <- 28L
 
-  switch(type_appdata,
+  switch(
+    type_appdata,
     roaming = win_path_csidl(CSIDL_APPDATA) %||% win_path_env("roaming"),
     local = win_path_csidl(CSIDL_LOCAL_APPDATA) %||% win_path_env("local"),
     common = win_path_csidl(CSIDL_COMMON_APPDATA) %||% win_path_env("common")
@@ -64,10 +65,12 @@ win_path_env <- function(type) {
     env_fallback("APPDATA")
   } else if (type == "local") {
     path <- Sys.getenv("LOCALAPPDATA", unset = NA)
-    if (is.na(path)) { # environmental variable not defined in XP
+    if (is.na(path)) {
+      # environmental variable not defined in XP
       path <- file.path(
         env_fallback("USERPROFILE"),
-        "Local Settings", "Application Data"
+        "Local Settings",
+        "Application Data"
       )
     }
     path

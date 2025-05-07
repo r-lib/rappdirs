@@ -23,17 +23,26 @@
 #' @export
 #' @examples
 #' user_cache_dir("rappdirs")
-user_cache_dir <- function(appname = NULL, appauthor = appname, version = NULL,
-                           opinion = TRUE, expand = TRUE, os = NULL) {
+user_cache_dir <- function(
+  appname = NULL,
+  appauthor = appname,
+  version = NULL,
+  opinion = TRUE,
+  expand = TRUE,
+  os = NULL
+) {
   version <- check_version(version, appname, expand)
 
-  base <- base_path(os, "CACHE",
-    win  = win_path("local"),
-    mac  = "~/Library/Caches",
+  base <- base_path(
+    os,
+    "CACHE",
+    win = win_path("local"),
+    mac = "~/Library/Caches",
     unix = Sys.getenv("XDG_CACHE_HOME", "~/.cache")
   )
 
-  switch(check_os(os),
+  switch(
+    check_os(os),
     win = file_path(base, appauthor, appname, version, if (opinion) "Cache"),
     mac = file_path(base, appname, version),
     unix = file_path(base, appname, version)
