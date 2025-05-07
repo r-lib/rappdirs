@@ -1,3 +1,11 @@
+# windows fallbacks work
+
+    Code
+      win_path_env("foo")
+    Condition
+      Error in `win_path_env()`:
+      ! invalid `type` argument
+
 # check_version works as expected
 
     Code

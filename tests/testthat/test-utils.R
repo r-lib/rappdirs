@@ -29,7 +29,7 @@ test_that("windows fallbacks work", {
   withr::local_envvar(PROGRAMDATA = "<PROGRAMDATA>")
   expect_equal(win_path_env("common"), "<PROGRAMDATA>")
 
-  expect_error(win_path_env("foo"), "invalid")
+  expect_snapshot(error = TRUE, win_path_env("foo"))
 })
 
 test_that("check_version works as expected", {
