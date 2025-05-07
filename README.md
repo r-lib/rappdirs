@@ -13,7 +13,9 @@ coverage](https://codecov.io/gh/r-lib/rappdirs/branch/main/graph/badge.svg)](htt
 `rappdirs` is a port of
 [appdirs](https://github.com/ActiveState/appdirs) to R. It lets you find
 the appropriate directory to save caches, logs, and data, on Linux, Mac,
-and Windows. 
+and Windows. It allows you to store files that need to shared across R
+sessions in a way that aligns with the [CRAN
+policies](https://cran.r-project.org/web/packages/policies.html).
 
 ## Motivation
 
@@ -63,11 +65,11 @@ pak::pak("r-lib/rappdirs")
 This kind of thing is what rappdirs is for. rappdirs will help you
 choose an appropriate:
 
-- user data dir (`user_data_dir()`)
-- user config dir (`user_config_dir()`)
-- user cache dir (`user_cache_dir()`)
-- site data dir (`site_data_dir()`)
-- user log dir (`user_log_dir()`)
+-   user data dir (`user_data_dir()`)
+-   user config dir (`user_config_dir()`)
+-   user cache dir (`user_cache_dir()`)
+-   site data dir (`site_data_dir()`)
+-   user log dir (`user_log_dir()`)
 
 For example, on Mac:
 
