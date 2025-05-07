@@ -7,7 +7,7 @@
 
 [![R-CMD-check](https://github.com/r-lib/rappdirs/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/r-lib/rappdirs/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
-coverage](https://codecov.io/gh/r-lib/rappdirs/branch/main/graph/badge.svg)](https://app.codecov.io/gh/r-lib/rappdirs?branch=main)
+coverage](https://codecov.io/gh/r-lib/rappdirs/graph/badge.svg)](https://app.codecov.io/gh/r-lib/rappdirs)
 <!-- badges: end -->
 
 `rappdirs` is a port of
