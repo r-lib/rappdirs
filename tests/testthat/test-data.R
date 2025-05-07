@@ -1,8 +1,17 @@
 test_that("default paths work on mac", {
-  expect_equal(user_data_dir("R", os = "mac"), "~/Library/Application Support/R")
-  expect_equal(user_config_dir("R", os = "mac"), "~/Library/Application Support/R")
+  expect_equal(
+    user_data_dir("R", os = "mac"),
+    "~/Library/Application Support/R"
+  )
+  expect_equal(
+    user_config_dir("R", os = "mac"),
+    "~/Library/Application Support/R"
+  )
   expect_equal(site_data_dir("R", os = "mac"), "/Library/Application Support/R")
-  expect_equal(site_config_dir("R", os = "mac"), "/Library/Application Support/R")
+  expect_equal(
+    site_config_dir("R", os = "mac"),
+    "/Library/Application Support/R"
+  )
 })
 
 test_that("default paths work on linux", {
@@ -56,10 +65,19 @@ test_that("can optionally use all XDG_DATA_DIRS", {
 
 test_that("default paths work in windows simulation", {
   skip_on_os("windows")
-  expect_equal(user_data_dir("R", os = "win"), "<USERPROFILE>/Local Settings/Application Data/R/R")
+  expect_equal(
+    user_data_dir("R", os = "win"),
+    "<USERPROFILE>/Local Settings/Application Data/R/R"
+  )
   expect_equal(user_config_dir("R", os = "win"), "<APPDATA>/R/R")
-  expect_equal(site_data_dir("R", os = "win"), "<ALLUSERPROFILE>/Application Data/R/R")
-  expect_equal(site_config_dir("R", os = "win"), "<ALLUSERPROFILE>/Application Data/R/R")
+  expect_equal(
+    site_data_dir("R", os = "win"),
+    "<ALLUSERPROFILE>/Application Data/R/R"
+  )
+  expect_equal(
+    site_config_dir("R", os = "win"),
+    "<ALLUSERPROFILE>/Application Data/R/R"
+  )
 })
 
 test_that("can override windows paths with env vars", {
