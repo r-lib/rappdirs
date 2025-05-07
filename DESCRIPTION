@@ -13,7 +13,7 @@ Authors@R: c(
     person("Trevor", "Davis", role = c("trl", "aut"), comment = c(ORCID = "0000-0001-6341-4639")),
     person("Gabor", "Csardi", role = "ctb"),
     person("Gregory", "Jefferis", role = "ctb"),
-    person("Posit Software, PBC", role = c("cph", "fnd"))
+    person("Posit Software, PBC", role = c("cph", "fnd"), comment = c(ROR = "03wc8by49"))
   )
 Description: An easy way to determine which directories on the users
     computer you should use to save data, caches and logs. A port of
