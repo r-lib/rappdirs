@@ -22,7 +22,7 @@ License: MIT + file LICENSE
 URL: https://rappdirs.r-lib.org, https://github.com/r-lib/rappdirs
 BugReports: https://github.com/r-lib/rappdirs/issues
 Depends:
-    R (>= 3.2)
+    R (>= 4.1)
 Suggests:
     covr,
     roxygen2,
