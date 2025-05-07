@@ -10,10 +10,12 @@ Authors@R: c(
     person("ActiveState", role = "cph",
            comment = "R/appdir.r, R/cache.r, R/data.r, R/log.r translated from appdirs"),
     person("Eddy", "Petrisor", role = "ctb"),
-    person("Trevor", "Davis", role = c("trl", "aut"), comment = c(ORCID = "0000-0001-6341-4639")),
+    person("Trevor", "Davis", role = c("trl", "aut"),
+           comment = c(ORCID = "0000-0001-6341-4639")),
     person("Gabor", "Csardi", role = "ctb"),
     person("Gregory", "Jefferis", role = "ctb"),
-    person("Posit Software, PBC", role = c("cph", "fnd"), comment = c(ROR = "03wc8by49"))
+    person("Posit Software, PBC", role = c("cph", "fnd"),
+           comment = c(ROR = "03wc8by49"))
   )
 Description: An easy way to determine which directories on the users
     computer you should use to save data, caches and logs. A port of
@@ -30,10 +32,10 @@ Suggests:
     withr
 Config/Needs/website: tidyverse/tidytemplate
 Config/testthat/edition: 3
+Config/usethis/last-upkeep: 2025-05-05
 Copyright: Original python appdirs module copyright (c) 2010 ActiveState
     Software Inc. R port copyright Hadley Wickham, Posit, PBC.  See file
     LICENSE for details.
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
-Config/usethis/last-upkeep: 2025-05-05
