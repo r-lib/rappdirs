@@ -1,0 +1,95 @@
+# rappdirs
+
+`rappdirs` is a port of
+[appdirs](https://github.com/ActiveState/appdirs) to R. It lets you find
+the appropriate directory to save caches, logs, and data, on Linux, Mac,
+and Windows. It allows you to store files that need to shared across R
+sessions in a way that aligns with the [CRAN
+policies](https://cran.r-project.org/web/packages/policies.html).
+
+## Motivation
+
+What directory should your app use for storing user data? If running on
+Mac OS X, you should use:
+
+``` R
+~/Library/Application Support/<AppName>
+```
+
+If on Windows (at least English Win XP) that should be:
+
+``` R
+C:\Documents and Settings\<User>\Application Data\Local Settings\<AppAuthor>\<AppName>
+```
+
+or possibly:
+
+``` R
+C:\Documents and Settings\<User>\Application Data\<AppAuthor>\<AppName>
+```
+
+for [roaming
+profiles](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-vista/cc766489(v=ws.10))
+but that is another story.
+
+On Linux (and other Unices) the dir, according to the [XDG
+spec](https://specifications.freedesktop.org/basedir/basedir-spec-latest.html)
+(and subject to some interpretation), is either:
+
+``` R
+~/.config/<AppName>     
+```
+
+or possibly:
+
+``` R
+~/.local/share/<AppName>
+```
+
+## Installation
+
+Stable version:
+
+``` r
+install.packages("rappdirs")
+```
+
+Development version:
+
+``` r
+pak::pak("r-lib/rappdirs")
+```
+
+## Usage
+
+This kind of thing is what rappdirs is for. rappdirs will help you
+choose an appropriate:
+
+- user data dir
+  ([`user_data_dir()`](https://rappdirs.r-lib.org/dev/reference/user_data_dir.md))
+- user config dir
+  ([`user_config_dir()`](https://rappdirs.r-lib.org/dev/reference/user_data_dir.md))
+- user cache dir
+  ([`user_cache_dir()`](https://rappdirs.r-lib.org/dev/reference/user_cache_dir.md))
+- site data dir
+  ([`site_data_dir()`](https://rappdirs.r-lib.org/dev/reference/site_data_dir.md))
+- user log dir
+  ([`user_log_dir()`](https://rappdirs.r-lib.org/dev/reference/user_log_dir.md))
+
+For example, on Mac:
+
+``` r
+library(rappdirs)
+appname <- "SuperApp"
+appauthor <- "Acme"
+user_config_dir(appname, appauthor)
+#> [1] "~/Library/Application Support/SuperApp"
+user_data_dir(appname, appauthor)
+#> [1] "~/Library/Application Support/SuperApp"
+site_data_dir(appname, appauthor)
+#> [1] "/Library/Application Support/SuperApp"
+user_cache_dir(appname, appauthor)
+#> [1] "~/Library/Caches/SuperApp"
+user_log_dir(appname, appauthor)
+#> [1] "~/Library/Logs/SuperApp"
+```
