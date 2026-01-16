@@ -37,7 +37,7 @@ profiles](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/win
 but that is another story.
 
 On Linux (and other Unices) the dir, according to the [XDG
-spec](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html)
+spec](https://specifications.freedesktop.org/basedir/basedir-spec-latest.html)
 (and subject to some interpretation), is either:
 
     ~/.config/<AppName>     
@@ -65,11 +65,11 @@ pak::pak("r-lib/rappdirs")
 This kind of thing is what rappdirs is for. rappdirs will help you
 choose an appropriate:
 
--   user data dir (`user_data_dir()`)
--   user config dir (`user_config_dir()`)
--   user cache dir (`user_cache_dir()`)
--   site data dir (`site_data_dir()`)
--   user log dir (`user_log_dir()`)
+- user data dir (`user_data_dir()`)
+- user config dir (`user_config_dir()`)
+- user cache dir (`user_cache_dir()`)
+- site data dir (`site_data_dir()`)
+- user log dir (`user_log_dir()`)
 
 For example, on Mac:
 
