@@ -32,12 +32,12 @@ Source:
 
 Ratnakumar S, Mick T, Davis T (2026). *rappdirs: Application
 Directories: Determine Where to Save Data, Caches, and Logs*. R package
-version 0.3.3.9000, <https://rappdirs.r-lib.org>.
+version 0.3.4.9000, <https://rappdirs.r-lib.org>.
 
     @Manual{,
       title = {rappdirs: Application Directories: Determine Where to Save Data, Caches, and Logs},
       author = {Sridhar Ratnakumar and Trent Mick and Trevor Davis},
       year = {2026},
-      note = {R package version 0.3.3.9000},
+      note = {R package version 0.3.4.9000},
       url = {https://rappdirs.r-lib.org},
     }

@@ -2,6 +2,10 @@
 
 ## rappdirs (development version)
 
+## rappdirs 0.3.4
+
+CRAN release: 2026-01-17
+
 - Upkeep
 
 ## rappdirs 0.3.3
