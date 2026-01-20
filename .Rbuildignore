@@ -13,3 +13,4 @@
 ^LICENSE\.md$
 ^[\.]?air\.toml$
 ^\.vscode$
+^CRAN-SUBMISSION$
